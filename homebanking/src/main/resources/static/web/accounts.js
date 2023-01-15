@@ -1,0 +1,150 @@
+const { createApp } = Vue
+
+const app = createApp({
+      data(){
+        return{
+          results : '',
+          clients : [],
+          arrayLength : [],
+          aux : [],
+          queryString : '',
+          params : '',
+          ids : '',
+          account : '',
+          sortAccount : '',
+          totalBalance : '',
+          creationFormatDate : '',
+          dollarUSLocale : '',
+          card : '',
+          loans : '',
+          formattedBalance : '',
+          formattedOneAccountBalance : '',
+          show : true,
+          show2 : true,
+          exchange : true,
+          pay : true,
+          withdrawals : true,
+          address : true,
+          transfers : true,
+          loanAmountFormat : '',
+
+        }
+      },
+      created(){
+        this.getClients()
+      },
+      methods: {
+        getClients(){
+          axios.get('/api/clients/current')
+          .then((result) => {
+              this.results = result.data;
+              this.dollarUSLocale = Intl.NumberFormat("en-US", 
+                {
+                  style: "currency",
+                  currency: "USD",
+                });
+              console.log(this.results)
+              this.clients = this.results
+              console.log(this.clients)
+              this.queryString = location.search
+              console.log(location.search)
+              this.params = new URLSearchParams(this.queryString)
+              this.ids = this.params.get("id")
+              console.log(this.params)
+              this.clients.account
+              this.account = this.clients.account
+              this.loans = this.clients.clientLoan
+              this.card = this.clients.card
+              this.sortAccount = this.account.sort((a,b) => a.id - b.id)
+              console.log(this.clients.account)
+              console.log(this.totalBalance = (this.clients.account).map(e => e.balance).reduce(function (previousValue, currentValue) {
+              return previousValue + currentValue;}))
+              this.loans.sort((a,b) => a.date - b.date)
+              this.loans.map(item => item.amount = this.dollarUSLocale.format(item.amount))
+              //console.log(this.dollarUSLocale.format(this.loanAmountFormat.map(e => e)))
+              console.log(this.loanAmountFormat)
+              //this.loans.date.slice(0,10)
+              console.log(this.loans)
+              this.formattedOneAccountBalance = this.clients.account.map( item => item.balance = this.dollarUSLocale.format(item.balance))
+              //this.sortAccount.map( item => item.balance = this.dollarUSLocale.format(item.balance))
+              this.formattedBalance = this.dollarUSLocale.format(this.totalBalance)
+              console.log(this.formattedOneAccountBalance)
+              console.log(this.formattedBalance)
+          })
+          .catch(error => {console.log(error);})
+          },
+          getCard(card){
+            if (card == "MASTER"){
+              return "fab fa-cc-mastercard fa-1x d-flex justify-content-end"
+            }else{
+              return "fab fa-cc-visa fa-1x d-flex justify-content-end"
+            }
+          },
+          transaction(){
+            setTimeout(()=>{ window.location = ("/web/account.html");}, 500);
+          },
+          logOut(){
+            axios.post('/api/logout').then(response => console.log('signed out!!!'))
+            setTimeout(()=>{ window.location = ("/web/index.html");}, 300);  
+          },
+          menuUp(){
+            console.log("menu")
+            if(this.show){
+              this.show = false
+              this.show2 = false
+            }else{
+              this.show = true
+              setTimeout(()=>{this.show2 = true }, 150)
+            }
+          },
+          btnOptions(option){
+            switch (option) {
+              case 'exchange':
+                if(this.exchange){
+                  this.exchange = false
+                }else{
+                  this.exchange = true
+                }   
+                break;
+              case 'pay':
+                if(this.pay){
+                  this.pay = false
+                }else{
+                  this.pay = true
+                }
+                break
+              case 'withdrawals':
+                if(this.withdrawals){
+                  this.withdrawals = false
+                  localStorage.setItem('transaction','withdrawals')
+                 setTimeout(()=>{window.location = ("http://localhost:8080/web/transactions.html")}, 500)
+                }else{
+                  this.withdrawals = true
+                }
+                break;
+                case 'transfers':
+                if(this.withdrawals){
+                  this.withdrawals = false
+                  localStorage.setItem('transaction','transfer')
+                 setTimeout(()=>{window.location = ("http://localhost:8080/web/transactions.html")}, 500)
+                }else{
+                  this.withdrawals = true
+                }
+                break;
+              case 'address':
+                if(this.address){
+                  this.address = false
+                }else{
+                  this.address = true
+                }
+                break;
+            }
+          },
+          createAccount(){
+            axios.post('/api/clients/current/accounts')
+            window.location.reload();
+          }
+    }
+})
+app.mount("#app");
+

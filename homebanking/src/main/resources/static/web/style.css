@@ -1,0 +1,868 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.textoSpan span {
+    font-size: 9px !important;
+}
+
+.divJson {
+    height: 300px !important;
+    min-width: 450px
+}
+
+.editButton {
+    font-size: 10px;
+    font-weight: bold !important;
+    border-style: none;
+}
+
+.imgBtn {
+    width: 10px;
+    height: 10px;
+}
+
+.sizeBtn {
+    width: 70px;
+    border-style: none;
+}
+
+.tableWidth {
+    max-width: 100vw;
+}
+
+thead {
+    min-width: 100%
+}
+
+.headerColor {
+    background-color: #3F73CA !important;
+    color: white;
+}
+.headerMobile{
+    height: 20vh!important;
+}
+.logoCentro {
+    width: 5%;
+}
+
+.active {
+    color: #3F73CA !important;
+    font-weight: 500 !important;
+}
+
+.clientName {
+    font-size: larger
+}
+
+.botonesDerecha button {
+    background-color: rgba(0, 0, 0, 0.052);
+    width: 80px !important;
+}
+.btnOptions{
+    width: 80px!important;
+    height: 54px!important;
+}
+
+.botonesDerecha i {
+    display: flex;
+    justify-content: center;
+}
+
+.botonesDerecha i:hover {
+    color: aliceblue !important;
+}
+
+.botonesDerecha div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 13px;
+}
+
+/* #navbarNavAltMarkup a:hover{
+    color: #263292;
+    text-decoration:underline;
+} */
+.footerSize {
+    min-height: 15vh;
+}
+
+.totalBalance {
+    font-size: 22px;
+}
+
+.navAccount a:hover {
+    color: #263292 !important;
+    text-decoration: underline;
+}
+
+.mobile {
+    display: none !important;
+}
+
+.desktop {
+    display: flex !important;
+}
+
+.btnTransactions {
+    padding: 5px !important;
+    width: 100%;
+    height: 30px;
+    background-color: aliceblue !important;
+    font-size: 8px;
+    color: black;
+}
+
+/* .aTransactions{
+    width: 40%;
+    height: 40px;
+} */
+.btnTransactions:hover {
+    background-color: #3F73CA !important;
+}
+
+.btnTransactions i:hover {
+    color: aliceblue !important;
+}
+
+.clientIcon {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.backgroundMain {
+    background:
+        radial-gradient(rgb(255, 255, 255) 15%, transparent 16%) 0 0,
+        radial-gradient(rgb(255, 255, 255) 15%, transparent 16%) 8px 8px,
+        radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px,
+        radial-gradient(rgba(0, 0, 0, 0.1) 15%, transparent 20%) 8px 9px;
+    background-color: #ffffff;
+    background-size: 16px 16px;
+}
+
+.backgroundAccounts {
+    background-color: #f5f5f5 !important;
+}
+
+.mobileBalance {
+    display: none !important;
+}
+
+.investingFrame {
+    height: 100%;
+}
+
+.loginForm {
+    display: none !important;
+}
+
+.spinnerLogin {
+    display: none !important;
+}
+
+.spinnerSize {
+    width: 4rem;
+    height: 4rem;
+}
+
+.cardHeight {
+    min-height: 85vh;
+}
+#loginTarjeta{
+    width: 100%!important;
+}
+.cardHeight img {
+    width: 35%;
+}
+.mobileXsShow {
+    display: none !important;
+}
+
+.savingImg img {
+    max-width: 100%;
+    border-radius: 3px;
+}
+#widgetMataf
+
+.fSizeTable {
+    font-size: 15px !important;
+}
+
+.positionHeader {
+    position: sticky;
+    top: 0px;
+    bottom: 0px;
+}
+.headerIndex{
+    z-index: 2;
+}
+.headerDesktop {
+    height: 90px!important;
+    z-index: 1;
+}
+
+.positionLogin {
+    position: sticky;
+    top: 80px;
+}
+
+.alutraCard {
+    height: 80vh !important;
+}
+.mainIndex{
+    z-index: 0!important;
+}
+.landingMiniImg img{
+    scale: 40%;
+}
+.landingMiniImg p{
+    font-size: 12px;
+    text-align: center;
+}
+.spanRegistrationSize span{
+    width: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* CARD */
+
+.holo {
+    background: linear-gradient(270deg, #ec1414, #eccb14, #14ec1c, #14eaec, #1914ec, #ec14da);
+    background-size: 1200% 1200%;
+    -webkit-animation: Logo 4s ease infinite;
+    -moz-animation: Logo 4s ease infinite;
+    -o-animation: Logo 4s ease infinite;
+    animation: Logo 4s ease infinite;
+    display: flex;
+    width: 70px;
+    height: 50px;
+    z-index: 19;
+    border-radius: 55px;
+
+}
+
+.holo2 img {
+    width: 100%;
+    opacity: 0.5;
+    border-radius: 55px;
+
+}
+
+@-webkit-keyframes Logo {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes Logo {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-o-keyframes Logo {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes Logo {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+.cardWidth{
+    width: 460px!important;
+    scale: 0.4!important;
+}
+.cardsContainer{
+    width: 33%;
+}
+.cardWidth:hover{
+    scale: 0.6!important;
+}
+.cardBackground {
+    background-image: url(./img/logoCentrogris2.png);
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.SILVER {
+    background-image: linear-gradient(to right top, #a6a6a6, #a6a6a6, #a6a6a6, #a6a6a6,  #a6a6a6,  #a6a6a6,  #a6a6a6, rgb(0, 0, 0), rgb(0, 0, 0));
+    border-width: .5px;
+    border-color: rgb(0, 0, 0);
+    border-style: outset;
+    width: 50%;
+    scale: 70%;
+}
+
+.GOLD {
+    background-image: linear-gradient(to right top, #bf930d, #bf930d, #bf930d, #bf930d, #bf930d, #bf930d, #bf930d, #bf930d, #bf930d, rgba(0, 0, 0, 0.378), rgba(0, 0, 0, 0.589), #000000);
+    border-width: .5px;
+    border-color: rgb(0, 0, 0);
+    border-style: outset;
+    width: 50%;
+    scale: 70%;
+}
+
+.TITANIUM {
+    background-image: linear-gradient(to right top, #d5d5d5, #d5d5d5, #d5d5d5, #d5d5d5, #d5d5d5, #d5d5d5, #d5d5d5, #d5d5d5, #d5d5d5, rgba(0, 0, 0, 0.378), rgba(0, 0, 0, 0.589), #000000);
+    border-width: .5px;
+    border-color: rgb(0, 0, 0);
+    border-style: outset;
+    width: 50%;
+    scale: 70%;
+    filter: brightness(105%);
+}
+
+.CREDIT {
+    font-family: Share Tech Mono;
+    color: transparent;
+    text-shadow: -2px -2px 2px rgba(255, 255, 255, 1),
+        1px 1px 1px rgba(0, 0, 0, 0.914),
+        2px -2px 4px rgba(255, 255, 255, 1),
+        -2px -2px 2px rgba(255, 255, 255, 0.914),
+        -2px 2px 1px rgba(87, 87, 87, 0.914);
+    -webkit-text-stroke: 2px rgba(0, 0, 0, 0.4);
+}
+.DEBIT {
+    font-family: Share Tech Mono;
+    
+    font-weight: bolder;
+}
+.fontValidSilver span {
+
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+    text-shadow: black 3px 0 10px;
+}
+
+.fontValidGold span {
+
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+    text-shadow: black 3px 0 10px;
+}
+
+.fontValidTitanium span {
+
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+    text-shadow: black 3px 0 10px;
+}
+
+.fontCardName span {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    text-shadow: black 3px 0 10px;
+}
+.fontCardTitle {
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    text-shadow: black 3px 0 10px;
+}
+.btnCvv {
+    background: transparent !important;
+}
+
+.round {
+    border-radius: 10px !important;
+}
+
+/* CVV */
+.hideCvvOn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hideCvvOff {
+    display: none;
+}
+
+.showCvvOn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.showCvvOff {
+    display: none;
+}
+
+.imgAvatar img{
+    height: 32px;
+}
+.imgAvatar li{
+    display: flex;
+    flex-direction: row;
+}
+.material-symbols-outlined {
+  color: #ffffff;
+}
+
+/* MENU MOBILE */
+.menuMobile{
+    display: none!important;
+}
+.logoCentroMobile{
+    width: 15%!important;
+}
+.typewriter h3 {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .005em; /* Adjust as needed */
+    animation:
+      typing 5s steps(50, end),
+      blink-caret .75s step-end infinite;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: rgb(255, 255, 255); }
+  }
+.textAlignMetals{
+    text-indent: 1px;
+    text-align: justify!important;
+    padding: 8px;
+}
+.exchangeBackgorund{
+    background-color: #0000000a;
+}
+.textAreaTransfers{
+    resize: none;
+}
+.labelTransaction{
+    font-size: 12px!important;
+}
+.spanLoan span{
+    font-size: 12px;
+    width: 100%!important;
+}
+.divLoan div{
+    width: 120px!important;
+    text-align: center;
+}
+.loanOptionTitles h6{
+    font-size: 13px;
+    margin: 0;
+}
+.loanOptionTitles span{
+    font-size: 11px;
+}
+.loanOptionTitles div{
+    width: 100%;
+}
+.loanOptionTitles input{
+    color : #3F73CA;
+}
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+.fade-enter-from, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0
+  }
+.fade-enter-to {
+    opacity: 1
+  }
+
+
+@media screen and (min-width : 1025px) and (max-width : 2560px) {
+    .botonesDerecha2k {
+        display: flex !important;
+    }
+    .botonesDerecha1024 {
+        display: none !important;
+    }
+    main {
+        min-height: 90vh;
+    }
+
+    .investingFrame {
+        height: 400px;
+    }
+
+    .resolution4k {
+        min-height: 85vh;
+    }
+
+    .resolution4k>div {
+        min-height: 80%;
+    }
+}
+@media screen and (min-width : 801px) and (max-width : 1024px) {
+    .botonesDerecha2k {
+        display: none !important;
+    }
+
+    .desktop {
+        display: none !important;
+    }
+
+    .mobileLogin{
+        width: 100%;
+        height: 80vh!important;
+    }
+
+    .botonesDerecha1024 {
+        display: flex !important;
+        max-width: 90%;
+    }
+
+    .botonesDerecha1024 button {
+        max-width: 80% !important;
+        max-height: 80% !important;
+    }
+}
+
+@media screen and (min-width : 426px) and (max-width : 800px) {
+    .menuMobile{
+        display: flex!important;
+        position: sticky;
+        bottom: 0px;
+    }
+
+    .botonesDerecha button {
+        width: 60px !important;
+        height: 30px !important;
+        border-style: none;
+    }
+
+    .botonesDerecha1024 {
+        display: none !important;
+    }
+
+    .botonesDerecha2k {
+        display: none !important;
+    }
+    .mobileLogin{
+            width: 100%;
+            height: 80vh!important;
+        }
+    .mobile {
+        display: flex !important;
+    }
+
+    .desktop {
+        display: none !important;
+    }
+    /* .mobile span {
+        display: none;
+    } */
+    .mobileLogin{
+        width: 100%;
+    }
+
+    .mobile iframe {
+        max-width: 100%;
+    }
+
+    .cardsAccount {
+        width: 300px !important;
+    }
+
+    .divPadre {
+        width: 450px !important;
+    }
+
+    .mobileBalance {
+        display: flex !important;
+        font-size: 12px;
+    }
+
+    .mobileAdjustment {
+        padding: 10px !important;
+        margin: 1px !important;
+    }
+
+    .mobileAdjustment {
+        min-width: 800px !important;
+    }
+
+    .btnTransactions {
+        padding: 5px !important;
+        width: 100%;
+        height: 100%;
+        background-color: aliceblue !important;
+        font-size: 8px;
+        color: black;
+    }
+
+    .menuReferences{
+        font-size: 10px;
+    }
+    .menuReferencesUp span{
+        font-weight: bold;
+        font-size: large;
+        color: black;
+    }
+    .menuUp{
+        display: none!important;
+    }
+}
+
+@media screen and (min-width : 377px) and (max-width : 425px){
+    .menuMobile{
+        display: flex!important;
+        position: sticky;
+        bottom: 0px;
+    }
+
+    .botonesDerecha button {
+        width: 30px !important;
+        height: 30px !important;
+        border-style: none;
+    }
+
+    .botonesDerecha1024 {
+        display: none !important;
+    }
+
+    .botonesDerecha2k {
+        display: none !important;
+    }
+
+    .mobile {
+        display: flex !important;
+    }
+
+    .desktop {
+        display: none !important;
+    }
+    .mobileLogin{
+        width: 100%;
+        height: 80vh!important;
+    }
+    /* .mobile span {
+        display: none;
+    } */
+
+    .mobile iframe {
+        max-width: 100%;
+    }
+
+    .cardsAccount {
+        width: 300px !important;
+    }
+
+    .divPadre {
+        width: 450px !important;
+    }
+
+    .mobileBalance {
+        display: flex !important;
+        font-size: 12px;
+    }
+
+    .mobileAdjustment {
+        padding: 10px !important;
+        margin: 1px !important;
+        min-width: 426px !important;
+    }
+
+    .mobileXs {
+        display: none !important;
+    }
+
+    .mobileXsShow {
+        display: flex !important;
+    }
+
+    main {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .btnTransactions {
+        padding: 5px !important;
+        max-width: 20%!important;
+        height: 100%;
+        background-color: aliceblue !important;
+        font-size: 8px;
+        color: black;
+    }
+    .menuReferences{
+        font-size: 10px;
+    }
+    .menuReferencesUp span{
+        font-weight: bold;
+        font-size: large;
+        color: black;
+    }
+    .menuUp{
+        display: none!important;
+    }
+}
+
+@media screen and (max-width : 376px) {
+    .menuMobile{
+        display: flex!important;
+        position: sticky;
+        bottom: 0px;
+    }
+    .headerMobile h3{
+        scale: 80%!important;
+        text-align: center;
+        text-transform:uppercase;
+    }
+    .headerMobile{
+        min-height: 150px!important;
+    }
+    .logoCentro{
+        width: 15%;
+    }
+    .botonesDerecha button {
+        width: 30px !important;
+        height: 30px !important;
+        border-style: none;
+    }
+    .botonesDerecha1024 {
+        display: none !important;
+    }
+
+    .botonesDerecha2k {
+        display: none !important;
+    }
+
+    .mobile {
+        display: flex !important;
+    }
+    .desktop {
+        display: none !important;
+    }
+    .mobileLogin{
+        width: 100%!important;
+        height: 80vh!important;
+        display: flex;
+        align-items: center;
+    }
+    /* .mobile span {
+        display: none;
+    } */
+
+    .mobile iframe {
+        max-width: 100%;
+    }
+
+    .cardsAccount {
+        width: 365px !important;
+    }
+    .cuerpoCards{
+        width: 90%!important;
+    }
+
+    .divPadre {
+        width: 370px !important;
+    }
+
+    .mobileBalance {
+        display: flex !important;
+        font-size: 12px;
+    }
+
+    .mobileAdjustment {
+        padding: 10px !important;
+        margin: 1px !important;
+        max-width: 100%!important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center!important;
+    }
+
+    .mobileXs {
+        display: none !important;
+    }
+
+    .mobileXsShow {
+        display: flex !important;
+    }
+
+    main {
+        display: flex !important;
+        flex-direction: column !important;
+        max-width: 375px !important;
+    }
+
+    .card {
+        max-width: 240px !important;
+    }
+
+    .btnTransactions {
+        padding: 5px !important;
+        max-width: 10%!important;
+        height: 90%;
+        background-color: aliceblue !important;
+        font-size: 8px;
+        color: black;
+    }
+    .rellenoCard{
+        font-size: 15px;
+    }
+    .menuReferences{
+        font-size: 10px;
+    }
+    .menuReferencesUp span{
+        font-weight: bold;
+        font-size: large;
+        color: black;
+    }
+    .menuUp{
+        display: none!important;
+    }
+    .botonesDerechaMobile span{
+        font-size: 8px;
+    }
+    .fSizeTable {
+        font-size: 12px !important;
+    }
+}

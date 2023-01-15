@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <title>Homebanking</title>
+</head>
+
+<body class="p-3">
+  <div id="app" class="d-flex flex-column">
+    <header>
+      <h1>Client manager</h1>
+    </header>
+    <main class="p-3">
+      <div class=" p-3 d-flex flex-column ">
+        <div class="d-flex flex-row gap-4">
+          <div class="col-6">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Name:</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Peter"
+                v-model="addFirstName">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Last name: </label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Dodge"
+                v-model="addLastName">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="mail@example.com"
+                v-model="addEmail">
+            </div>
+            <div class="col-auto">
+              <button type="click" class="btn btn-outline-success mb-3"
+                @click="addClient(addFirstName,addLastName,addEmail)">Add client</button>
+            </div>
+          </div>
+          <div class="col-6 p-3 d-flex flex-column ">
+              <h2>Client REST response</h2>
+              <pre class = "json divJson">
+                {{json}}
+              </pre>
+          </div>
+        </div>
+
+        <h2>Client list</h2>
+        <table class="table table-responsive">
+          <thead>
+            <tr class="text-bg-success">
+              <th scope="col-auto">ID</th>
+              <th scope="col-auto">First name</th>
+              <th scope="col-auto">Last name</th>
+              <th scope="col-auto">Email</th>
+              <th scope="col-auto">Manage</th>
+            </tr>
+          </thead>
+          <tbody v-for="client of clients">
+            <tr v-if = "enabled">
+              <!-- v-if = "client.enabled" -->
+              <td class="text-center">
+                <div>{{client.id}}</div>
+              </td>
+              <td class="tdWidth">
+                <div class="col-auto">
+                  {{client.firstName}}
+                  <button type="button" class="btn btn-outline-warning editButton btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" @click="validation(client,'firstName')">
+                    <img class="imgBtn" src="./img/edit.png" alt="">
+                  </button>
+                </div>
+              </td>
+              <td class="tdWidth">
+                <div class="col-auto">
+                  {{client.lastName}}
+                  <button type="button" class="btn btn-outline-warning editButton btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" @click="validation(client,'lastName')">
+                    <img class="imgBtn" src="./img/edit.png" alt="">
+                  </button>
+                </div>
+              </td>
+              <td class="tdWidth">
+                <div class="col-auto">
+                  {{client.email}}
+                  <button type="button" class="btn btn-outline-warning editButton btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" @click="validation(client,'email')">
+                    <img class="imgBtn" src="./img/edit.png" alt="">
+                  </button>
+                </div>
+              </td>
+              <td class="d-flex flex-row justify-content-between">
+                <div class="col-auto">
+                  <button type="button" class="btn btn-outline-danger editButton sizeBtn btn-sm" data-bs-toggle="modal"
+                    @click="validation(client,'delete')" data-bs-target="#exampleModal">
+                    Delete
+                  </button>
+                </div>
+                <div class="col-auto">
+                  <button type="button" class="btn btn-outline-warning editButton sizeBtn btn-sm" data-bs-toggle="modal"
+                    @click="validation(client,'edit')" data-bs-target="#exampleModal">
+                    Edit all
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header" v-if="bandera == 'edit'">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit client</h1>
+              </div>
+              <div class="modal-header" v-else-if="bandera == 'delete'">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete client</h1>
+              </div>
+              <!-- CUERPO EDITAR -->
+              <div class="modal-body" v-if="bandera == 'edit' || bandera == 'edit'"> 
+                <div class="mb-3">
+                  <label for="editFirstNameAll" class="form-label">Name:</label>
+                  <input type="email" class="form-control" id="editFirstNameAll" placeholder="Peter"
+                    v-model="editFirstName">
+                </div>
+                <div class="mb-3">
+                  <label for="editLastNameAll" class="form-label">Last name:  </label>
+                  <input type="email" class="form-control" id="editLastNameAll" :placeholder="Dodge"
+                    v-model="editLastName">
+                </div>
+                <div class="mb-3">
+                  <label for="editEmailAll" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="editEmailAll" placeholder="mail@example.com"
+                    v-model="editEmail">
+                </div>
+              </div>
+              <!-- CUERPO BORRAR CLIENTE -->
+              <div class="modal-body" v-else-if="bandera == 'delete'">
+                <label class="p-2">You will delete this client permanently</label>
+              </div>
+              <!-- CUERPO EDITAR POR SEPARADO -->
+              <div class="mb-3 modal-body" v-else-if="bandera == 'firstName'">
+                <label for="editFirstName" class="form-label">Name:</label>
+                <input type="email" class="form-control" id="editFirstName" placeholder="Peter"
+                  v-model="editFirstName">
+              </div>
+              <div class="mb-3 modal-body" v-else-if="bandera == 'lastName'">
+                <label for="editLastName" class="form-label">Last name:</label>
+                <input type="email" class="form-control" id="editLastName" placeholder="Dodge"
+                  v-model="editLastName">
+              </div>
+              <div class="mb-3 modal-body" v-else-if="bandera == 'email'">
+                <label for="editEmail" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="editEmail" placeholder="mail@example.com"
+                  v-model="editEmail">
+              </div>
+              <div>
+                <!-- BOTONES -->
+                <div class="modal-footer" v-if="bandera == 'edit'">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal"  @click = saveAllChanges(editFirstName,editLastName,editEmail)>Save changes</button>
+                </div>
+                <div class="modal-footer" v-else-if="bandera == 'delete'">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" @click = deleteClient()>Delete</button>
+                </div>
+                <div class="modal-footer" v-else-if="bandera == 'firstName'">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" @click = saveName(editFirstName)>Save name</button>
+                </div>
+                <div class="modal-footer" v-else-if="bandera == 'lastName'">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" @click = saveLastName(editLastName)>Save last name</button>
+                </div>
+                <div class="modal-footer" v-else-if="bandera == 'email'">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" @click = saveEmail(editEmail)>Save email</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+    <footer>
+
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="./admin.js"></script>
+</body>
+
+</html>
