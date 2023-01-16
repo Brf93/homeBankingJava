@@ -55,8 +55,8 @@
         </div>
         <div class="d-flex flex-row justify-content-around w-100 bg-light p-2 shadow">
           <div>
-            <span v-if="card.length !=0" class="d-flex align-items-center flex-column">CVVs<i @click="showCvvMethod()"
-                :class="show ? 'far fa-eye-slash fa-2x' : 'fas fa-eye fa-2x'"></i>
+            <span v-if="card.length !=0" class="d-flex align-items-center flex-column">CVVs<i @click="showCVV = !showCVV"
+                :class="showCVV ? 'far fa-eye-slash fa-2x' : 'fas fa-eye fa-2x'"></i>
             </span>
             <span v-else>You don't have any cards yet</span>
           </div>
@@ -74,13 +74,13 @@
             </div>
           </div>
           <div class="d-flex justify-content-center align-items-center">
-            <button :class=" card.length < 6 ? 'btn btn-primary' : 'btn btn-primary disabled'" @click = "newCard()">New card</button>
+            <button :class=" card.length < 6 ? 'btn btn-primary btnTransactions' : 'btn btn-primary btnTransactions disabled'" @click = "newCard()">New card</button>
           </div>
         </div>
         
-        <section class="d-flex flex-row flex-wrap shadow">
+        <section class="d-flex flex-row flex-wrap shadow w-100">
           <div v-for="cards of filterCheck" class="d-flex flex-column justify-content-center align-items-center cardsContainer">
-              <span class="mt-2 bg-primary text-light rounded p-2">Valid until: {{cards.thruDate}}</span>
+              <span class="mt-2 w-100 text-dark p-2 text-center">Valid until: {{cards.thruDate}}</span>
                 <div class="p-3 text-light shadow-lg round cardWidth"
                   :class="cards.cardColor">
                   <div class="cardBackground">
@@ -121,8 +121,8 @@
                   </div>
                 </div>
             <div class="d-flex align-items-start justify-content-center gap-1 flex-row">
-              <span>CVV <span :class="show ? 'hideCvvOn'  : 'hideCvvOff text-center'">***</span><span
-                  :class="!show ? 'showCvvOn'  : 'showCvvOff'">{{cards.cvv}}</span> </span>
+              <span class="fw-semibold p-2">CVV <span v-show = showCVV class="text-center">***</span>
+              <span v-show = !showCVV>{{cards.cvv}}</span> </span>
             </div>
           </div>
         </section>

@@ -149,6 +149,4 @@ public class HomebankingApplication {
 			return Double.parseDouble(dFormat.format(number));
 		}
 
-
-
 }

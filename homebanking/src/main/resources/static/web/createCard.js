@@ -52,6 +52,10 @@ const app = createApp({
               }
               console.log("Hola");
             }); 
+          },
+          logOut(){
+            axios.post('/api/logout').then(response => console.log('signed out!!!'))
+            setTimeout(()=>{ window.location = ("/web/index.html");}, 300);  
           }
         },
 })

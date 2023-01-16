@@ -124,7 +124,7 @@
                                         style="color: #303870"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" style="cursor:pointer;" @click="btnOptions('withdrawals')">Between my accounts</a></li>
+                                    <li><a class="dropdown-item" style="cursor:pointer;" @click="btnOptions('withdrawals') ">Between my accounts</a></li>
                                     <li><a class="dropdown-item" style="cursor:pointer;" @click="btnOptions('transfers')">To third party account</a></li>
                                 </ul>
                                 <span class="pt-1">Transactions</span>
@@ -168,11 +168,11 @@
                         <div
                             class="d-flex flex-column justify-content-start align-items-center col-6 gap-2 p-1 cardsAccount">
                             <div v-if="account.length < 3"
-                                class="d-flex flex-column w-50 justify-content-center align-items-center gap-2">
-                                <button @click = "createAccount()" class="btn btn-primary w-25 text-center btnTransactions">New account</button>
+                                class="d-flex flex-column w-100 justify-content-center align-items-start gap-2">
+                                <button @click = "createAccount()" class="btn btn-primary bg-light w-25 text-center btnTransactions">New account</button>
                             </div>
-                            <div class="cuerpoCards shadow bg-light rounded p-2" v-for="account of sortAccount">
-                                <div class="d-flex flex-column gap-2" v-if="account != 0">
+                            <div class="cuerpoCards shadow bg-light rounded p-2 w-100" v-for="account of sortAccount">
+                                <div class="d-flex flex-column gap-2 " v-if="account != 0">
                                     <div
                                         class="d-flex flex-row justify-content-between align-items-center botonesDerecha2k">
                                         <h5 class="card-title m-0">Account nº: <span
@@ -235,7 +235,7 @@
                                                 <td class="p-2">{{loan.amount}}</td>
                                                 <td class="p-2 text-break">{{loan.date.replace("T", " ")}}</td>
                                                 <td class="p-2">{{loan.loanName}}</td>
-                                                <td class="p-2">{{loan.payments}}</td>
+                                                <td class="p-2">{{loan.payments}}/{{loan.payments}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

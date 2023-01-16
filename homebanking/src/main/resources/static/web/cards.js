@@ -13,7 +13,7 @@ const app = createApp({
           id : '',
           buscarId : '',
           orderById : '',
-          show : true,
+          showCVV: true,
           cardsTypes : '',
           filterCheck : [],
           checked : [],
@@ -37,14 +37,14 @@ const app = createApp({
               })
           .catch(error => {console.log(error);})
           },
-          showCvvMethod(){
-            console.log(this.show)
-            if(this.show){
-              this.show = false
-            }else{
-              this.show = true
-            }
-          },
+          // showCvvMethod(){
+          //   console.log(this.showCVV)
+          //   if(this.showCVV){
+          //     this.showCVV = false
+          //   }else{
+          //     this.showCVV = true
+          //   }
+          // },
           buscarIdF(){
             axios.get('/api/clients')
           .then((result) => {

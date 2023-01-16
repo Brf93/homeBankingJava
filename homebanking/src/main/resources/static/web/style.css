@@ -140,6 +140,7 @@ thead {
         radial-gradient(rgba(0, 0, 0, 0.1) 15%, transparent 20%) 8px 9px;
     background-color: #ffffff;
     background-size: 16px 16px;
+    z-index: 0!important;
 }
 
 .backgroundAccounts {
