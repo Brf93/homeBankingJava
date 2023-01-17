@@ -30,14 +30,14 @@ public class LoanController {
     @Autowired
     private ClientLoanService clientLoanService;
 
-    @GetMapping(path = "/loans")
+    @GetMapping("/loans")
     public List<LoanDTO> getLoans()
         {
             return loanService.findAllLoans().stream().map(loan -> new LoanDTO(loan)).collect(Collectors.toList());
         }
 
     @Transactional
-    @RequestMapping(path = "/loans", method = RequestMethod.POST)
+    @PostMapping("/loans")
     public ResponseEntity<Object> createLoan (Authentication authentication, @RequestBody LoanAplicationDTO loanAplicationDTO) {
 
         Client currentClient = clientService.findByEmail(authentication.getName());
@@ -88,10 +88,11 @@ public class LoanController {
             {
                 return new ResponseEntity<>("Client doesn't have this account",HttpStatus.FORBIDDEN);
             }
-        /*if (currentClient.getClientLoan().stream().anyMatch(loanId -> loanId.getId().equals((loanAplicationDTO.getId())));
+
+        if (currentClient.getClientLoan().stream().anyMatch(loanId -> loanId.getLoan().getId().equals(loanAplicationDTO.getId())))
         {
             return new ResponseEntity<>("You can't have the same loan twice",HttpStatus.FORBIDDEN);
-        }*/
+        }
 
         Transaction loanTransaction = new Transaction(loanAplicationDTO.getAmount(),loan.getName().toUpperCase() +" loan approved to: " + loanAplicationDTO.getDestNumber(), Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT);
         ClientLoan loanDetails = new ClientLoan((loanAplicationDTO.getAmount()*Utilities.interest(loanAplicationDTO.getPayments())),loanAplicationDTO.getPayments(),Utilities.dateFormat(LocalDateTime.now()),currentClient,loan);

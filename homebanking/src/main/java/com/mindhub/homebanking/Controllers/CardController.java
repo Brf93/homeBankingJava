@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -30,12 +27,12 @@ public class CardController {
     @Autowired
     private CardService cardService;
 
-    @RequestMapping("/clients/cards")
+    @GetMapping("/clients/cards")
     public List<CardDTO> getCards() {
         return cardService.findAllAccounts().stream().map(CardDTO::new).collect(Collectors.toList());
     }
 
-    @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
+    @PostMapping("/clients/current/cards")
     public ResponseEntity<Object> createCard(Authentication authentication,@RequestParam CardType cardType, @RequestParam CardColor cardColor) {
         Client currentClient = clientService.findByEmail(authentication.getName());
 

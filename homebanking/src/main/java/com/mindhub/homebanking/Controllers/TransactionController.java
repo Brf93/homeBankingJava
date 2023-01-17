@@ -30,19 +30,19 @@ public class TransactionController {
     @Autowired
     private ClientService clientService;
 
-    @RequestMapping("/transaction")
+    @GetMapping("/transaction")
     public List<TransactionDTO> getTransaction()
         {
             return transactionService.findAllTransactions().stream().map(TransactionDTO::new).collect(Collectors.toList());
         }
 
-    @RequestMapping("transaction/{id}")
+    @GetMapping("transaction/{id}")
     public TransactionDTO getTransaction(@PathVariable Long id)
         {
             return new TransactionDTO(transactionService.findById(id));
         }
     @Transactional
-    @RequestMapping(path = "/clients/current/transaction", method = RequestMethod.POST)
+    @PostMapping("/clients/current/transaction")
     public ResponseEntity<Object> transaction (Authentication authentication, @RequestParam Double amount, @RequestParam String originNumber, @RequestParam String destNumber, @RequestParam String descr) {
 
         Client currentClient = clientService.findByEmail(authentication.getName());

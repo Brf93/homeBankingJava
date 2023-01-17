@@ -22,22 +22,22 @@ public class ClientController {
         @Autowired
         private PasswordEncoder passwordEncoder;
 
-        @RequestMapping("/clients")
+        @GetMapping("/clients")
         public List<ClientDTO> getClients()
                 {
                         return clientService.findAllClients().stream().map(client -> new ClientDTO(client)).collect(Collectors.toList());
                 }
-        @RequestMapping("/clients/{id}")
+        @GetMapping("/clients/{id}")
         public ClientDTO getClient(@PathVariable Long id)
                 {
                         return new ClientDTO(clientService.findById(id));
                 }
-        @RequestMapping("/clients/current")
+        @GetMapping("/clients/current")
         public ClientDTO getClients(Authentication authentication)
         {
                 return new ClientDTO(clientService.findByEmail(authentication.getName()));        }
 
-        @RequestMapping(path = "/clients", method = RequestMethod.POST)
+        @PostMapping("/clients")
         public ResponseEntity<Object> register(@RequestParam String firstName, @RequestParam String lastName, @RequestParam GenderType genderType , @RequestParam boolean enabled,
                 @RequestParam String email, @RequestParam String password, @RequestParam String avatar) {
                 if (firstName.isEmpty())
