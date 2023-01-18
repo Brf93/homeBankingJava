@@ -34,7 +34,6 @@ public class Client {
             this.enabled = enabled;
             this.avatar = avatar;
         }
-
     public void addAccount(Account account)
     {
         account.setClient(this);

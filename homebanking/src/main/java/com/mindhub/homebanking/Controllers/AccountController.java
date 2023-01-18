@@ -45,7 +45,7 @@ public class AccountController {
             }
             else
                 {
-                    Account account = new Account("VIN-" + Utilities.getRandomNumber(0,99999999),Utilities.dateFormat(LocalDateTime.now()),0.00);
+                    Account account = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),0.00);
                     currentClient.addAccount(account);
                     accountService.saveAccount(account);
                     return new ResponseEntity<>("Account created successfuly", HttpStatus.CREATED);

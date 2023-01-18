@@ -143,7 +143,6 @@ const app = createApp({
                 console.log(this.filteredLoan)
                 if(!this.chosedPayment == ''){
                     this.dividePayment = this.chosedPayment
-                   
                 }
                 if(this.chosedPayment == 6)
                     {
