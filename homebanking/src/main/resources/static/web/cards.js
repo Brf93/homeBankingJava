@@ -19,6 +19,7 @@ const app = createApp({
           checked : [],
           show : true,
           show2 : true,
+          cardNumberSelect : ''
         }
       },
       created(){
@@ -37,14 +38,11 @@ const app = createApp({
               })
           .catch(error => {console.log(error);})
           },
-          // showCvvMethod(){
-          //   console.log(this.showCVV)
-          //   if(this.showCVV){
-          //     this.showCVV = false
-          //   }else{
-          //     this.showCVV = true
-          //   }
-          // },
+          deleteCard(){
+            console.log(this.cardNumberSelect.id)
+            axios.post(`/api/clients/current/cards/${this.cardNumberSelect.id}`);
+            //location.reload()
+          },
           buscarIdF(){
             axios.get('/api/clients')
           .then((result) => {

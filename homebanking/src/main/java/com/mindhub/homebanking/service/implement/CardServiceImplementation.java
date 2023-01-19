@@ -18,6 +18,11 @@ public class CardServiceImplementation implements CardService {
     }
 
     @Override
+    public Card findById(Long id) {
+        return cardRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public void saveCards(Card card) {
         cardRepository.save(card);
     }

@@ -8,6 +8,7 @@ public interface CardService {
 
     List<Card> findAllAccounts();
 
+    Card findById(Long id);
     void saveCards(Card card);
 
 }

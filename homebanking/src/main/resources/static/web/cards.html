@@ -35,7 +35,7 @@
       <button @click="logOut()" class="btn btn-outline-secondary btn-rounded"><span
           class="material-symbols-outlined">output</span></button>
     </header>
-    <main class="d-flex flex-row gap-3 justify-content-start backgroundMain">
+    <main class="d-flex flex-row gap-3 justify-content-start">
       <aside class="col-2 p-3 d-flex flex-column mobileXs">
         <nav
           class="navbar navAccount rounded d-flex flex-column align-items-start justify-content-start gap-2 p-2 bg-light">
@@ -73,11 +73,46 @@
               <i class="fas fa-credit-card"></i>
             </div>
           </div>
-          <div class="d-flex justify-content-center align-items-center">
-            <button :class=" card.length < 6 ? 'btn btn-primary btnTransactions' : 'btn btn-light btnTransactions disabled'" @click = "newCard()"><span v-show = "card.length < 6">New card</span> <span v-show = "card.length >= 6">Max card reached</span></button>
+          <div class="d-flex flex-row gap-2">
+            <div class="d-flex justify-content-center align-items-center">
+              <button data-bs-toggle="modal" data-bs-target="#modalDeleteCard" :class=" card.length > 0 ? 'btn btn-primary btnTransactions' : 'btn btn-light btnTransactions disabled'"> <span>Delete a card</span></button>
+            </div>
+            <div class="modal fade" id="modalDeleteCard" tabindex="-1" aria-labelledby="modalDeleteLabel" aria-hidden="false">
+              <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="modalDeleteLabel">Delete</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                  <h6 class="text-center">Select a card to delete it:</h6>
+                  <hr class="hr text-light"/>
+                  <div class="pt-2 d-flex flex-row justify-content-around">
+                    <div class="w-100 text-center">
+                      <h6>Card number</h6>
+                      <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = cardNumberSelect>
+                      <option v-for="cards of card" :value="cards">{{cards.number}}</option>
+                      </select>
+                    </div>
+                    <div class="w-100 text-center">
+                      <h6>Card type</h6>
+                      <span class="fw-bold">{{cardNumberSelect.cardType}}</span>
+                    </div>
+                  </div>
+
+                  </div>
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
+                  <button type="button" class="btn btn-primary" @click="deleteCard()">Yes, i'm sure</button>
+                  </div>
+              </div>
+              </div>
+          </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <button :class=" card.length < 6 ? 'btn btn-primary btnTransactions' : 'btn btn-light btnTransactions disabled'" @click = "newCard()"><span v-show = "card.length < 6">New card</span> <span v-show = "card.length >= 6">Max card reached</span></button>
+            </div>
           </div>
         </div>
-        
         <section class="d-flex flex-row flex-wrap shadow w-100">
           <div v-for="cards of filterCheck" class="d-flex flex-column justify-content-center align-items-center cardsContainer">
               <span class="mt-2 w-100 text-dark p-2 text-center">Valid until: {{cards.thruDate}}</span>
@@ -91,7 +126,7 @@
                     <div class="d-flex justify-content-end mt-3 pe-2">
                       <div class="holo holo2"><img src="./img/hologram2).png" alt=""></div>
                     </div>
-                    <div class="text-center mt-2">
+                    <div class="text-center mt-2 fontCardTitle">
                       <span class=" fs-2" 
                       :class="cards.cardType">{{cards.number}}</span>
                     </div>

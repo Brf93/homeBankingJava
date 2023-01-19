@@ -35,10 +35,9 @@ public class CardController {
     @PostMapping("/clients/current/cards")
     public ResponseEntity<Object> createCard(Authentication authentication,@RequestParam CardType cardType, @RequestParam CardColor cardColor) {
         Client currentClient = clientService.findByEmail(authentication.getName());
-
-        if (currentClient.getCard().stream().filter(card -> card.getCardType() == cardType).collect(Collectors.toSet()).size() < 3)
+        if (currentClient.getCard().stream().filter(card -> (card.getCardType() == cardType) && (card.isEnabled())).collect(Collectors.toSet()).size() < 3)
             {
-                if(currentClient.getCard().stream().filter(card -> card.getCardType() == cardType).map(card -> card.getCardColor()).collect(Collectors.toList()).contains(cardColor))
+                if(currentClient.getCard().stream().filter(card -> card.getCardType() == cardType && (card.isEnabled())).map(card -> card.getCardColor()).collect(Collectors.toList()).contains(cardColor))
                     {
                         return new ResponseEntity<>("Max card color reached", HttpStatus.FORBIDDEN);
                     }
@@ -46,7 +45,7 @@ public class CardController {
                             {
                                 Card card = new Card(currentClient.getFirstName() + " " + currentClient.getLastName(),cardType,cardColor, Utilities.getRandomNumber(1000, 9999)
                                 + " " + Utilities.getRandomNumber(1000, 9999) + " " + Utilities.getRandomNumber(1000, 9999) + " " + Utilities.getRandomNumber(1000, 9999),
-                                Utilities.getRandomNumber(100, 999), LocalDate.now().plus(5, ChronoUnit.YEARS), LocalDate.now());
+                                Utilities.getRandomNumber(100, 999), LocalDate.now().plus(5, ChronoUnit.YEARS), LocalDate.now(),true);
                                 currentClient.addCard(card);
                                 cardService.saveCards(card);
                             }
@@ -57,5 +56,14 @@ public class CardController {
                     }
 
         return new ResponseEntity<>("Card created successfuly", HttpStatus.CREATED);
+    }
+
+    @PostMapping("/clients/current/cards/{id}")
+    public ResponseEntity<Object> deleteCard(@PathVariable Long id, Authentication authentication) {
+
+        Client currentClient = clientService.findByEmail(authentication.getName());
+        Card cards = cardService.findById(id);
+        cards.setEnabled(false);
+        return new ResponseEntity<>("Card disabled successfuly", HttpStatus.CREATED);
     }
 }

@@ -14,6 +14,7 @@ public class CardDTO {
     private CardColor cardColor;
     private int cvv;
     private LocalDate thruDate,fromDate;
+    private boolean isEnabled;
 
     public CardDTO (){ }
 
@@ -27,6 +28,7 @@ public class CardDTO {
             this.cvv = card.getCvv();
             this.thruDate = card.getThruDate();
             this.fromDate = card.getFromDate();
+            this.isEnabled = card.isEnabled();
         }
 
     public Long getId() {
@@ -60,4 +62,9 @@ public class CardDTO {
     public LocalDate getFromDate() {
         return fromDate;
     }
+
+    public boolean isEnabled()
+        {
+            return isEnabled;
+        }
 }
