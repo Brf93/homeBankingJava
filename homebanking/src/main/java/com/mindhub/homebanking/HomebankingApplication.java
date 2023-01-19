@@ -80,7 +80,8 @@ public class HomebankingApplication {
 				ClientLoan melbaPersonal = new ClientLoan(50000D,12,Utilities.dateFormat(LocalDateTime.now()),melba,personal);
 				//cards
 				Card melbaGold = new Card((melba.getFirstName() +" "+ melba.getLastName()),CardType.CREDIT,CardColor.GOLD,"1234 5678 9101 3244",753, LocalDate.now().plus(5, ChronoUnit.YEARS),LocalDate.now(),true);
-				Card melbaTitanium = new Card((melba.getFirstName() +" "+ melba.getLastName()),CardType.DEBIT,CardColor.TITANIUM,"3485 5678 9101 2234",147,LocalDate.now().plus(5,ChronoUnit.YEARS),LocalDate.now(),false);
+				Card melbaTitanium = new Card((melba.getFirstName() +" "+ melba.getLastName()),CardType.DEBIT,CardColor.TITANIUM,"3485 5678 9101 2234",147,LocalDate.now().minus(5,ChronoUnit.YEARS),LocalDate.now().minus(6,ChronoUnit.YEARS),true);
+				Card melbaSilver = new Card((melba.getFirstName() +" "+ melba.getLastName()),CardType.DEBIT,CardColor.SILVER,"3485 5678 9101 2111",147,LocalDate.now().minus(5,ChronoUnit.YEARS),LocalDate.now().minus(6,ChronoUnit.YEARS),true);
 				Card francoSilver = new Card((franco.getFirstName() +" "+ franco.getLastName()),CardType.DEBIT,CardColor.SILVER,"8574 5678 3587 1123",157,LocalDate.now().plus(4,ChronoUnit.YEARS),LocalDate.now(),true);
 				//agregar cuentas
 				mindHubBrothers.addAccount(MASTER);
@@ -107,6 +108,7 @@ public class HomebankingApplication {
 				//Cards a cliente
 				melba.addCard(melbaGold);
 				melba.addCard(melbaTitanium);
+				melba.addCard(melbaSilver);
 				franco.addCard(francoSilver);
 				//guardado
 				clientRepository.save(mindHubBrothers);
@@ -139,6 +141,7 @@ public class HomebankingApplication {
 				clientLoanRepository.save(melbaPersonal);
 				cardRepository.save(melbaGold);
 				cardRepository.save(melbaTitanium);
+				cardRepository.save(melbaSilver);
 				cardRepository.save(francoSilver);
 			};
 		}

@@ -75,6 +75,36 @@
           </div>
           <div class="d-flex flex-row gap-2">
             <div class="d-flex justify-content-center align-items-center">
+              <button data-bs-toggle="modal" data-bs-target="#modalExpiredCard" class="btn btn-primary btnTransactions position-relative d-flex gap-1 align-items-center"> 
+                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">{{expiredCards.length}}</span>
+                <span>Expired card</span></button>
+            </div>
+            <div class="modal fade" id="modalExpiredCard" tabindex="-1" aria-labelledby="modalExpiredLabel" aria-hidden="false">
+              <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="modalExpiredLabel">Your expired cards:</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                  <div class="pt-2 d-flex flex-row justify-content-around" v-for="cards of card">
+                    <div v-show = "cards.thruDate < fechaFormateada" class="w-100 text-center">
+                      <h6>Card number</h6>
+                      <span v-show = "cards.thruDate < fechaFormateada" class="fw-bold">{{cards.number}}</span>
+                    </div>
+                    <div v-show = "cards.thruDate < fechaFormateada" class="w-100 text-center">
+                      <h6>Expiration date </h6>
+                      <span class="fw-bold">{{cards.thruDate}}</span>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" @click="deleteCard()">Ok</button>
+                  </div>
+              </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
               <button data-bs-toggle="modal" data-bs-target="#modalDeleteCard" :class=" card.length > 0 ? 'btn btn-primary btnTransactions' : 'btn btn-light btnTransactions disabled'"> <span>Delete a card</span></button>
             </div>
             <div class="modal fade" id="modalDeleteCard" tabindex="-1" aria-labelledby="modalDeleteLabel" aria-hidden="false">
@@ -99,7 +129,6 @@
                       <span class="fw-bold">{{cardNumberSelect.cardType}}</span>
                     </div>
                   </div>
-
                   </div>
                   <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
@@ -107,7 +136,7 @@
                   </div>
               </div>
               </div>
-          </div>
+            </div>
             <div class="d-flex justify-content-center align-items-center">
               <button :class=" card.length < 6 ? 'btn btn-primary btnTransactions' : 'btn btn-light btnTransactions disabled'" @click = "newCard()"><span v-show = "card.length < 6">New card</span> <span v-show = "card.length >= 6">Max card reached</span></button>
             </div>
@@ -115,50 +144,54 @@
         </div>
         <section class="d-flex flex-row flex-wrap shadow w-100">
           <div v-for="cards of filterCheck" class="d-flex flex-column justify-content-center align-items-center cardsContainer">
+            <div class="d-flex flex-column">
               <span class="mt-2 w-100 text-dark p-2 text-center">Valid until: {{cards.thruDate}}</span>
+              <!-- <span v-show = "cards.thruDate < fechaFormateada" class="mt-2 w-100 text-dark p-2 text-center">This card is near to expire</span> -->
+              <!-- <span v-show = "cards.thruDate < fechaFormateada" class="w-100 text-danger p-2 text-center">This card is expired!</span> -->
+            </div>
                 <div class="p-3 text-light shadow-lg round cardWidth"
                   :class="cards.cardColor">
                   <div class="cardBackground">
-                    <div class="fontCardTitle d-flex flex-row justify-content-between pe-2 ps-2">
-                      <span>Mindhub Brothers</span>
-                      <span>{{cards.cardColor}}</span>
-                    </div>
-                    <div class="d-flex justify-content-end mt-3 pe-2">
-                      <div class="holo holo2"><img src="./img/hologram2).png" alt=""></div>
-                    </div>
-                    <div class="text-center mt-2 fontCardTitle">
-                      <span class=" fs-2" 
-                      :class="cards.cardType">{{cards.number}}</span>
-                    </div>
-                    <div>
-                      <div class="d-flex flex-row gap-2 p-1 justify-content-around">
-                        <div :class="cards.cardColor == 'GOLD' ? 'fontValidBlack' : 'fontValidTitanium'">
-                          <span>
-                            Valid from
-                          </span>
-                          <span>{{cards.fromDate.slice(-10,-3)}}</span>
+                      <div class="fontCardTitle d-flex flex-row justify-content-between pe-2 ps-2">
+                        <span>Mindhub Brothers</span>
+                        <span>{{cards.cardColor}}</span>
+                      </div>
+                      <div class="d-flex justify-content-end mt-3 pe-2">
+                        <div class="holo holo2"><img src="./img/hologram2).png" alt=""></div>
+                      </div>
+                      <div class="text-center mt-2 fontCardTitle">
+                        <span class=" fs-2" 
+                        :class="cards.cardType">{{cards.number}}</span>
+                      </div>
+                      <div>
+                        <div class="d-flex flex-row gap-2 p-1 justify-content-around">
+                          <div :class="cards.cardColor == 'GOLD' ? 'fontValidBlack' : 'fontValidTitanium'">
+                            <span>
+                              Valid from
+                            </span>
+                            <span>{{cards.fromDate.slice(-10,-3)}}</span>
+                          </div>
+                          <div :class="cards.cardColor == 'GOLD' ? 'fontValidBlack' : 'fontValidTitanium'">
+                            <span>
+                              Trhu date
+                            </span>
+                            <span>{{cards.thruDate.slice(-10,-3)}}</span>
+                          </div>
                         </div>
-                        <div :class="cards.cardColor == 'GOLD' ? 'fontValidBlack' : 'fontValidTitanium'">
-                          <span>
-                            Trhu date
-                          </span>
-                          <span>{{cards.thruDate.slice(-10,-3)}}</span>
+                        <div class="d-flex flex-column justify-content-center align-items-end pe-2 text-black">
+                          <img src="./img/Visa_Inc._logo.svg.png" alt="" style="width: 60px;">
+                          <span>{{cards.cardType}}</span>
                         </div>
                       </div>
-                      <div class="d-flex flex-column justify-content-center align-items-end pe-2 text-black">
-                        <img src="./img/Visa_Inc._logo.svg.png" alt="" style="width: 60px;">
-                        <span>{{cards.cardType}}</span>
+                      <div class="fontCardName ps-3">
+                        <span>{{cards.cardHolder.toUpperCase()}}</span>
                       </div>
                     </div>
-                    <div class="fontCardName ps-3">
-                      <span>{{cards.cardHolder.toUpperCase()}}</span>
-                    </div>
-                  </div>
                 </div>
-            <div class="d-flex align-items-start justify-content-center gap-1 flex-row">
-              <span class="fw-semibold p-2">CVV <span v-show = showCVV class="text-center">***</span>
-              <span v-show = !showCVV>{{cards.cvv}}</span> </span>
-            </div>
+              <div class="d-flex align-items-start justify-content-center gap-1 flex-row">
+                <span class="fw-semibold p-2">CVV <span v-show = showCVV class="text-center">***</span>
+                <span v-show = !showCVV>{{cards.cvv}}</span> </span>
+              </div>
           </div>
         </section>
       </div>
