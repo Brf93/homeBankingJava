@@ -82,8 +82,8 @@ public class TransactionController {
                 return new ResponseEntity<>("Empty fields not allowed", HttpStatus.FORBIDDEN);
             }*/
 
-        Transaction outcomingTransaction = new Transaction(amount,descr + " - Transaction to: " + destNumber,Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT);
-        Transaction incomingTransaction = new Transaction(amount,descr + " - Transaction from: " + originNumber,Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT);
+        Transaction outcomingTransaction = new Transaction(amount,descr + " - Transaction to: " + destNumber,Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT, originAccount.getBalance() - amount);
+        Transaction incomingTransaction = new Transaction(amount,descr + " - Transaction from: " + originNumber,Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT, destAccount.getBalance() + amount);
 
         transactionService.saveTransaction(outcomingTransaction);
         transactionService.saveTransaction(incomingTransaction);

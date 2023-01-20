@@ -27,6 +27,7 @@ const app = createApp({
           address : true,
           transfers : true,
           loanAmountFormat : '',
+          accountType : ''
 
         }
       },
@@ -64,7 +65,7 @@ const app = createApp({
               //console.log(this.dollarUSLocale.format(this.loanAmountFormat.map(e => e)))
               console.log(this.loanAmountFormat)
               //this.loans.date.slice(0,10)
-              console.log(this.loans)
+              console.log(this.accountType)
               this.formattedOneAccountBalance = this.clients.account.map( item => item.balance = this.dollarUSLocale.format(item.balance))
               //this.sortAccount.map( item => item.balance = this.dollarUSLocale.format(item.balance))
               this.formattedBalance = this.dollarUSLocale.format(this.totalBalance)
@@ -141,8 +142,12 @@ const app = createApp({
             }
           },
           createAccount(){
-            axios.post('/api/clients/current/accounts')
-            window.location.reload();
+            axios.post('/api/clients/current/accounts', `accountType=${this.accountType}`)
+            .then(() => {
+              let toast = new bootstrap.Toast(liveToast)
+              toast.show()
+              setTimeout(()=>{window.location.reload(); }, 2000)
+            })
           }
     }
 })

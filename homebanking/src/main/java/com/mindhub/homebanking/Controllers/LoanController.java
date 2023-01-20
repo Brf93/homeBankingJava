@@ -94,7 +94,7 @@ public class LoanController {
             return new ResponseEntity<>("You can't have the same loan twice",HttpStatus.FORBIDDEN);
         }
 
-        Transaction loanTransaction = new Transaction(loanAplicationDTO.getAmount(),loan.getName().toUpperCase() +" loan approved to: " + loanAplicationDTO.getDestNumber(), Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT);
+        Transaction loanTransaction = new Transaction(loanAplicationDTO.getAmount(),loan.getName().toUpperCase() +" loan approved to: " + loanAplicationDTO.getDestNumber(), Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT, destAccount.getBalance() + loanAplicationDTO.getAmount());
         ClientLoan loanDetails = new ClientLoan((loanAplicationDTO.getAmount()*Utilities.interest(loanAplicationDTO.getPayments())),loanAplicationDTO.getPayments(),Utilities.dateFormat(LocalDateTime.now()),currentClient,loan);
 
         transactionService.saveTransaction(loanTransaction);

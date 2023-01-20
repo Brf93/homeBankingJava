@@ -40,8 +40,8 @@ const app = createApp({
           this.clients = this.results
           this.card = this.clients.card.map(client => client)
           console.log(this.fecha)
-          console.log(typeof (this.fecha.toISOString().slice(0, 10)))
-          console.log(this.cardDate = this.card.map(card => card.thruDate))
+          typeof (this.fecha.toISOString().slice(0, 10))
+          this.cardDate = this.card.map(card => card.thruDate)
           this.fechaFormateada = this.fecha.toISOString().slice(0, 10)
           this.expiredCards = this.cardDate.filter( date => date < this.fechaFormateada)
           console.log((this.expiredCards.length))
@@ -54,7 +54,13 @@ const app = createApp({
     },
     deleteCard() {
       console.log(this.cardNumberSelect.id)
-      axios.post(`/api/clients/current/cards/${this.cardNumberSelect.id}`);
+      axios.post(`/api/clients/current/cards/delete`, `cardId=${this.cardNumberSelect.id}`)
+      .then(() => {
+        let toast = new bootstrap.Toast(liveToast)
+        toast.show()
+        setTimeout(()=>{window.location.reload(); }, 2000)
+      })
+      .catch(error => { console.log(error); })
       //location.reload()
     },
     buscarIdF() {

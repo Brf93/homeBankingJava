@@ -58,12 +58,18 @@ public class CardController {
         return new ResponseEntity<>("Card created successfuly", HttpStatus.CREATED);
     }
 
-    @PostMapping("/clients/current/cards/{id}")
-    public ResponseEntity<Object> deleteCard(@PathVariable Long id, Authentication authentication) {
+    @PostMapping("/clients/current/cards/delete")
+    public ResponseEntity<Object> deleteCard(Authentication authentication, @RequestParam Long cardId) {
 
         Client currentClient = clientService.findByEmail(authentication.getName());
-        Card cards = cardService.findById(id);
+        Card cards = cardService.findById(cardId);
+
+        if(!currentClient.getCard().contains(cards)){
+            return new ResponseEntity<>("This card doesn't belong to this client", HttpStatus.FORBIDDEN);
+        }
         cards.setEnabled(false);
+        cardService.saveCards(cards);
+
         return new ResponseEntity<>("Card disabled successfuly", HttpStatus.CREATED);
     }
 }

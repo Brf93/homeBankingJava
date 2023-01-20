@@ -36,10 +36,12 @@ const app = createApp({
         createCard(){
             console.log(this.cardType)
             console.log(this.category)
-            let toast = new bootstrap.Toast(liveToast)
-            toast.show()
             axios.post('/api/clients/current/cards',`cardType=${this.cardType}&cardColor=${this.category}`)
-            .then(setTimeout(()=>{ window.location = ("http://localhost:8080/web/cards.html") ;}, 2000))
+            .then(() => {
+              let toast = new bootstrap.Toast(liveToast)
+              toast.show()
+              setTimeout(()=>{ window.location = ("http://localhost:8080/web/cards.html") ;}, 2000)
+            })
             .catch(function (error) {
               if (error.response) {
                 alert(error.response.data);

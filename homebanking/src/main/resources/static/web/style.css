@@ -312,8 +312,12 @@ thead {
     }
 }
 .cardWidth{
-    width: 460px!important;
+   
     scale: 0.4!important;
+}
+.cardContainerHeight{
+    height: 150px;
+    width: 400px;
 }
 .cardsContainer{
     width: 33%;

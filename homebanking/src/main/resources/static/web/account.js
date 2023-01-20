@@ -1,5 +1,9 @@
 const { createApp } = Vue
+const { createVuetify } = Vuetify
 
+const vuetify = createVuetify(){
+      data(),
+}
 const app = createApp({
       data(){
         return{
@@ -28,6 +32,8 @@ const app = createApp({
           .then((result) => {
             this.accountData = result.data
             this.queryString = location.search
+            const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+            const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
             this.params = new URLSearchParams(this.queryString)
             this.ids = this.params.get("id")
             console.log(this.ids)
@@ -35,14 +41,16 @@ const app = createApp({
             //this.account.sort((a,b) => a.id - b.id)
             this.orderById = this.account[0].transactions.sort((a,b) => b.id - a.id)
             // this.buscarId = this.accountData.find(account => (account.id == this.ids))
-            console.log(this.account[0].number)
+           // console.log(this.account[0].number)
             //this.orderById = this.accountData.transactions.sort((a,b) => b.id - a.id)
             let dollarUSLocale = Intl.NumberFormat("en-US",
                 {
                   style: "currency",
                   currency: "USD",
                 });
+            this.account.map( item => item.balance = dollarUSLocale.format(item.balance));
             this.orderById.map( item => item.amount = dollarUSLocale.format(item.amount));
+            this.orderById.map( item => item.afterBalance = dollarUSLocale.format(item.afterBalance));
           })
           .catch(error => {console.log(error);})
           },
@@ -88,4 +96,5 @@ const app = createApp({
   }
 })
 app.mount("#app");
+app.use(vuetify).mount('#app')
 

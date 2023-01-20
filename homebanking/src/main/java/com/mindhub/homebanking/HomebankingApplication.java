@@ -47,26 +47,26 @@ public class HomebankingApplication {
 				Client cocaCola = new Client("Coca","Cola","ernestoGuevara@gmail.com",GenderType.CORP,true,passwordEncoder.encode("Coca123"),"personas");
 				Client admin = new Client("admin","admin","admin@admin.com",GenderType.MALE,true, passwordEncoder.encode("admin"),"personas");
 				//Account
-				Account MASTER = new Account("VIN-" + 100, Utilities.dateFormat(LocalDateTime.now()),decimalFormat(0D));
-				Account VIN001 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),decimalFormat(5683.36D));
-				Account VIN002 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now().plus(1, ChronoUnit.DAYS)),decimalFormat(7500.01D));
-				Account VIN003 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),decimalFormat(15000.93D));
-				Account VIN004 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now().plus(1, ChronoUnit.DAYS)),decimalFormat(9500.10D));
-				Account VIN005 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),decimalFormat(21000.45D));
-				Account VIN006 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now().plus(1, ChronoUnit.DAYS)),decimalFormat(35200.41D));
+				Account MASTER = new Account("VIN-" + 100, Utilities.dateFormat(LocalDateTime.now()),decimalFormat(0D), AccountType.CHECKING);
+				Account VIN001 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),decimalFormat(5683.36D),AccountType.CHECKING);
+				Account VIN002 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now().plus(1, ChronoUnit.DAYS)),decimalFormat(7500.01D), AccountType.SAVINGS);
+				Account VIN003 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),decimalFormat(15000.93D),AccountType.SAVINGS);
+				Account VIN004 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now().plus(1, ChronoUnit.DAYS)),decimalFormat(9500.10D),AccountType.SAVINGS);
+				Account VIN005 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),decimalFormat(21000.45D),AccountType.CHECKING);
+				Account VIN006 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now().plus(1, ChronoUnit.DAYS)),decimalFormat(35200.41D),AccountType.SAVINGS);
 				//Melba
-				Transaction TR0001 = new Transaction(5000D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT);
-				Transaction TR0002 = new Transaction(7500D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT);
-				Transaction TR0003 = new Transaction(1023D,"Iphone 13 - Apple store",Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT);
-				Transaction TR0004 = new Transaction(45.93D,"Iphone 13 Black case - Apple store MIAMI",Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT);
-				Transaction TR0005 = new Transaction(10.12D,"Macchiato - Starbucks",Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT);
-				Transaction TR0006 = new Transaction(590.09D,"Playstation 5 -Best buy",Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT);
-				Transaction TR0007 = new Transaction(2350.50D,"Web page - Client: MindHub SA",Utilities.dateFormat(LocalDateTime.now()),TransactionType.CREDIT);
+				Transaction TR0001 = new Transaction(5000D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT,VIN001.getBalance() + 5000D);
+				Transaction TR0002 = new Transaction(7500D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT, VIN002.getBalance()+ 7500D);
+				Transaction TR0003 = new Transaction(1023D,"Iphone 13 - Apple store",Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT,VIN001.getBalance() - 1023D);
+				Transaction TR0004 = new Transaction(45.93D,"Iphone 13 Black case - Apple store MIAMI",Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT, VIN004.getBalance() - 45.93D);
+				Transaction TR0005 = new Transaction(10.12D,"Macchiato - Starbucks",Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT, VIN001.getBalance() - 10.12D);
+				Transaction TR0006 = new Transaction(590.09D,"Playstation 5 -Best buy",Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT, VIN001.getBalance() - 590.09D);
+				Transaction TR0007 = new Transaction(2350.50D,"Web page - Client: MindHub SA",Utilities.dateFormat(LocalDateTime.now()),TransactionType.CREDIT, VIN001.getBalance() + 2350.50D);
 				//Demas
-				Transaction TR0008 = new Transaction(15000.93D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT);
-				Transaction TR0009 = new Transaction(9500.10D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT);
-				Transaction TR0010 = new Transaction(21000.45D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT);
-				Transaction TR0011 = new Transaction(35200.415D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT);
+				Transaction TR0008 = new Transaction(15000.93D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT, VIN003.getBalance());
+				Transaction TR0009 = new Transaction(9500.10D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT, VIN004.getBalance() + 9500.10D);
+				Transaction TR0010 = new Transaction(21000.45D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT,VIN005.getBalance() + 21000.45D);
+				Transaction TR0011 = new Transaction(35200.415D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT, VIN006.getBalance() + 35200.415D);
 				//Lista de cantidad de cuotas
 				List<Integer> mortagePayment = List.of(12,24,36,48,60);
 				List<Integer> personalPayment = List.of(6,12,24);
@@ -93,12 +93,12 @@ public class HomebankingApplication {
 				cocaCola.addAccount(VIN006);
 				//Melba transacciones
 				VIN001.addTransaction(TR0001);
-				VIN002.addTransaction(TR0002);
 				VIN001.addTransaction(TR0003);
 				VIN001.addTransaction(TR0004);
 				VIN001.addTransaction(TR0005);
 				VIN001.addTransaction(TR0006);
 				VIN001.addTransaction(TR0007);
+				VIN002.addTransaction(TR0002);
 				//Franco transacciones
 				VIN003.addTransaction(TR0008);
 				VIN004.addTransaction(TR0009);

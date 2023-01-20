@@ -39,7 +39,7 @@
                         output</span></button>
             </div>
         </header>
-        <main class="d-flex flex-row gap-3 justify-content-start backgroundMain">
+        <main class="d-flex flex-row gap-3 justify-content-start">
             <!-- NAV BARS -->
             <aside class="col-2 p-3 d-flex flex-column mobileXs">
                 <!-- <nav class="navbar navbar-expand-lg navbar-light navAccount rounded d-flex"> -->
@@ -150,7 +150,7 @@
                             </thead>
                             <tbody class="table-group-divider" v-for="loan of loans">
                                 <tr>
-                                    <td class="p-2">${{loan.amount}}</td>
+                                    <td class="p-2">{{loan.amount}}</td>
                                     <td class="p-2 text-break">{{loan.date.replace("T", " ")}}</td>
                                     <td class="p-2">{{loan.loanName}}</td>
                                     <td class="p-2">{{loan.payments}}</td>
@@ -169,7 +169,47 @@
                             class="d-flex flex-column justify-content-start align-items-center col-6 gap-2 p-1 cardsAccount">
                             <div v-if="account.length < 3"
                                 class="d-flex flex-column w-100 justify-content-center align-items-start gap-2">
-                                <button @click = "createAccount()" class="btn btn-primary bg-light w-25 text-center btnTransactions">New account</button>
+                                <button data-bs-toggle="modal" data-bs-target="#modalNewAccount" class="btn btn-primary bg-light w-25 text-center btnTransactions">New account</button>
+                            </div>
+                            <div class="modal fade" id="modalNewAccount" tabindex="-1" aria-labelledby="modalNewAccountLabel" aria-hidden="false">
+                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="modalNewAccountLabel">Account</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <h6 class="text-center">Please, select a type of account to be open: </h6>
+                                    <hr class="hr text-light"/>
+                                    <div class="d-flex flex-row justify-content-between p-2 round">
+                                        <div class="pt-2">
+                                            <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = "accountType">
+                                                <option value="CHECKING">Checking</option>
+                                                <option value="SAVINGS">Saving</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
+                                    <button type="button" class="btn btn-primary" @click = "createAccount(accountType)">Yes, create it!</button>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                            <!-- Toast -->
+                            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                  <div class="toast-header">
+                                    <img src="./img/cardCreate/smilingFace.png" class="rounded me-2 pe-2" alt="blueCube" style="width: 22px;">
+                                    <strong class="me-auto">Congratulations!</strong>
+                                    <small>Now</small>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                  </div>
+                                  <div class="toast-body message">
+                                    Your new account is ready to use
+                                  </div>
+                                </div>
                             </div>
                             <div class="cuerpoCards shadow bg-light rounded p-2 w-100" v-for="account of sortAccount">
                                 <div class="d-flex flex-column gap-2 " v-if="account != 0">
@@ -207,8 +247,14 @@
                                         <hr>
                                         <span>Balance: <span class="fw-bold"> {{account.balance}}</span></span>
                                         <!-- <span>To prove:<span class="fw-bold"> $142,32</span></span> -->
-                                        <span>Creation date: <span class="fw-bold"><i class=" fa-sm"></i>
+                                        <span>Creation date: <span class="fw-bold">
                                                 {{account.creationDate.replace("T", " ")}}</span></span>
+                                        <span class="d-flex justify-content-start align-items-center gap-1">Type:
+                                        <span class="fw-bold d-flex justify-content-start align-items-center gap-2">
+                                            {{account.accountType}}
+                                            <span v-show = "account.accountType == 'CHECKING'" class="text-black material-symbols-outlined fs-4">bolt</span>
+                                                <span v-show = "account.accountType == 'SAVINGS'"class="text-black material-symbols-outlined fs-5">potted_plant</span>
+                                        </span></span>
                                     </div>
                                 </div>
                             </div>
