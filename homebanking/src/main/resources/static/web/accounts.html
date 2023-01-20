@@ -171,30 +171,54 @@
                                 class="d-flex flex-column w-100 justify-content-center align-items-start gap-2">
                                 <button data-bs-toggle="modal" data-bs-target="#modalNewAccount" class="btn btn-primary bg-light w-25 text-center btnTransactions">New account</button>
                             </div>
-                            <div class="modal fade" id="modalNewAccount" tabindex="-1" aria-labelledby="modalNewAccountLabel" aria-hidden="false">
+                            <!-- MODALS -->
+                            <div class="modal fade" id="modalDeleteAccount" tabindex="-1" aria-labelledby="modalDeleteAcLabel" aria-hidden="false">
                                 <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="modalNewAccountLabel">Account</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                    <h6 class="text-center">Please, select a type of account to be open: </h6>
-                                    <hr class="hr text-light"/>
-                                    <div class="d-flex flex-row justify-content-between p-2 round">
-                                        <div class="pt-2">
-                                            <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = "accountType">
-                                                <option value="CHECKING">Checking</option>
-                                                <option value="SAVINGS">Saving</option>
-                                            </select>
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="modalDeleteAcLabel">Account</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6 class="text-center">This account will be deleted </h6>
+                                            <hr class="hr text-light"/>
+                                            <div class="d-flex flex-row justify-content-center p-2 round">
+                                                <div class="pt-2 text-center">
+                                                    <p>Are you sure?</p>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
+                                            <button type="button" class="btn btn-primary" @click = "createAccount(accountType)">Yes, delete it</button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
-                                    <button type="button" class="btn btn-primary" @click = "createAccount(accountType)">Yes, create it!</button>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="modalNewAccount" tabindex="-1" aria-labelledby="modalNewAccountLabel" aria-hidden="false">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="modalNewAccountLabel">Account</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6 class="text-center">Please, select a type of account to be open: </h6>
+                                            <hr class="hr text-light"/>
+                                            <div class="d-flex flex-row justify-content-between p-2 round">
+                                                <div class="pt-2">
+                                                    <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = "accountType">
+                                                        <option value="CHECKING">Checking</option>
+                                                        <option value="SAVINGS">Saving</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
+                                            <button type="button" class="btn btn-primary" @click = "createAccount(accountType)">Yes, create it!</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                </div>
                                 </div>
                             </div>
                             <!-- Toast -->
@@ -217,13 +241,19 @@
                                         class="d-flex flex-row justify-content-between align-items-center botonesDerecha2k">
                                         <h5 class="card-title m-0">Account nº: <span
                                                 class=" fw-bold">{{account.number}}</span></h5>
-                                        <div class="d-flex flex-column align-items-center textoSpan">
-                                            <a :href="'./account.html?id=' +  account.id"><button type="button"
-                                                    class="btn btn-primary btnTransactions d-flex flex-column justify-content-center align-items-center">
-                                                    <i class="fas fa-history fa-2x"
-                                                        style="color: #303870"></i></button></a>
-                                            <span class="pt-1">Transactions</span>
-                                        </div>
+                                                <div class="d-flex flex-row gap-2">
+                                                    <div class="d-flex flex-column align-items-center textoSpan">
+                                                        <button data-bs-toggle="modal" data-bs-target="#modalDeleteAccount" class="btn btn-primary btnTransactions d-flex flex-column justify-content-center align-items-center"><i class="far fa-trash-alt fa-2x"></i></button>
+                                                        <span class="pt-1">Delete</span>
+                                                    </div>
+                                                    <div class="d-flex flex-column align-items-center textoSpan">
+                                                        <a :href="'./account.html?id=' +  account.id"><button type="button"
+                                                                class="btn btn-primary btnTransactions d-flex flex-column justify-content-center align-items-center">
+                                                                <i class="fas fa-history fa-2x"
+                                                                    style="color: #303870"></i></button></a>
+                                                        <span class="pt-1">Transactions</span>
+                                                    </div>
+                                                </div>
                                     </div>
                                     <div
                                         class="d-flex flex-row justify-content-between align-items-center botonesDerecha1024">

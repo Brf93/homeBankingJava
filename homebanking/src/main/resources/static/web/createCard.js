@@ -57,6 +57,16 @@ const app = createApp({
               console.log("Hola");
             }); 
           },
+          deleteAccount() {
+            axios.post(`/api/clients/current/cards/delete`, `cardId=${this.cardNumberSelect.id}`)
+            .then(() => {
+              let toast = new bootstrap.Toast(liveToast)
+              toast.show()
+              setTimeout(()=>{window.location.reload(); }, 2000)
+            })
+            .catch(error => { console.log(error); })
+            //location.reload()
+          },
           logOut(){
             axios.post('/api/logout').then(response => console.log('signed out!!!'))
             setTimeout(()=>{ window.location = ("/web/index.html");}, 300);  

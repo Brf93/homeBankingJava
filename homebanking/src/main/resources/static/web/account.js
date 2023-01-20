@@ -1,9 +1,5 @@
 const { createApp } = Vue
 const { createVuetify } = Vuetify
-
-const vuetify = createVuetify(){
-      data(),
-}
 const app = createApp({
       data(){
         return{
@@ -96,5 +92,4 @@ const app = createApp({
   }
 })
 app.mount("#app");
-app.use(vuetify).mount('#app')
 

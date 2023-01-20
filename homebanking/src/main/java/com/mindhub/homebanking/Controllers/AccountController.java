@@ -52,4 +52,21 @@ public class AccountController {
                     return new ResponseEntity<>("Account created successfuly", HttpStatus.CREATED);
                }
     }
+    @PostMapping("/clients/current/accounts/delete")
+    public ResponseEntity<Object> createAccount(Authentication authentication , @RequestParam ) {
+
+        Client currentClient = clientService.findByEmail(authentication.getName());
+
+        if (currentClient.getAccount().size() == 3)
+        {
+            return new ResponseEntity<>("Max accounts reached", HttpStatus.FORBIDDEN);
+        }
+        else
+        {
+            Account account = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),0.00 , accountType);
+            currentClient.addAccount(account);
+            accountService.saveAccount(account);
+            return new ResponseEntity<>("Account created successfuly", HttpStatus.CREATED);
+        }
+    }
 }
