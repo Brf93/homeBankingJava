@@ -16,6 +16,7 @@ public class AccountDTO {
     private double balance;
     private AccountType accountType;
     private Set<TransactionDTO> transactions = new HashSet<>();
+    private boolean isEnabled;
 
     public AccountDTO(){ }
 
@@ -27,6 +28,7 @@ public class AccountDTO {
         this.balance = account.getBalance();
         this.accountType = account.getAccountType();
         this.transactions = account.getTransaction().stream().map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toSet());
+        this.isEnabled = account.isEnabled();
     }
 
     public long getId() {
@@ -50,4 +52,6 @@ public class AccountDTO {
         {
             return transactions;
         }
+
+    public boolean isEnabled() { return  isEnabled;}
 }
