@@ -13,7 +13,7 @@ const app = createApp({
           show2 : false,
           originAccount : '',
           destAccount : '',
-          amountInput : 0,
+          amountInput : '',
           descriptionTextArea : '',
           accountDestInput : '',
           transaction : ''

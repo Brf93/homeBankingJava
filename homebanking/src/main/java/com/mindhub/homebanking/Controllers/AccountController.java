@@ -40,7 +40,7 @@ public class AccountController {
 
         Client currentClient = clientService.findByEmail(authentication.getName());
 
-       if (currentClient.getAccount().size() == 3)
+       if (currentClient.getAccount().stream().filter(account -> account.isEnabled() == true).collect(Collectors.toSet()).size() == 3)
             {
                 return new ResponseEntity<>("Max accounts reached", HttpStatus.FORBIDDEN);
             }

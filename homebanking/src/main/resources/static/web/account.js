@@ -1,5 +1,5 @@
 const { createApp } = Vue
-const { createVuetify } = Vuetify
+
 const app = createApp({
       data(){
         return{
@@ -16,6 +16,7 @@ const app = createApp({
           orderById : '',
           show : true,
           show2 : true,
+          dialog: false,
         }
       },
       created(){
@@ -76,8 +77,7 @@ const app = createApp({
               }
             },
             logOut(){
-              axios.post('/api/logout').then(response => setTimeout(()=>{ window.location = ("web/index.html");}, 300))
-                
+              axios.post('/api/logout').then(response => setTimeout(()=>{ window.location = ("web/index.html");}, 300)) 
             },
             menuUp(){
               console.log("menu")

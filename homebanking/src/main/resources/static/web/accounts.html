@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +23,6 @@
     <link rel="stylesheet" href="./style.css">
     <title>Mindhub B. Bank | Accounts</title>
 </head>
-
 <body>
     <div id="app" class="d-flex flex-column">
         <header class="headerColor p-3 d-flex flex-row justify-content-end align-items-center sticky-top headerMobile">
@@ -40,9 +38,8 @@
             </div>
         </header>
         <main class="d-flex flex-row gap-3 justify-content-start">
-            <!-- NAV BARS -->
+<!-- NAV BARS -->
             <aside class="col-2 p-3 d-flex flex-column mobileXs">
-                <!-- <nav class="navbar navbar-expand-lg navbar-light navAccount rounded d-flex"> -->
                 <nav
                     class="navbar navAccount rounded d-flex flex-column align-items-start justify-content-start gap-2 p-2 bg-light">
                     <a class="nav-link active" href="#">Accounts</a>
@@ -54,8 +51,7 @@
                     <a class="nav-link" @click="logOut()" style="cursor:pointer;">Log out <i @click="logOut()" class="bi bi-box-arrow-right p-2"></i></a>
                 </nav>
             </aside>
-
-            <!-- ACCOUNTS CONTAINER -->
+<!-- ACCOUNTS CONTAINER -->
             <div class="col shadow-lg p-3 m-3 backgroundAccounts rounded mobileAdjustment resolution4k">
                 <div class=" d-flex flex-column justify-content-between">
                     <div class="d-flex align-items-center flex-column gap-2 shadow-sm bg-light w-100">
@@ -91,33 +87,24 @@
                             <span class="clientName ps-2 fw-semibold">{{clients.firstName}}
                                 {{clients.lastName}}</span>
                         </div>
-                        <div
-                            class="desktop justify-content-center gap-3 ps-2 textoSpan botonesDerecha botonesDerecha2k">
-                            <div class="btn-group dropstart btnOptions">
-                                <button type="button" class="btn btn-primary" data-mdb-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fas fa-plus fa-3x" style="color: #303870"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider" />
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Separated link</a></li>
-                                </ul>
-                            </div>
-                            <div><button type="button" class="btn btn-primary" @click="btnOptions('exchange')"><i
+                        <div class="desktop justify-content-center gap-3 ps-2 textoSpan botonesDerecha botonesDerecha2k">
+<!-- EXCHAGE BUTTON -->
+                            <div>   
+                                    <button type="button" class="btn btn-primary" @click="btnOptions('exchange')"><i
                                         :class=" exchange ? 'bi bi-currency-exchange fa-3x' : 'bi bi-currency-exchange fa-3x animate__animated animate__flip animate__fast'"
-                                        style="color: #303870"></i></button><span class="pt-1">Exchange</span></div>
-                            <div><button type="button" class="btn btn-primary" @click="btnOptions('pay')"><i
+                                        style="color: #303870"></i>
+                                    </button>
+                                    <span class="pt-1">Exchange</span>
+                            </div>
+<!-- PAY BUTTON -->
+                            <div>
+                                    <button type="button" class="btn btn-primary" @click="btnOptions('pay')"><i
                                         :class="pay ? 'fas fa-money-bill-wave-alt fa-3x' : 'fas fa-money-bill-wave-alt fa-3x animate__animated animate__flip animate__fast'"
-                                        style="color: #303870"></i></button><span class="pt-1">Pay</span></div>
-                            <!-- <div><button type="button" class="btn btn-primary" @click="btnOptions('withdrawals')"><i
-                                        :class="withdrawals? 'far fa-paper-plane fa-3x' : 'far fa-paper-plane fa-3x animate__animated animate__flip fast'"
-                                        style="color: #303870"></i></button><span class="pt-1">Transactions</span>
-                                    </div> -->
+                                        style="color: #303870"></i>
+                                    </button>
+                                    <span class="pt-1">Pay</span>
+                            </div>
+<!-- TRANSACTIONS BUTTON -->
                             <div class="btn-group dropup-center dropup btnOptions">
                                 <button type="button" class="btn btn-primary" data-mdb-toggle="dropdown" aria-expanded="false">
                                     <i :class="withdrawals? 'far fa-paper-plane fa-3x' : 'far fa-paper-plane fa-3x animate__animated animate__flip fast'"
@@ -129,12 +116,17 @@
                                 </ul>
                                 <span class="pt-1">Transactions</span>
                             </div>
-                            <div><button type="button" class="btn btn-primary" @click="btnOptions('address')"><i
+<!-- ADDRES BUTTON -->
+                            <div>
+                                <button type="button" class="btn btn-primary" @click="btnOptions('address')"><i
                                         :class="address? 'far fa-address-book fa-3x' : 'far fa-address-book fa-3x animate__animated animate__flip animate__fast'"
-                                        style="color: #303870"></i></button><span class="pt-1">Address book</span>
+                                        style="color: #303870"></i>
+                                </button>
+                                <span class="pt-1">Address book</span>
                             </div>
                         </div>
                     </div>
+<!-- LOANS TABLE -->
                     <div class="d-flex flex-column mobile">
                         <h5>Loans</h5>
                         <table
@@ -161,17 +153,19 @@
                             <h6>You don't have any loans yet</h6>
                         </div>
                     </div>
+<!-- CLIENT INFO -->
                     <div class="totalBalanceDiv d-flex gap-2 ps-3 flex-row">
                         <span>Total balance: <span class="fw-bold">{{formattedBalance}}</span></span>
                     </div>
                     <div class="d-flex flex-row flex-xs-column gap-2 justify-content-evenly">
                         <div
                             class="d-flex flex-column justify-content-start align-items-center col-6 gap-2 p-1 cardsAccount">
-                            <div v-if="account.length < 3"
-                                class="d-flex flex-column w-100 justify-content-center align-items-start gap-2">
-                                <button data-bs-toggle="modal" data-bs-target="#modalNewAccount" class="btn btn-primary bg-light w-25 text-center btnTransactions">New account</button>
+                            <div class="d-flex flex-row w-100 justify-content-start align-items-center gap-2">
+                                <button data-bs-toggle="modal" data-bs-target="#modalNewAccount" :disabled = "account.length > 2" class="btn btn-primary bg-light w-25 text-center btnTransactions">New account</button>
+                                <button data-bs-toggle="modal" data-bs-target="#modalDeleteAccount" class="btn btn-primary bg-light w-25 text-center btnTransactions d-flex align-items-center justify-content-center gap-1">Delete account</button>
                             </div>
-                            <!-- MODALS -->
+<!-- MODALS -->
+<!-- DELETE ACCOUNT MODAL -->
                             <div class="modal fade" id="modalDeleteAccount" tabindex="-1" aria-labelledby="modalDeleteAcLabel" aria-hidden="false">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
@@ -180,21 +174,35 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <h6 class="text-center">This account will be deleted </h6>
+                                            <h6 class="text-center">Select the account you want to delete</h6>
+                                            <p class="text-center fw-lighter">(Balance must be at $0)</p>
                                             <hr class="hr text-light"/>
-                                            <div class="d-flex flex-row justify-content-center p-2 round">
-                                                <div class="pt-2 text-center">
-                                                    <p>Are you sure?</p>
+                                            <div class="d-flex flex-column justify-content-center p-2 round gap-2">
+                                                <div class="pt-2 text-center w-100">
+                                                    <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model=accountId>
+                                                    <option v-for="account of sortAccount" :value="account">{{account.number}}</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <div class="d-flex flex-row align-items-center gap-2">
+                                                        <h6 class="m-0">Account type: </h6>
+                                                        <span>{{accountId.accountType}}</span>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center gap-2">
+                                                        <h6 class="m-0">Account balance: </h6>
+                                                        <span>{{accountId.balance}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
-                                            <button type="button" class="btn btn-primary" @click = "createAccount(accountType)">Yes, delete it</button>
+                                            <button type="button" class="btn btn-primary" @click = "deleteAccount()">Yes, delete it</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+<!-- NEW ACCOUNT MODAL -->
                             <div class="modal fade" id="modalNewAccount" tabindex="-1" aria-labelledby="modalNewAccountLabel" aria-hidden="false">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
@@ -221,7 +229,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Toast -->
+<!-- TOASTS -->
                             <div class="toast-container position-fixed bottom-0 end-0 p-3">
                                 <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                                   <div class="toast-header">
@@ -235,56 +243,68 @@
                                   </div>
                                 </div>
                             </div>
+                            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                                <div id="deleteToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                  <div class="toast-header">
+                                    <i class="fas fa-info-circle pe-2"></i>
+                                    <strong class="me-auto">Alert</strong>
+                                    <small>Now</small>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                  </div>
+                                  <div class="toast-body message">
+                                    Account deleted
+                                  </div>
+                                </div>
+                            </div>
+<!-- ACCOUNT INFO -->
                             <div class="cuerpoCards shadow bg-light rounded p-2 w-100" v-for="account of sortAccount">
-                                <div class="d-flex flex-column gap-2 " v-if="account != 0">
-                                    <div
-                                        class="d-flex flex-row justify-content-between align-items-center botonesDerecha2k">
-                                        <h5 class="card-title m-0">Account nº: <span
-                                                class=" fw-bold">{{account.number}}</span></h5>
-                                                <div class="d-flex flex-row gap-2">
-                                                    <div class="d-flex flex-column align-items-center textoSpan">
-                                                        <a :href="'./account.html?id=' +  account.id"><button type="button"
-                                                            class="btn btn-primary btnTransactions d-flex flex-column justify-content-center align-items-center">
-                                                            <i class="fas fa-history fa-2x"
-                                                            style="color: #303870"></i></button></a>
-                                                            <span class="pt-1">Transactions</span>
-                                                    </div>
-                                                        <div class="d-flex flex-column align-items-center textoSpan">
-                                                            <button data-bs-toggle="modal" data-bs-target="#modalDeleteAccount" class="btn btn-primary btnTransactions d-flex flex-column justify-content-center align-items-center"><i class="far fa-trash-alt fa-2x"></i></button>
-                                                            <span class="pt-1">Delete</span>
-                                                        </div>
+                                <div v-if = account.enabled>
+                                    <div class="d-flex flex-column gap-2 " v-if="account != 0">
+<!-- 2K SIZE -->
+                                        <div
+                                            class="d-flex flex-row justify-content-between align-items-center botonesDerecha2k">
+                                            <h5 class="card-title m-0">Account nº: <span class=" fw-bold">{{account.number}}</span></h5>
+                                            <div class="d-flex flex-row gap-2">
+                                                <div class="d-flex flex-column align-items-center textoSpan">
+                                                    <a :href="'./account.html?id=' +  account.id"><button type="button" class="btn btn-primary btnTransactions d-flex flex-column justify-content-center align-items-center">
+                                                        <i class="fas fa-history fa-2x" style="color: #303870"></i></button></a>
+                                                    <span class="pt-1">Transactions</span>
                                                 </div>
-                                    </div>
-                                    <div
-                                        class="d-flex flex-row justify-content-between align-items-center botonesDerecha1024">
-                                        <h5 class="card-title m-0"> {{account.number}}</h5>
-                                        <a :href="'./account.html?id=' +  account.id"><button type="button"
-                                            class="btn btn-primary btnTransactions d-flex flex-column justify-content-between align-items-center"><i
-                                                class="fas fa-history fa-2x" style="color: #303870"></i>
-                                            <span>Transactions</span></button></a>
-                                    </div>
-                                    <div class="d-flex flex-row justify-content-between align-items-center mobile">
-                                        <div class="d-flex flex-row align-items-center gap-1">
-                                            <h5 class="m-0">Account nº: </h5>
-                                            <p class="text-center m-0 pt-1"> {{account.number}}</p>
+                                            </div>
                                         </div>
-                                        <button type="button"
-                                            class="btn btn-primary btnTransactions  d-flex flex-column justify-content-between align-items-center">
-                                            <i class="fas fa-history fa-2x" style="color: #303870"></i>
-                                            <span>Volar</span></button>
-                                    </div>
-                                    <div class="rellenoCard d-flex flex-column">
-                                        <hr>
-                                        <span>Balance: <span class="fw-bold"> {{account.balance}}</span></span>
-                                        <!-- <span>To prove:<span class="fw-bold"> $142,32</span></span> -->
-                                        <span>Creation date: <span class="fw-bold">
-                                                {{account.creationDate.replace("T", " ")}}</span></span>
-                                        <span class="d-flex justify-content-start align-items-center gap-1">Type:
-                                        <span class="fw-bold d-flex justify-content-start align-items-center gap-2">
-                                            {{account.accountType}}
-                                            <span v-show = "account.accountType == 'CHECKING'" class="text-black material-symbols-outlined fs-4">bolt</span>
-                                                <span v-show = "account.accountType == 'SAVINGS'"class="text-black material-symbols-outlined fs-5">potted_plant</span>
-                                        </span></span>
+<!-- 1024P SIZE -->
+                                        <div
+                                            class="d-flex flex-row justify-content-between align-items-center botonesDerecha1024">
+                                            <h5 class="card-title m-0"> {{account.number}}</h5>
+                                            <a :href="'./account.html?id=' +  account.id"><button type="button"
+                                                class="btn btn-primary btnTransactions d-flex flex-column justify-content-between align-items-center"><i
+                                                    class="fas fa-history fa-2x" style="color: #303870"></i>
+                                                <span>Transactions</span></button></a>
+                                        </div>
+<!-- MOBILE SIZE -->
+                                        <div class="d-flex flex-row justify-content-between align-items-center mobile">
+                                            <div class="d-flex flex-row align-items-center gap-1">
+                                                <h5 class="m-0">Account nº: </h5>
+                                                <p class="text-center m-0 pt-1"> {{account.number}}</p>
+                                            </div>
+                                            <button type="button"
+                                                class="btn btn-primary btnTransactions  d-flex flex-column justify-content-between align-items-center">
+                                                <i class="fas fa-history fa-2x" style="color: #303870"></i>
+                                                <span>Volar</span></button>
+                                        </div>
+                                        <div class="rellenoCard d-flex flex-column">
+                                            <hr>
+                                            <span>Balance: <span class="fw-bold"> {{account.balance}}</span></span>
+                                            <!-- <span>To prove:<span class="fw-bold"> $142,32</span></span> -->
+                                            <span>Creation date: <span class="fw-bold">
+                                                    {{account.creationDate.replace("T", " ")}}</span></span>
+                                            <span class="d-flex justify-content-start align-items-center gap-1">Type:
+                                            <span class="fw-bold d-flex justify-content-start align-items-center gap-2">
+                                                {{account.accountType}}
+                                                <span v-show = "account.accountType == 'CHECKING'" class="text-black material-symbols-outlined fs-4">bolt</span>
+                                                    <span v-show = "account.accountType == 'SAVINGS'"class="text-black material-symbols-outlined fs-5">potted_plant</span>
+                                            </span></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

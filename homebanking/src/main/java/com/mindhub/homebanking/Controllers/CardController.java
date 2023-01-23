@@ -35,9 +35,9 @@ public class CardController {
     @PostMapping("/clients/current/cards")
     public ResponseEntity<Object> createCard(Authentication authentication,@RequestParam CardType cardType, @RequestParam CardColor cardColor) {
         Client currentClient = clientService.findByEmail(authentication.getName());
-        if (currentClient.getCard().stream().filter(card -> (card.getCardType() == cardType) && (card.isEnabled())).collect(Collectors.toSet()).size() < 3)
+        if (currentClient.getCard().stream().filter(card -> (card.getCardType() == cardType) && (card.isEnabled())).filter(card -> (card.getThruDate().isAfter(LocalDate.now()))).collect(Collectors.toSet()).size() < 3)
             {
-                if(currentClient.getCard().stream().filter(card -> card.getCardType() == cardType && (card.isEnabled())).map(card -> card.getCardColor()).collect(Collectors.toList()).contains(cardColor))
+                if(currentClient.getCard().stream().filter(card -> card.getCardType() == cardType && (card.isEnabled())).filter(card -> (card.getThruDate().isAfter(LocalDate.now()))).map(card -> card.getCardColor()).collect(Collectors.toList()).contains(cardColor))
                     {
                         return new ResponseEntity<>("Max card color reached", HttpStatus.FORBIDDEN);
                     }

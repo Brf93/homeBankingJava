@@ -34,9 +34,9 @@ public class ClientController {
                 }
         @GetMapping("/clients/current")
         public ClientDTO getClients(Authentication authentication)
-        {
-                return new ClientDTO(clientService.findByEmail(authentication.getName()));        }
-
+                {
+                        return new ClientDTO(clientService.findByEmail(authentication.getName()));
+                }
         @PostMapping("/clients")
         public ResponseEntity<Object> register(@RequestParam String firstName, @RequestParam String lastName, @RequestParam GenderType genderType , @RequestParam boolean enabled,
                 @RequestParam String email, @RequestParam String password, @RequestParam String avatar) {

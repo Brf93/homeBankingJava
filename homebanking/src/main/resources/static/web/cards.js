@@ -24,6 +24,7 @@ const app = createApp({
       fechaFormateada: '',
       cardDate: '',
       expiredCards : '',
+      nonExpireCards : '',
       pruebaCuenta : ["Hola","chau","gtds"]
     }
   },
@@ -44,7 +45,7 @@ const app = createApp({
           this.cardDate = this.card.map(card => card.thruDate)
           this.fechaFormateada = this.fecha.toISOString().slice(0, 10)
           this.expiredCards = this.cardDate.filter( date => date < this.fechaFormateada)
-          console.log((this.expiredCards.length))
+          this.nonExpireCards = this.card.length - this.expiredCards.length
           if (this.fecha.toISOString().slice(0, 10) < this.cardDate) { console.log("Mayor") }
           else {
             console.log("menor")

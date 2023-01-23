@@ -27,7 +27,9 @@ const app = createApp({
           address : true,
           transfers : true,
           loanAmountFormat : '',
-          accountType : ''
+          accountType : '',
+          accountId : '',
+          accountNumber : ''
 
         }
       },
@@ -54,10 +56,11 @@ const app = createApp({
               console.log(this.params)
               this.clients.account
               this.account = this.clients.account
+              console.log(this.account.length)
               this.loans = this.clients.clientLoan
               this.card = this.clients.card
               this.sortAccount = this.account.sort((a,b) => a.id - b.id)
-              console.log(this.clients.account)
+              console.log(this.sortAccount)
               console.log(this.totalBalance = (this.clients.account).map(e => e.balance).reduce(function (previousValue, currentValue) {
               return previousValue + currentValue;}))
               this.loans.sort((a,b) => a.date - b.date)
@@ -147,7 +150,42 @@ const app = createApp({
               let toast = new bootstrap.Toast(liveToast)
               toast.show()
               setTimeout(()=>{window.location.reload(); }, 2000)
+            }).catch(function (error) {
+              if (error.response) {
+                alert(error.response.data);
+                location.reload()
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+              } else if (error.request) {
+                console.log(error.request);
+              } else {
+                console.log('Error', error.message);
+              }
+              console.log("Hola");
+            });
+          },
+          deleteAccount(){
+            axios.post('/api/clients/current/accounts/delete', `accountId=${this.accountId.id}`)
+            .then(() => {
+              let toastDeleting = new bootstrap.Toast(deleteToast)
+              toastDeleting.show()
+              setTimeout(()=>{window.location.reload(); }, 2000)
             })
+            .catch(function (error) {
+              if (error.response) {
+                alert(error.response.data);
+                location.reload()
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+              } else if (error.request) {
+                console.log(error.request);
+              } else {
+                console.log('Error', error.message);
+              }
+              console.log("Hola");
+            });
           }
     }
 })

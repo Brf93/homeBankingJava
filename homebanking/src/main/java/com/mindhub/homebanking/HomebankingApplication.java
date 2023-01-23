@@ -55,8 +55,8 @@ public class HomebankingApplication {
 				Account VIN005 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),decimalFormat(21000.45D),AccountType.CHECKING,true);
 				Account VIN006 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now().plus(1, ChronoUnit.DAYS)),decimalFormat(35200.41D),AccountType.SAVINGS,true);
 				//Melba
-				Transaction TR0001 = new Transaction(5000D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT,VIN001.getBalance() + 5000D);
-				Transaction TR0002 = new Transaction(7500D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT, VIN002.getBalance()+ 7500D);
+				Transaction TR0001 = new Transaction(5000D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT,VIN001.getBalance());
+				Transaction TR0002 = new Transaction(7500D,"First deposit",Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT, VIN002.getBalance());
 				Transaction TR0003 = new Transaction(1023D,"Iphone 13 - Apple store",Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT,VIN001.getBalance() - 1023D);
 				Transaction TR0004 = new Transaction(45.93D,"Iphone 13 Black case - Apple store MIAMI",Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT, VIN004.getBalance() - 45.93D);
 				Transaction TR0005 = new Transaction(10.12D,"Macchiato - Starbucks",Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT, VIN001.getBalance() - 10.12D);
