@@ -101,7 +101,9 @@ const app = createApp({
                             "payments" : this.chosedPayment,
                             "destNumber" : this.destAccount
                         })
-                       .then( () => { this.show2 = true , setTimeout(() => { window.location = ("http://localhost:8080/web/accounts.html") }, 900) })
+                       .then( () => { let toast = new bootstrap.Toast(loanToast)
+                        toast.show()
+                        this.show2 = true , setTimeout(() => { window.location = ("http://localhost:8080/web/accounts.html") }, 2000) })
                         .catch(function (error) {
                             if (error.response) {
                               alert(error.response.data);

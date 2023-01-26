@@ -6,7 +6,9 @@
 .textoSpan span {
     font-size: 9px !important;
 }
-
+.textoP p{
+    font-size: 10px;
+}
 .divJson {
     height: 300px !important;
     min-width: 450px
@@ -86,9 +88,22 @@ thead {
     text-decoration:underline;
 } */
 .footerSize {
-    min-height: 15vh;
+    min-height: 14vh;
+    background-color: #3f73ca!important;
+    color: aliceblue;
 }
-
+.footerSize i {
+    color: aliceblue;
+}
+.footerSize i:hover {
+    scale: 110%;
+}
+.footerSize .infoSize p{
+    font-size: 10px;
+}
+/* .needHelp a{
+    
+} */
 .totalBalance {
     font-size: 22px;
 }
@@ -455,6 +470,9 @@ thead {
 .menuMobile{
     display: none!important;
 }
+#menuMobile2{
+    display: none!important;
+}
 .logoCentroMobile{
     width: 15%!important;
 }
@@ -524,6 +542,9 @@ thead {
 .fade-enter-to {
     opacity: 1
   }
+a {
+    cursor: pointer!important;
+}
 @media screen and (min-width : 1025px) and (max-width : 2560px) {
     .botonesDerecha2k {
         display: flex !important;
@@ -664,7 +685,17 @@ thead {
         position: sticky;
         bottom: 0px;
     }
-
+    .logoCentro{
+        width: 15%;
+    }
+    .headerMobile h3{
+        scale: 80%!important;
+        text-align: center;
+        text-transform:uppercase;
+    }
+    .headerMobile{
+        min-height: 150px!important;
+    }
     .botonesDerecha button {
         width: 30px !important;
         height: 30px !important;
@@ -732,7 +763,7 @@ thead {
 
     .btnTransactions {
         padding: 5px !important;
-        max-width: 20%!important;
+        max-width: 40%!important;
         height: 100%;
         background-color: aliceblue !important;
         font-size: 8px;
@@ -751,11 +782,22 @@ thead {
     }
 }
 
-@media screen and (max-width : 376px) {
+@media screen and (min-width : 0px) and (max-width : 376px) {
     .menuMobile{
         display: flex!important;
         position: sticky;
         bottom: 0px;
+    }
+    .footerMobile{
+        display: flex!important;
+        flex-direction: column!important;
+    }
+    .footerMobile .footerInfo{
+        display: flex!important;
+        text-align: center!important;
+        justify-content: end!important;
+        align-items:center!important;
+        width: 100%!important;
     }
     .headerMobile h3{
         scale: 80%!important;
@@ -783,12 +825,13 @@ thead {
 
     .mobile {
         display: flex !important;
+        min-width: 100%!important;
     }
     .desktop {
         display: none !important;
     }
     .mobileLogin{
-        width: 100%!important;
+        min-width: 100%!important;
         height: 80vh!important;
         display: flex;
         align-items: center;
@@ -843,10 +886,18 @@ thead {
     .card {
         max-width: 240px !important;
     }
+    .btnAccount{
+        padding: 5px !important;
+        max-width: 20%!important;
+        height: 90%;
+        background-color: aliceblue !important;
+        font-size: 8px;
+        color: black;
 
+    }
     .btnTransactions {
         padding: 5px !important;
-        max-width: 10%!important;
+        max-width: 40%!important;
         height: 90%;
         background-color: aliceblue !important;
         font-size: 8px;
