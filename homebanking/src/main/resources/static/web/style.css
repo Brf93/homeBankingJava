@@ -594,12 +594,18 @@ a {
 }
 
 @media screen and (min-width : 426px) and (max-width : 800px) {
+    .alingMobile{
+        display: flex;
+        flex-direction: column;
+    }
     .menuMobile{
         display: flex!important;
         position: sticky;
         bottom: 0px;
     }
-
+    .mobileXs{
+        display: none!important;
+    }
     .botonesDerecha button {
         width: 60px !important;
         height: 30px !important;
@@ -620,6 +626,9 @@ a {
     .mobile {
         display: flex !important;
     }
+    .footerMobile{
+        height: 20vh;
+    }
 
     .desktop {
         display: none !important;
@@ -636,7 +645,7 @@ a {
     }
 
     .cardsAccount {
-        width: 300px !important;
+        width: 90%!important;
     }
 
     .divPadre {
@@ -656,11 +665,21 @@ a {
     .mobileAdjustment {
         min-width: 800px !important;
     }
-
+    .menuMobile{
+        height: 10vh;
+    }
     .btnTransactions {
         padding: 5px !important;
         width: 100%;
         height: 100%;
+        background-color: aliceblue !important;
+        font-size: 8px;
+        color: black;
+    }
+    .btnTransactions2{
+        padding: 5px !important;
+        width: 80px;
+        height: 30px;
         background-color: aliceblue !important;
         font-size: 8px;
         color: black;
@@ -677,16 +696,31 @@ a {
     .menuUp{
         display: none!important;
     }
+    main{
+        height: 70vh!important;
+    }
 }
 
 @media screen and (min-width : 377px) and (max-width : 425px){
+    .alingMobile{
+        display: flex;
+        flex-direction: column;
+    }
     .menuMobile{
         display: flex!important;
         position: sticky;
         bottom: 0px;
     }
-    .logoCentro{
-        width: 15%;
+    .footerMobile{
+        display: flex!important;
+        flex-direction: column!important;
+    }
+    .footerMobile .footerInfo{
+        display: flex!important;
+        text-align: center!important;
+        justify-content: end!important;
+        align-items:center!important;
+        width: 100%!important;
     }
     .headerMobile h3{
         scale: 80%!important;
@@ -696,12 +730,14 @@ a {
     .headerMobile{
         min-height: 150px!important;
     }
+    .logoCentro{
+        width: 15%;
+    }
     .botonesDerecha button {
         width: 30px !important;
         height: 30px !important;
         border-style: none;
     }
-
     .botonesDerecha1024 {
         display: none !important;
     }
@@ -712,14 +748,16 @@ a {
 
     .mobile {
         display: flex !important;
+        min-width: 100%!important;
     }
-
     .desktop {
         display: none !important;
     }
     .mobileLogin{
-        width: 100%;
+        min-width: 100%!important;
         height: 80vh!important;
+        display: flex;
+        align-items: center;
     }
     /* .mobile span {
         display: none;
@@ -730,11 +768,14 @@ a {
     }
 
     .cardsAccount {
-        width: 300px !important;
+        width: 100% !important;
+    }
+    .cuerpoCards{
+        width: 100%!important;
     }
 
     .divPadre {
-        width: 450px !important;
+        width: 425px !important;
     }
 
     .mobileBalance {
@@ -745,7 +786,10 @@ a {
     .mobileAdjustment {
         padding: 10px !important;
         margin: 1px !important;
-        min-width: 426px !important;
+        max-width: 100%!important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center!important;
     }
 
     .mobileXs {
@@ -759,15 +803,31 @@ a {
     main {
         display: flex !important;
         flex-direction: column !important;
+        max-width: 425px !important;
     }
 
-    .btnTransactions {
+    .card {
+        max-width: 240px !important;
+    }
+    .btnAccount{
         padding: 5px !important;
-        max-width: 40%!important;
-        height: 100%;
+        max-width: 20%!important;
+        height: 90%;
         background-color: aliceblue !important;
         font-size: 8px;
         color: black;
+
+    }
+    .btnTransactions {
+        padding: 5px !important;
+        max-width: 40%!important;
+        height: 90%;
+        background-color: aliceblue !important;
+        font-size: 8px;
+        color: black;
+    }
+    .rellenoCard{
+        font-size: 15px;
     }
     .menuReferences{
         font-size: 10px;
@@ -780,9 +840,19 @@ a {
     .menuUp{
         display: none!important;
     }
+    .botonesDerechaMobile span{
+        font-size: 8px;
+    }
+    .fSizeTable {
+        font-size: 12px !important;
+    }
 }
 
 @media screen and (min-width : 0px) and (max-width : 376px) {
+    .alingMobile{
+        display: flex;
+        flex-direction: column;
+    }
     .menuMobile{
         display: flex!important;
         position: sticky;

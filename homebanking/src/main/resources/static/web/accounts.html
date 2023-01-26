@@ -57,6 +57,7 @@
                     <div class="d-flex align-items-center flex-column gap-2 shadow-sm bg-light w-100">
                         <h4 class="color text-black pt-2 fs-3">Accounts</h4>
                     </div>
+<!-- BOTONES TABLET -->
                     <div
                         class="mobile botonesDerecha botonesDerechaMobile animate__animated animate__shakeX flex-column gap-2 p-3">
                         <div
@@ -70,13 +71,24 @@
                                         class="fas fa-money-bill-wave-alt fa-1x"
                                         style="color: #303870"></i></button><span class="pt-1">Pay</span>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <button type="button" class="btn btn-primary"><i class="far fa-paper-plane fa-1x"
                                         style="color: #303870"></i></button><span class="pt-1">Transactions</span>
+                            </div> -->
+                            <div>
+                                <button type="button" class="btn btn-primary" data-mdb-toggle="dropdown" aria-expanded="false">
+                                    <i :class="withdrawals? 'far fa-paper-plane fa-1x' : 'far fa-paper-plane fa-1x animate__animated animate__flip fast'"
+                                        style="color: #303870"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" style="cursor:pointer;" @click="btnOptions('withdrawals') ">Between my accounts</a></li>
+                                    <li><a class="dropdown-item" style="cursor:pointer;" @click="btnOptions('transfers')">To third party account</a></li>
+                                </ul>
+                                <span class="pt-1">Transfers</span>
                             </div>
                             <div>
                                 <button type="button" class="btn btn-primary"><i class="far fa-address-book fa-1x"
-                                        style="color: #303870"></i></button><span class="pt-1">Address book</span>
+                                        style="color: #303870"></i></button><span class="pt-1">Address b.</span>
                             </div>
                         </div>
                     </div>
@@ -159,7 +171,7 @@
                     </div>
                     <div class="d-flex flex-row flex-xs-column gap-2 justify-content-evenly">
                         <div
-                            class="d-flex flex-column justify-content-start align-items-center col-6 gap-2 p-1 cardsAccount">
+                            class="d-flex flex-column justify-content-start align-items-center col gap-2 p-2 cardsAccount">
                             <div class="d-flex flex-row w-100 justify-content-start align-items-center gap-2">
                                 <button data-bs-toggle="modal" data-bs-target="#modalNewAccount" :disabled = "account.length > 2" class="btn btn-primary bg-light w-25 text-center btnTransactions">New account</button>
                                 <button data-bs-toggle="modal" data-bs-target="#modalDeleteAccount" class="btn btn-primary bg-light w-25 text-center btnTransactions d-flex align-items-center justify-content-center gap-1">Delete account</button>
@@ -196,12 +208,30 @@
                                             </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
-                                            <button type="button" class="btn btn-primary" @click = "deleteAccount()">Yes, delete it</button>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDeleteAccountConfirm">Delete it</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        <!-- CONFIRM DELETE -->
+                            <div class="modal fade" id="modalDeleteAccountConfirm" tabindex="-1" aria-labelledby="modalDeleteAcLabelConfirm" aria-hidden="false">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="modalDeleteAcLabelConfirm">Account</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6 class="text-center">This account will be deleted permanently</h6>
+                                        </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
+                                            <button type="button" class="btn btn-primary" @click = "deleteAccount()">Yes, I'm sure</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 <!-- NEW ACCOUNT MODAL -->
                             <div class="modal fade" id="modalNewAccount" tabindex="-1" aria-labelledby="modalNewAccountLabel" aria-hidden="false">
                                 <div class="modal-dialog modal-dialog-centered">
@@ -292,7 +322,7 @@
                                                 <p class="text-center m-0 pt-1"> {{account.number}}</p>
                                             </div>
                                             <a :href="'./account.html?id=' +  account.id"><button type="button"
-                                                class="btn btn-primary btnAccount d-flex flex-column justify-content-between align-items-center">
+                                                class="btn btn-primary btnAccount btnTransactions2 d-flex flex-column justify-content-between align-items-center">
                                                 <i class="fas fa-history fa-2x" style="color: #303870"></i></button></a>
                                         </div>
                                         <div class="rellenoCard d-flex flex-column">
