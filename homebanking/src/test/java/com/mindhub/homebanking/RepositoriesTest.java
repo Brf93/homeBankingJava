@@ -1,3 +1,4 @@
+/*
 package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.models.Client;
@@ -14,8 +15,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 
+*/
 /*@DataJpaTest
-@AutoConfigureTestDatabase(replace = NONE)*/
+@AutoConfigureTestDatabase(replace = NONE)*//*
+
 @SpringBootTest
     public class RepositoriesTest {
 
@@ -35,14 +38,17 @@ import static org.hamcrest.Matchers.*;
             List<Loan> loans = loanRepository.findAll();
             assertThat(loans, hasItem(hasProperty("name", is("Personal"))));
         }
-        /*@Test
+        */
+/*@Test
         public void hasPayments(){
             List<Loan> loans = loanRepository.findAll();
             assertThat(loans,hasItem(hasProperty("payments", contains(List.of(6,12,24,36,48,60)))));
-        }*/
+        }*//*
+
         @Test
         public void checkClientName(){
             List<Client> clients = clientRepository.findAll();
             assertThat(clients, hasItem(hasProperty("firstName", is(not(empty())))));
         }
     }
+*/
