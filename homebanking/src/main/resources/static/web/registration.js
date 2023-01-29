@@ -27,7 +27,8 @@ const app = createApp({
                 axios.post('/api/clients',`firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&genderType=${this.gender}&enabled=${this.bool}&password=${this.passwordRegistration}&avatar=${this.avatarName}`)
                 .then(setTimeout(()=>{ axios.post('/api/login',`email=${this.email}&password=${this.passwordRegistration}`);}, 1000))
                 .then(() =>
-                    {
+                    {   let toast = new bootstrap.Toast(toastRegistration)
+                        toast.show()
                         setTimeout(()=>{ window.location = ("/web/accounts.html");}, 1700);
                     })
                     .catch(function (error) {
