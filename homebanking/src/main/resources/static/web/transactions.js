@@ -77,7 +77,6 @@ const app = createApp({
                         } else {
                           console.log('Error', error.message);
                         }
-                        console.log("Hola");
                       });
                 }else{
                     axios.post('/api/clients/current/transaction',`amount=${this.amountInput}&originNumber=${this.originAccount}&destNumber=${this.accountDestInput}&descr=${this.descriptionTextArea}`)
