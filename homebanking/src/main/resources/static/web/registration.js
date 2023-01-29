@@ -28,7 +28,7 @@ const app = createApp({
                 .then(setTimeout(()=>{ axios.post('/api/login',`email=${this.email}&password=${this.passwordRegistration}`);}, 500))
                 .then(() =>
                     {
-                        setTimeout(()=>{ axios.post('/clients/current/accounts')},700)
+                        setTimeout(()=>{ axios.post('/clients/current/accounts')},1000)
                         setTimeout(()=>{ window.location = ("/web/accounts.html");}, 1700);
                         console.log("creado")
                     })
