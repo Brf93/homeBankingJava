@@ -50,7 +50,7 @@ const app = createApp({
             .then(() => {
               let toast = new bootstrap.Toast(liveToast)
               toast.show()
-              setTimeout(()=>{ window.location = ("http://localhost:8080/web/cards.html") ;}, 2000)
+              setTimeout(()=>{ window.location = ("api/web/cards.html") ;}, 2000)
             })
             .catch(function (error) {
               if (error.response) {

@@ -30,10 +30,10 @@ const app = createApp({
             if (this.userInfo.includes("@admin.com"))
             {
               axios.post('/api/login',`email=${this.userInfo}&password=${this.password}`).then(response => console.log(response))
-              setTimeout(()=>{ window.location = ("http://localhost:8080/h2-console");}, 1000);
+              setTimeout(()=>{ window.location = ("/h2-console");}, 1000);
             }else{
               axios.post('/api/login',`email=${this.userInfo}&password=${this.password}`).then(response => console.log(response))
-                setTimeout(()=>{ window.location = ("http://localhost:8080/web/accounts.html");}, 2000);   
+                setTimeout(()=>{ window.location = ("api/web/accounts.html");}, 2000);   
             }
           },
           getpass(){

@@ -26,7 +26,7 @@ const app = createApp({
       },
       methods: {
         getClients(){
-          axios.get('http://localhost:8080/api/clients')
+          axios.get('api/api/clients')
           .then((result) => {
               this.results = result.data;
               this.clients = [...this.results.map(client => client)]
@@ -35,7 +35,7 @@ const app = createApp({
               console.log(this.enabled)
           })
           .catch(error => {console.log(error);})
-          axios.get('http://localhost:8080/api/accounts')
+          axios.get('api/api/accounts')
           .then((result) => {
             this.accounts = result.data;
             console.log(this.accounts)
@@ -53,7 +53,7 @@ const app = createApp({
                 email : email,
                 accounts : []
               }
-            axios.post('http://localhost:8080/rest/clients', (aux))
+            axios.post('api/rest/clients', (aux))
             .then(() => location.reload())
             .catch(error => {console.log(error)})
             }else{
@@ -65,15 +65,15 @@ const app = createApp({
           
           console.log(enabled)
           // if(this.clients != 0){
-          //   let auxiliar = `http://localhost:8080/api/accounts/${this.validationParam.id}/client`
-          //   let clienteAuxiliar = `http://localhost:8080/api/clients/${this.validationParam.id}`
+          //   let auxiliar = `api/api/accounts/${this.validationParam.id}/client`
+          //   let clienteAuxiliar = `api/api/clients/${this.validationParam.id}`
           //   axios.delete(auxiliar)
           // .then((response) => {
           //   alert(`${this.validationParam.firstName} deleted`)
           //   location.reload()})
           // .catch(error => {console.log(error)});
           // axios.delete(clienteAuxiliar).then(() => alert("Cliente borrado")).catch(err => {console.log(err)});
-          // console.log(`http://localhost:8080/api/accounts/${this.validationParam.id}/client` + "" + clienteAuxiliar)
+          // console.log(`api/api/accounts/${this.validationParam.id}/client` + "" + clienteAuxiliar)
           // }
         },
         validation(client,operation){
@@ -105,7 +105,7 @@ const app = createApp({
         },
         saveName(editInfo){
           if(editInfo != ''){
-            axios.patch(`http://localhost:8080/api/clients/${this.validationParam.id}`, {
+            axios.patch(`api/api/clients/${this.validationParam.id}`, {
               firstName: editInfo.firstName
             })
             .then(() => location.reload())
@@ -116,7 +116,7 @@ const app = createApp({
         },
         saveLastName(editInfo){
           if(editInfo != ''){
-            axios.patch(`http://localhost:8080/rest/clients/${this.validationParam.id}`, {
+            axios.patch(`api/rest/clients/${this.validationParam.id}`, {
               lastName: editInfo
             })
             .then(() => location.reload())
@@ -138,7 +138,7 @@ const app = createApp({
         },
         saveAllChanges(newFirstName,newLastName,newEmail){
           if(newFirstName != '' && newLastName != '' && newEmail != '' && newEmail.includes('@')){
-            axios.put(`http://localhost:8080/rest/clients/${this.validationParam.id}`, {
+            axios.put(`api/rest/clients/${this.validationParam.id}`, {
               firstName: newFirstName,
               lastName : newLastName,
               email : newEmail
@@ -149,7 +149,7 @@ const app = createApp({
             alert("You must complete all the input fields properly")
             this.newEmail = ''
           }
-          console.log(editInfo + " " +`http://localhost:8080/rest/clients/${this.validationParam.id}`)
+          console.log(editInfo + " " +`api/rest/clients/${this.validationParam.id}`)
         }
   }
 })
