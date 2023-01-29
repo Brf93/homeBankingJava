@@ -99,7 +99,6 @@ const app = createApp({
                 }
             },
             cancelTransaction(){
-                
                     this.show = true
                     setTimeout(()=>{ window.location = ("http://localhost:8080/web/accounts.html");}, 400);
             }

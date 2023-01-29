@@ -51,24 +51,6 @@ const app = createApp({
           })
           .catch(error => {console.log(error);})
           },
-          getClients(){
-            axios.get('/api/clients/current')
-            .then((result) => {
-                // this.results = result.data;
-                // console.log(this.results)
-                // this.queryString = location.search 
-                // this.params = new URLSearchParams(this.queryString)
-                // this.ids = this.params.get("id")
-                // console.log(this.ids)
-                // console.log(this.results.map(result => result.account))
-                // this.account = this.clients.map(client => client.account)
-                // this.accounts = this.clients[0].account 
-                // console.log(this.accounts)
-                
-                // console.log(this.buscarId.number)
-                })
-            .catch(error => {console.log(error);})
-            },
             getType(type){
               if (type == "CREDIT"){
                 return "text-success fw-bold"

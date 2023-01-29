@@ -55,10 +55,10 @@
                 <h4 class="color text-black pt-2 fs-3">Get a loan</h4>
             </div>
             <div class="d-flex flex-row flex-column-sm gap-3 pt-3 spanRegistrationSize">
-                <div class="d-flex flex-column flex-row-lg w-100 align-items-lg-start align-items-center justify-content-evenly gap-3">
+                <div class="d-flex flex-column flex-row-lg w-100 align-items-lg-center align-items-center justify-content-evenly gap-3">
                     <div class="w-100 d-flex flex-column gap-5 justify-content-center align-items-center loanOptionTitles">
                            <div class="d-flex flex-row justify-content-center align-items-center gap-3 w-100">
-                                <div>
+                                <div class="w-100">
                                     <h6>Select destination account:</h6> 
                                     <div class="pt-2">
                                         <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = destAccount>
@@ -67,10 +67,10 @@
                                     </div>
                                 </div>
                                     <span><i class="fas fa-angle-double-right pt-3"></i></span>
-                                <div>
+                                <div class="w-100">
                                 <h6>Select a type of loan:</h6>
                                 {{paymentsFilter}}
-                                <div class="pt-2">
+                                <div class="pt-2 w-100">
                                     <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = loanName>
                                         <option v-for = "loan of loanResult" :value="loan.name">{{loan.name}}</option>
                                     </select>
@@ -78,7 +78,7 @@
                             </div>
                           </div>
                        <div class="d-flex flex-row gap-3 justify-content-center align-items-center w-100">
-                           <div>
+                           <div class="w-100">
                                <h6>Select number of payments:</h6> 
                                <div class="pt-2">
                                    <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = "chosedPayment">
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                                 <span><i class="fas fa-angle-double-right pt-3"></i></span>
-                            <div>
+                            <div class="w-100">
                                 <div class="d-flex flex-row justify-content-between">
                                     <h6>Amount:</h6> <span class="gap-1">Max <i @click="maxAmount()" class="far fa-caret-square-down fa-1x"></i></span>
                                 </div>
@@ -181,16 +181,16 @@
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
-                    <button type="button" class="btn btn-primary" @click="confirmLoan()">Yes, i'm sure</button>
+                    <button type="button" class="btn btn-primary" @click="confirmLoan()" data-bs-dismiss="modal">Yes, i'm sure</button>
                     </div>
                 </div>
                 </div>
             </div>
-            <div class="btn-group w-50 gap-1 m-3" role="group" aria-label="Basic example">
-                <button type="submit" class="btn btn-outline-secondary fs-6 p-1"
+            <div class="gap-3 m-1 p-2" role="group" aria-label="Basic example">
+                <button type="submit" class="m-1 btnConfirmCancel btn btn-outline-primary fs-6 p-1"
                 data-mdb-color="dark" @click = "cancelTransaction()">Cancel <i class="fas fa-times-circle fs-6"
                 :class = "show? 'animate__animated animate__fast animate__flip' : ''"></i></button>
-                <button type="button" class="btn btn-primary fs-6 p-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Confirm <i class="far fa-check-circle fs-6"
+                <button type="button" class="m-1 btnConfirmCancel btn btn-primary fs-6 p-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Confirm <i class="far fa-check-circle fs-6"
                 :class = "show2? 'animate__animated animate__fast animate__flip' : ''"></i></button>
             </div>
           </div>
@@ -204,13 +204,14 @@
                 <small>Now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
               </div>
-              <div class="toast-body message">
-                Your new account is ready to use
+              <div class="toast-body message d-flex align-items-center gap-1">
+                <span>Your money is ready to spend!</span>
+                <img src="./img/dineroLoan.png" style="width: 24px;" alt="">
               </div>
             </div>
         </div>
     </main>
-    <footer class="footerSize d-flex align-items-center justify-content-around footerMobile">
+    <footer class="footerSize d-flex align-items-center justify-content-around footerMobile gap-2">
         <div class="d-flex flex-column justify-content-center align-items-center p-1 needHelp">
             <h6 class="text-center mb-3">Need help?</h6>
             <a href="tel:0-800-666-0171" style="color: aliceblue;">0-800-666-0171</a>
@@ -219,7 +220,6 @@
             <img src="./img/contactanos.png" alt="" style="width: 48px;">
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center p-1">
-            <hr>
             <h6 class="text-center">Social media</h6>
             <div>
             <a class="p-2" href="https://www.linkedin.com/in/franco-brizzio" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>

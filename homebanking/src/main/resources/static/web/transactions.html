@@ -117,11 +117,11 @@
                    </div>
                 </div>
             </div>
-            <div class="btn-group w-50 gap-1 mt-3" role="group" aria-label="Basic example">
-                <button type="submit" class="btn btn-outline-secondary fs-6 p-1"
+            <div class="gap-3 m-1 p-2" role="group" aria-label="Basic example">
+                <button type="submit" class="m-1 btnConfirmCancel btn btn-outline-primary fs-6 p-1"
                 data-mdb-color="dark" @click = "cancelTransaction()">Cancel <i class="fas fa-times-circle fs-6"
                 :class = "show? 'animate__animated animate__fast animate__flip' : ''"></i></button>
-                <button type="button" class="btn btn-primary fs-6 p-1"
+                <button type="button" class="m-1 btnConfirmCancel btn btn-primary fs-6 p-1"
                 @click = "confirmTransaction()">Confirm <i class="far fa-check-circle fs-6"
                 :class = "show2? 'animate__animated animate__fast animate__flip' : ''"></i></button>
             </div>

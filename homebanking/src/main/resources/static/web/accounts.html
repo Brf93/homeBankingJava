@@ -208,7 +208,7 @@
                                             </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDeleteAccountConfirm">Delete it</button>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDeleteAccountConfirm" data-bs-dismiss="modal">Delete it</button>
                                             </div>
                                         </div>
                                     </div>
@@ -227,7 +227,7 @@
                                         </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
-                                            <button type="button" class="btn btn-primary" @click = "deleteAccount()">Yes, I'm sure</button>
+                                            <button type="button" class="btn btn-primary" @click = "deleteAccount()" data-bs-dismiss="modal">Yes, I'm sure</button>
                                             </div>
                                         </div>
                                     </div>
@@ -247,7 +247,7 @@
                                                 <div class="pt-2">
                                                     <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = "accountType">
                                                         <option value="CHECKING">Checking</option>
-                                                        <option value="SAVINGS">Saving</option>
+                                                        <option value="SAVINGS" selected>Saving</option>
                                                     </select>
                                                 </div>
                                                 <div class="w-75 textoP">
@@ -257,7 +257,7 @@
                                             </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
-                                            <button type="button" class="btn btn-primary" @click = "createAccount(accountType)">Yes, create it!</button>
+                                            <button type="button" class="btn btn-primary" @click = "createAccount(accountType)" data-bs-dismiss="modal">Yes, create it!</button>
                                             </div>
                                         </div>
                                     </div>
@@ -293,14 +293,14 @@
 <!-- ACCOUNT INFO -->
                             <div class="cuerpoCards shadow bg-light rounded p-2 w-100" v-for="account of sortAccount">
                                 <div v-if = account.enabled>
-                                    <div class="d-flex flex-column gap-2 " v-if="account != 0">
+                                    <div class="d-flex flex-column gap-2 p-2" v-if="account != 0">
 <!-- 2K SIZE -->
                                         <div
                                             class="d-flex flex-row justify-content-between align-items-center botonesDerecha2k">
                                             <h5 class="card-title m-0">Account nº: <span class=" fw-bold">{{account.number}}</span></h5>
                                             <div class="d-flex flex-row gap-2">
                                                 <div class="d-flex flex-column align-items-center textoSpan">
-                                                    <a :href="'./account.html?id=' +  account.id"><button type="button" class="btn btn-primary btnTransactions d-flex flex-column justify-content-center align-items-center">
+                                                    <a :href="'./account.html?id=' + account.id"><button type="button" class="btn btn-primary btnTransactions d-flex flex-column justify-content-center align-items-center">
                                                         <i class="fas fa-history fa-2x" style="color: #303870"></i></button></a>
                                                     <span class="pt-1">Transactions</span>
                                                 </div>
@@ -310,7 +310,7 @@
                                         <div
                                             class="d-flex flex-row justify-content-between align-items-center botonesDerecha1024">
                                             <h5 class="card-title m-0"> {{account.number}}</h5>
-                                            <a :href="'./account.html?id=' +  account.id"><button type="button"
+                                            <a :href="'./account.html?id=' + account.id"><button type="button"
                                                 class="btn btn-primary btnTransactions d-flex flex-column justify-content-between align-items-center"><i
                                                     class="fas fa-history fa-2x" style="color: #303870"></i>
                                                 <span>Transactions</span></button></a>

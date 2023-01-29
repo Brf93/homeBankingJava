@@ -85,10 +85,6 @@ const app = createApp({
                   setTimeout(()=>{this.show2 = true }, 150)
                 }
               },
-              reConfirmLoan(){
-
-
-              },
             confirmLoan(){
                 console.log(this.amountInput)
                     if(this.amountInput == '' || this.chosedPayment == '' || this.destAccount == ''){
@@ -103,7 +99,7 @@ const app = createApp({
                         })
                        .then( () => { let toast = new bootstrap.Toast(loanToast)
                         toast.show()
-                        this.show2 = true , setTimeout(() => { window.location = ("http://localhost:8080/web/accounts.html") }, 2000) })
+                        this.show2 = true , setTimeout(() => { window.location = ("http://localhost:8080/web/accounts.html") }, 2500) })
                         .catch(function (error) {
                             if (error.response) {
                               alert(error.response.data);
