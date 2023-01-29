@@ -47,7 +47,6 @@ public class ClientController {
         @PostMapping("/clients")
         public ResponseEntity<Object> register(@RequestParam String firstName, @RequestParam String lastName, @RequestParam GenderType genderType , @RequestParam boolean enabled,
                 @RequestParam String email, @RequestParam String password, @RequestParam String avatar, Authentication authentication) {
-                Client currentClient = clientService.findByEmail(authentication.getName());
                 if (firstName.isEmpty())
                         {
                                 return new ResponseEntity<>("The first name field is empty", HttpStatus.FORBIDDEN);
@@ -68,10 +67,10 @@ public class ClientController {
                         {
                                 return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
                         }
-
-                clientService.saveClient(new Client(firstName, lastName, email, genderType,enabled,passwordEncoder.encode(password),avatar));
+                Client cliente = new Client(firstName, lastName, email, genderType,enabled,passwordEncoder.encode(password),avatar);
+                clientService.saveClient(cliente);
                 Account account = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),0.00, AccountType.SAVINGS,true);
-                currentClient.addAccount(account);
+                cliente.addAccount(account);
                 accountService.saveAccount(account);
 
                 return new ResponseEntity<>("Registration ok",HttpStatus.CREATED);
