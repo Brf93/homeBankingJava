@@ -21,7 +21,6 @@ const app = createApp({
       },
       created(){
         this.getAccount()
-        //this.getClients()
       },
       methods : {
         getAccount(){
@@ -33,13 +32,8 @@ const app = createApp({
             const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
             this.params = new URLSearchParams(this.queryString)
             this.ids = this.params.get("id")
-            console.log(this.ids)
             this.account = this.accountData.account.filter(item => item.id == this.ids)
-            //this.account.sort((a,b) => a.id - b.id)
             this.orderById = this.account[0].transactions.sort((a,b) => b.id - a.id)
-            // this.buscarId = this.accountData.find(account => (account.id == this.ids))
-           // console.log(this.account[0].number)
-            //this.orderById = this.accountData.transactions.sort((a,b) => b.id - a.id)
             let dollarUSLocale = Intl.NumberFormat("en-US",
                 {
                   style: "currency",
@@ -62,7 +56,7 @@ const app = createApp({
               axios.post('/api/logout').then(response => setTimeout(()=>{ window.location = ("web/index.html");}, 300)) 
             },
             menuUp(){
-              console.log("menu")
+             // console.log("menu")
               if(this.show){
                 this.show = false
                 this.show2 = false

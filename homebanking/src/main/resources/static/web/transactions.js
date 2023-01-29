@@ -30,7 +30,6 @@ const app = createApp({
                 this.accounts = this.results.account
                 this.sortedAccount = this.accounts.sort((a,b) => a.id - b.id)
                 this.transaction = localStorage.getItem('transaction')
-                console.log(this.transaction)
                 let dollarUSLocale = Intl.NumberFormat("en-US",
                 {
                   style: "currency",

@@ -40,21 +40,20 @@ const app = createApp({
           console.log(this.results)
           this.clients = this.results
           this.card = this.clients.card.map(client => client)
-          console.log(this.fecha)
-          typeof (this.fecha.toISOString().slice(0, 10))
+          //typeof (this.fecha.toISOString().slice(0, 10))
           this.cardDate = this.card.map(card => card.thruDate)
           this.fechaFormateada = this.fecha.toISOString().slice(0, 10)
           this.expiredCards = this.cardDate.filter( date => date < this.fechaFormateada)
           this.nonExpireCards = this.card.length - this.expiredCards.length
           if (this.fecha.toISOString().slice(0, 10) < this.cardDate) { console.log("Mayor") }
           else {
-            console.log("menor")
+          //  console.log("menor")
           }
         })
         .catch(error => { console.log(error); })
     },
     deleteCard() {
-      console.log(this.cardNumberSelect.id)
+     // console.log(this.cardNumberSelect.id)
       axios.post(`/api/clients/current/cards/delete`, `cardId=${this.cardNumberSelect.id}`)
       .then(() => {
         let toast = new bootstrap.Toast(liveToast)
@@ -98,7 +97,7 @@ const app = createApp({
   {
     filtrar() {
       this.filterCheck = this.card.filter(card => this.checked.includes(card.cardType) || this.checked.length === 0)
-      console.log(this.card)
+     // console.log(this.card)
     }
   }
 })

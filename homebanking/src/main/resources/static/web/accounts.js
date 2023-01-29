@@ -46,34 +46,21 @@ const app = createApp({
                   style: "currency",
                   currency: "USD",
                 });
-              console.log(this.results)
               this.clients = this.results
-              console.log(this.clients)
               this.queryString = location.search
-              console.log(location.search)
               this.params = new URLSearchParams(this.queryString)
               this.ids = this.params.get("id")
-              console.log(this.params)
               this.clients.account
               this.account = this.clients.account
-              console.log(this.account.length)
               this.loans = this.clients.clientLoan
               this.card = this.clients.card
               this.sortAccount = this.account.sort((a,b) => a.id - b.id)
-              console.log(this.sortAccount)
               console.log(this.totalBalance = (this.clients.account).map(e => e.balance).reduce(function (previousValue, currentValue) {
               return previousValue + currentValue;}))
               this.loans.sort((a,b) => a.date - b.date)
               this.loans.map(item => item.amount = this.dollarUSLocale.format(item.amount))
-              //console.log(this.dollarUSLocale.format(this.loanAmountFormat.map(e => e)))
-              console.log(this.loanAmountFormat)
-              //this.loans.date.slice(0,10)
-              console.log(this.accountType)
               this.formattedOneAccountBalance = this.clients.account.map( item => item.balance = this.dollarUSLocale.format(item.balance))
-              //this.sortAccount.map( item => item.balance = this.dollarUSLocale.format(item.balance))
               this.formattedBalance = this.dollarUSLocale.format(this.totalBalance)
-              console.log(this.formattedOneAccountBalance)
-              console.log(this.formattedBalance)
           })
           .catch(error => {console.log(error);})
           },
@@ -92,7 +79,7 @@ const app = createApp({
             setTimeout(()=>{ window.location = ("/web/index.html");}, 300);  
           },
           menuUp(){
-            console.log("menu")
+          //  console.log("menu")
             if(this.show){
               this.show = false
               this.show2 = false

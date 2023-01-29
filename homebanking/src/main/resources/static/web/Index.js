@@ -37,7 +37,6 @@ const app = createApp({
             }
           },
           getpass(){
-            console.log("menu")
             if(this.show){
               this.show = false
               this.show2 = false
