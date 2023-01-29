@@ -25,11 +25,11 @@ const app = createApp({
         registration() {
             if(this.firstName != 0 && this.lastName != 0 && this.email != 0 && this.gender != 0 && this.passwordRegistration != 0){
                 axios.post('/api/clients',`firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&genderType=${this.gender}&enabled=${this.bool}&password=${this.passwordRegistration}&avatar=${this.avatarName}`)
-                .then(setTimeout(()=>{ axios.post('/api/login',`email=${this.email}&password=${this.passwordRegistration}`);}, 1000))
+                .then(setTimeout(()=>{ axios.post('/api/login',`email=${this.email}&password=${this.passwordRegistration}`);}, 1500))
                 .then(() =>
                     {   let toast = new bootstrap.Toast(toastRegistration)
                         toast.show()
-                        setTimeout(()=>{ window.location = ("/web/accounts.html");}, 1700);
+                        setTimeout(()=>{ window.location = ("/web/accounts.html");}, 3000);
                     })
                     .catch(function (error) {
                         if (error.response) {
