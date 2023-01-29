@@ -99,7 +99,7 @@ const app = createApp({
                         })
                        .then( () => { let toast = new bootstrap.Toast(loanToast)
                         toast.show()
-                        this.show2 = true , setTimeout(() => { window.location = ("api/web/accounts.html") }, 2500) })
+                        this.show2 = true , setTimeout(() => { window.location = ("/web/accounts.html") }, 2500) })
                         .catch(function (error) {
                             if (error.response) {
                               alert(error.response.data);
@@ -117,7 +117,7 @@ const app = createApp({
             },
             cancelTransaction(){
                     this.show = true
-                    setTimeout(()=>{ window.location = ("api/web/accounts.html");}, 400);
+                    setTimeout(()=>{ window.location = ("/web/accounts.html");}, 400);
             },
             maxAmount(){
                 this.amountInput = this.maxAmountLoan[0]

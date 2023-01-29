@@ -33,7 +33,7 @@ const app = createApp({
               setTimeout(()=>{ window.location = ("/h2-console");}, 1000);
             }else{
               axios.post('/api/login',`email=${this.userInfo}&password=${this.password}`).then(response => console.log(response))
-                setTimeout(()=>{ window.location = ("api/web/accounts.html");}, 2000);   
+                setTimeout(()=>{ window.location = ("/web/accounts.html");}, 2000);   
             }
           },
           getpass(){

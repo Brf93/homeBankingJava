@@ -64,7 +64,7 @@ const app = createApp({
                 console.log(this.amountInput)
                 if(this.transaction == 'withdrawals'){
                     axios.post('/api/clients/current/transaction',`amount=${this.amountInput}&originNumber=${this.originAccount}&destNumber=${this.destAccount}&descr=${this.descriptionTextArea}`)
-                    .then(() => { this.show2 = true , setTimeout(()=>{ window.location = ("api/web/accounts.html");}, 900);
+                    .then(() => { this.show2 = true , setTimeout(()=>{ window.location = ("/web/accounts.html");}, 900);
                     })
                     .catch(function (error) {
                         if (error.response) {
@@ -81,7 +81,7 @@ const app = createApp({
                       });
                 }else{
                     axios.post('/api/clients/current/transaction',`amount=${this.amountInput}&originNumber=${this.originAccount}&destNumber=${this.accountDestInput}&descr=${this.descriptionTextArea}`)
-                    .then( () => { this.show2 = true , setTimeout(() => { window.location = ("api/web/accounts.html") }, 900) })
+                    .then( () => { this.show2 = true , setTimeout(() => { window.location = ("/web/accounts.html") }, 900) })
                     .catch(function (error) {
                         if (error.response) {
                           alert(error.response.data);
@@ -99,7 +99,7 @@ const app = createApp({
             },
             cancelTransaction(){
                     this.show = true
-                    setTimeout(()=>{ window.location = ("api/web/accounts.html");}, 400);
+                    setTimeout(()=>{ window.location = ("/web/accounts.html");}, 400);
             }
   }
 })

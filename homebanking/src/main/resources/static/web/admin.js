@@ -105,7 +105,7 @@ const app = createApp({
         },
         saveName(editInfo){
           if(editInfo != ''){
-            axios.patch(`api/api/clients/${this.validationParam.id}`, {
+            axios.patch(`/api/clients/${this.validationParam.id}`, {
               firstName: editInfo.firstName
             })
             .then(() => location.reload())
@@ -138,7 +138,7 @@ const app = createApp({
         },
         saveAllChanges(newFirstName,newLastName,newEmail){
           if(newFirstName != '' && newLastName != '' && newEmail != '' && newEmail.includes('@')){
-            axios.put(`api/rest/clients/${this.validationParam.id}`, {
+            axios.put(`/api/rest/clients/${this.validationParam.id}`, {
               firstName: newFirstName,
               lastName : newLastName,
               email : newEmail

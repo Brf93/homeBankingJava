@@ -108,7 +108,7 @@ const app = createApp({
                 if(this.withdrawals){
                   this.withdrawals = false
                   localStorage.setItem('transaction','withdrawals')
-                 setTimeout(()=>{window.location = ("api/web/transactions.html")}, 500)
+                 setTimeout(()=>{window.location = ("/web/transactions.html")}, 500)
                 }else{
                   this.withdrawals = true
                 }
@@ -117,7 +117,7 @@ const app = createApp({
                 if(this.withdrawals){
                   this.withdrawals = false
                   localStorage.setItem('transaction','transfer')
-                 setTimeout(()=>{window.location = ("api/web/transactions.html")}, 500)
+                 setTimeout(()=>{window.location = ("/web/transactions.html")}, 500)
                 }else{
                   this.withdrawals = true
                 }

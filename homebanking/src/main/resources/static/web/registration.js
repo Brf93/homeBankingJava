@@ -29,7 +29,7 @@ const app = createApp({
                 .then(() =>
                     {
                         setTimeout(()=>{ axios.post('/api/clients/current/accounts')},700)
-                        setTimeout(()=>{ window.location = ("/api/web/accounts.html");}, 1000);
+                        setTimeout(()=>{ window.location = ("/web/accounts.html");}, 1000);
                         console.log("creado")
                     })
                     .catch(function (error) {
