@@ -1,7 +1,11 @@
 package com.mindhub.homebanking.Controllers;
 import com.mindhub.homebanking.DTOs.ClientDTO;
+import com.mindhub.homebanking.Utils.Utilities;
+import com.mindhub.homebanking.models.Account;
+import com.mindhub.homebanking.models.AccountType;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.models.GenderType;
+import com.mindhub.homebanking.service.AccountService;
 import com.mindhub.homebanking.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +24,8 @@ public class ClientController {
 
         @Autowired
         private ClientService clientService;
+        @Autowired
+        private AccountService accountService;
         @Autowired
         private PasswordEncoder passwordEncoder;
 
@@ -39,7 +46,8 @@ public class ClientController {
                 }
         @PostMapping("/clients")
         public ResponseEntity<Object> register(@RequestParam String firstName, @RequestParam String lastName, @RequestParam GenderType genderType , @RequestParam boolean enabled,
-                @RequestParam String email, @RequestParam String password, @RequestParam String avatar) {
+                @RequestParam String email, @RequestParam String password, @RequestParam String avatar, Authentication authentication) {
+                Client currentClient = clientService.findByEmail(authentication.getName());
                 if (firstName.isEmpty())
                         {
                                 return new ResponseEntity<>("The first name field is empty", HttpStatus.FORBIDDEN);
@@ -62,6 +70,9 @@ public class ClientController {
                         }
 
                 clientService.saveClient(new Client(firstName, lastName, email, genderType,enabled,passwordEncoder.encode(password),avatar));
+                Account account = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),0.00, AccountType.SAVINGS,true);
+                currentClient.addAccount(account);
+                accountService.saveAccount(account);
 
                 return new ResponseEntity<>("Registration ok",HttpStatus.CREATED);
         }
