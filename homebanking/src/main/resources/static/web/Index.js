@@ -38,7 +38,7 @@ const app = createApp({
                   alert(error.response.data);
                   location.reload()
                   console.log(error.response.data);
-                  console.log(error.response.status);
+                  alert(error.response.status);
                   console.log(error.response.headers);
                 } else if (error.request) {
                   console.log(error.request);
@@ -49,8 +49,24 @@ const app = createApp({
               }); 
             }else{
               axios.post('/api/login',`email=${this.userInfo}&password=${this.password}`)
-              .then(response => console.log(response))
-                setTimeout(()=>{ window.location = ("/web/accounts.html");}, 2000);  
+              .then((response) => {
+                console.log(response)
+                setTimeout(()=>{ window.location = ("/web/accounts.html");}, 2000);
+              })
+              .catch(function (error) {
+                if (error.response) {
+                  alert(error.response.data);
+                  location.reload()
+                  console.log(error.response.data);
+                  alert(error.response.status);
+                  console.log(error.response.headers);
+                } else if (error.request) {
+                  console.log(error.request);
+                } else {
+                  console.log('Error', error.message);
+                }
+                console.log("Hola");
+              }); 
             }
           },
           getpass(){
