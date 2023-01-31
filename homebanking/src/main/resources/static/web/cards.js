@@ -90,7 +90,7 @@ const app = createApp({
     },
     logOut() {
       axios.post('/api/logout').then(response => console.log('signed out!!!'))
-      setTimeout(() => { window.location = ("/web/index.html"); }, 300);
+      setTimeout(() => { window.location = ("/web/Index.html"); }, 300);
     }
   },
   computed:

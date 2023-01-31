@@ -44,8 +44,6 @@ const app = createApp({
           .catch(error => {console.log(error);})
           },
         createCard(){
-            console.log(this.cardType)
-            console.log(this.category)
             axios.post('/api/clients/current/cards',`cardType=${this.cardType}&cardColor=${this.category}`)
             .then(() => {
               let toast = new bootstrap.Toast(liveToast)
@@ -79,7 +77,7 @@ const app = createApp({
           // },
           logOut(){
             axios.post('/api/logout').then(response => console.log('signed out!!!'))
-            setTimeout(()=>{ window.location = ("/web/index.html");}, 300);  
+            setTimeout(()=>{ window.location = ("/web/Index.html");}, 300);  
           }
         },
 })

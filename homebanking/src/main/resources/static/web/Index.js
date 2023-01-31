@@ -16,7 +16,8 @@ const app = createApp({
           associates : false,
           relationships : false,
           experience : false,
-          shareholders : false
+          shareholders : false,
+          message : ''
         }
       },
       created(){
@@ -35,9 +36,10 @@ const app = createApp({
               setTimeout(()=>{ window.location = ("/h2-console");}, 1000);})
               .catch(function (error) {
                 if (error.response) {
-                  alert(error.response.data);
-                  location.reload()
-                  console.log(error.response.data);
+                  setTimeout(() => {
+                    let toast = new bootstrap.Toast(wrongCredentialsToast)
+                    toast.show(); },1000)
+                  setTimeout(()=>{ location.reload();}, 3000)
                   alert(error.response.status);
                   console.log(error.response.headers);
                 } else if (error.request) {
@@ -55,17 +57,15 @@ const app = createApp({
               })
               .catch(function (error) {
                 if (error.response) {
-                  alert(error.response.data);
-                  location.reload()
-                  console.log(error.response.data);
-                  alert(error.response.status);
-                  console.log(error.response.headers);
+                  setTimeout(() => {
+                    let toast = new bootstrap.Toast(wrongCredentialsToast)
+                    toast.show(); },1000)
+                  setTimeout(()=>{ location.reload();}, 3000)
                 } else if (error.request) {
                   console.log(error.request);
                 } else {
                   console.log('Error', error.message);
                 }
-                console.log("Hola");
               }); 
             }
           },

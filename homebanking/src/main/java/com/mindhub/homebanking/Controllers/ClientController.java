@@ -63,6 +63,10 @@ public class ClientController {
                                                 {
                                                         return new ResponseEntity<>("The password field is empty", HttpStatus.FORBIDDEN);
                                                 }
+                                               /* else if(genderType.equals(null))
+                                                {
+                                                        return new ResponseEntity<>("Gender field is empty", HttpStatus.FORBIDDEN);
+                                                }*/
                 if (clientService.findByEmail(email) !=  null)
                         {
                                 return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
