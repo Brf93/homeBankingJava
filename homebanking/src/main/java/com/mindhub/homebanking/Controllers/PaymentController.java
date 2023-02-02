@@ -31,7 +31,7 @@ public class PaymentController {
     private LoanService loanService;
     @Autowired
     private CardService cardService;
-    
+
     private CardDTO cardDTO;
     @Autowired
     private TransactionService transactionService;
@@ -47,11 +47,11 @@ public class PaymentController {
         Account destAccount = accountService.findByNumberEquals("VIN-100");
         if(originAccount.getBalance() < 0)
         {
-            return new ResponseEntity<>("Insufficient founds", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Insufficient funds", HttpStatus.FORBIDDEN);
         }
         if(originAccount.getBalance() < payDTO.getAmount() )
         {
-            return new ResponseEntity<>("Insufficient founds, try with an other account", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Insufficient funds, try with another account or just top up this one", HttpStatus.FORBIDDEN);
         }
         if(clientCard.getCvv() != payDTO.getCvv() || !(clientCard.getNumber().equals(payDTO.getCardNumber())))
         {
