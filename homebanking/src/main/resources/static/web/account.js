@@ -53,7 +53,7 @@ const app = createApp({
               }
             },
             logOut(){
-              axios.post('/api/logout').then(response => setTimeout(()=>{ window.location = ("web/index.html");}, 300)) 
+              axios.post('/api/logout').then(response => setTimeout(()=>{ window.location = ("web/Index.html");}, 1000)) 
             },
             menuUp(){
              // console.log("menu")

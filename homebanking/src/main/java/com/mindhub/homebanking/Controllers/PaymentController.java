@@ -12,11 +12,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@RestController
+@RequestMapping("/api")
 public class PaymentController {
 
     @Autowired
@@ -27,18 +31,20 @@ public class PaymentController {
     private LoanService loanService;
     @Autowired
     private CardService cardService;
+    
+    private CardDTO cardDTO;
     @Autowired
     private TransactionService transactionService;
-    
+
     @Transactional
     @PostMapping("/pay")
     public ResponseEntity<Object> payment (Authentication authentication, @RequestBody PayDTO payDTO) {
 
-        Client currentClient = clientService.findByEmail(authentication.getName());
-        Account originAccount = accountService.findById(payDTO.getAccountId());
-        Account destAccount = accountService.findByNumberEquals("VIN-100");
-        Card clientCard = cardService.findById(payDTO.getCardId());
 
+        Client currentClient = clientService.findByEmail(authentication.getName());
+        Card clientCard = cardService.findById(payDTO.getCardId());
+        Account originAccount = accountService.findById(clientCard.getAccount().getId());
+        Account destAccount = accountService.findByNumberEquals("VIN-100");
         if(originAccount.getBalance() < 0)
         {
             return new ResponseEntity<>("Insufficient founds", HttpStatus.FORBIDDEN);
@@ -51,22 +57,22 @@ public class PaymentController {
         {
             return new ResponseEntity<>("Wrong credentials", HttpStatus.FORBIDDEN);
         }
-        if (clientCard.getThruDate().isAfter(LocalDate.now()))
+        if (LocalDate.now().isAfter(clientCard.getThruDate()))
         {
             return new ResponseEntity<>("Your card is expired",HttpStatus.FORBIDDEN);
         }
 
-        Transaction payTransaction = new Transaction(payDTO.getAmount(),"Payment made from :" + originAccount.getNumber(),Utilities.dateFormat(LocalDateTime.now()),TransactionType.DEBIT, originAccount.getBalance() - payDTO.getAmount());
-        Transaction recieveTransaction = new Transaction(payDTO.getAmount(),"Payment made to :" + destAccount.getNumber(),Utilities.dateFormat(LocalDateTime.now()),TransactionType.CREDIT, originAccount.getBalance() + payDTO.getAmount());
+        Transaction payTransaction = new Transaction(payDTO.getAmount(),"Payment made from: " + originAccount.getNumber(),Utilities.dateFormat(LocalDateTime.now()),TransactionType.DEBIT, originAccount.getBalance() - payDTO.getAmount());
+        Transaction recieveTransaction = new Transaction(payDTO.getAmount(),"Payment made to: " + destAccount.getNumber(),Utilities.dateFormat(LocalDateTime.now()),TransactionType.CREDIT, destAccount.getBalance() + payDTO.getAmount());
 
         originAccount.addTransaction(payTransaction);
         originAccount.setBalance(originAccount.getBalance() - payDTO.getAmount());
 
+        destAccount.addTransaction(recieveTransaction);
+        destAccount.setBalance(destAccount.getBalance() + payDTO.getAmount());
+
         transactionService.saveTransaction(payTransaction);
         transactionService.saveTransaction(recieveTransaction);
-
-        destAccount.addTransaction(payTransaction);
-        destAccount.setBalance(destAccount.getBalance() + payDTO.getAmount());
 
         return new ResponseEntity<>("Payment successful", HttpStatus.OK);
     }

@@ -20,7 +20,8 @@ const app = createApp({
           fechaFormateada: '',
           cardDate: '',
           expiredCards : '',
-          nonExpireCards : ''
+          nonExpireCards : '',
+          dollarUSLocale : ''
         }
       },
       created(){

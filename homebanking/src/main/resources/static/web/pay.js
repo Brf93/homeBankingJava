@@ -106,7 +106,6 @@ const app = createApp({
                         alert("Some fields may be empty")
                     }else{
                         axios.post('/api/pay',{
-                            "accountId" : this.accountNumber.id,
                             "amount" : this.amountInput,
                             "cvv" : this.cardNumber.cvv,
                             "cardId" : this.cardNumber.id,

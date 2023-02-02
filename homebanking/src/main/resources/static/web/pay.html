@@ -43,7 +43,7 @@
             class="navbar navAccount rounded d-flex flex-column align-items-start justify-content-start gap-2 p-2 bg-light">
             <a class="nav-link" href="./accounts.html">Accounts</a>
             <a class="nav-link" href="./cards.html">My cards</a>
-            <a class="nav-link" href="#">Fixed term</a>
+            <a class="nav-link" href="./pay.html">Pay</a>
             <a class="nav-link" href="./loan-application.html">Loan</a>
             <a class="nav-link text-break" href="./criptocurrencies.html">Cryptocurrencies</a>
             <hr class="hr text-dark"/>
@@ -61,7 +61,7 @@
                             <template v-if = "clientLoan.length > 0">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <h5>Active loans: </h6>
-                                    <div v-for = "loan of clientLoan">{{loan.loanName}} ({{dollarUSLocale.format(loan.amount)}})</div>
+                                    <div v-for = "loan of clientLoan">{{loan.loanName}}</div>
                                 </div>
                             </template>
                            <div class="d-flex flex-row justify-content-center align-items-center gap-3 w-100">
@@ -69,7 +69,7 @@
                                     <h6>Select loan to be pay</h6> 
                                     <div class="pt-2">
                                         <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = loanName>
-                                        <option v-for = "loan of loanResult" :value="loan">{{loan.name}}</option>
+                                        <option v-for = "loan of clientLoan" :value="loan">{{loan.loanName}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@
                             <div class="d-flex flex-row gap-2 justify-content-around w-100 divLoan">
                                 <div>
                                     <span>Loan to be payed:</span>
-                                    <label>{{loanName.name}}</label>
+                                    <label>{{loanName.loanName}}</label>
                                 </div>
                                 <div>
                                     <span>From account:</span>
@@ -143,29 +143,29 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <h6 class="text-center">You are about to apply for this loan</h6>
+                    <h6 class="text-center">Payments details</h6>
                     <hr class="hr text-light"/>
                     <div class="d-flex flex-row justify-content-between p-2 round">
-                        <div class="d-flex justify-content-start align-items-start gap-1">
-                            <span>To account: </span>
-                            <span class="fw-bold">{{destAccount}}</span>
+                        <div>
+                            <span>Loan to be payed:</span>
+                            <label>{{loanName.loanName}}</label>
                         </div>
-                        <div class="d-flex justify-content-start gap-1">
-                            <span>Selected loan type: </span>
-                            <span class="fw-bold">{{loanName}}</span>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-between p-2">
-                        <div class="d-flex justify-content-start gap-1">
-                            <span>Selected payments:</span>
-                            <span class="fw-bold">{{chosedPayment}}</span>
-                        </div>
-                        <div class="d-flex justify-content-start gap-1">
-                            <span>Amount:</span>
-                            <span class="fw-bold">{{formattedAmount}}</span>
+                        <div>
+                            <span>From account:</span>
+                            <label>{{accountNumber.number}}</label>
                         </div>
                     </div>
                     <div class="d-flex flex-row justify-content-between p-2">
+                        <div>
+                            <span>Selected card:</span>
+                            <label style="font-size: 13px;"> {{selectedCardSpan}}</label>
+                        </div>
+                        <div>
+                            <span>Total to pay:</span>
+                            <label class="text-break"> {{formattedAmount}}</label>
+                        </div>
+                    </div>
+                    <!-- <div class="d-flex flex-row justify-content-between p-2">
                         <div class="d-flex justify-content-start gap-1">
                             <span>Monthly to pay:</span>
                             <span class="fw-bold">{{monthlyPayment}}</span>
@@ -174,11 +174,11 @@
                             <span>Total to pay:</span>
                             <span class="fw-bold">{{formattedAmount}}</span>
                         </div>
-                    </div>
+                    </div> -->
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
-                    <button type="button" class="btn btn-primary" @click="confirmLoan()" data-bs-dismiss="modal">Yes, i'm sure</button>
+                    <button type="button" class="btn btn-primary" @click="confirmPay()" data-bs-dismiss="modal">Yes, i'm sure</button>
                     </div>
                 </div>
                 </div>
@@ -197,13 +197,12 @@
             <div id="loanToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
               <div class="toast-header">
                 <img src="./img/cardCreate/smilingFace.png" class="rounded me-2 pe-2" alt="blueCube" style="width: 22px;">
-                <strong class="me-auto">Congratulations!</strong>
+                <strong class="me-auto">Payement info</strong>
                 <small>Now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
               </div>
               <div class="toast-body message d-flex align-items-center gap-1">
-                <span>Your money is ready to spend!</span>
-                <img src="./img/dineroLoan.png" style="width: 24px;" alt="">
+                <span>Your payment is on the way!</span>
               </div>
             </div>
         </div>

@@ -85,14 +85,15 @@ public class TransactionController {
         Transaction outcomingTransaction = new Transaction(amount,descr + " - Transaction to: " + destNumber,Utilities.dateFormat(LocalDateTime.now()), TransactionType.DEBIT, originAccount.getBalance() - amount);
         Transaction incomingTransaction = new Transaction(amount,descr + " - Transaction from: " + originNumber,Utilities.dateFormat(LocalDateTime.now()), TransactionType.CREDIT, destAccount.getBalance() + amount);
 
-        transactionService.saveTransaction(outcomingTransaction);
-        transactionService.saveTransaction(incomingTransaction);
 
         originAccount.addTransaction(outcomingTransaction);
         originAccount.setBalance(originAccount.getBalance() - amount);
 
         destAccount.addTransaction(incomingTransaction);
         destAccount.setBalance(destAccount.getBalance() + amount);
+
+        transactionService.saveTransaction(outcomingTransaction);
+        transactionService.saveTransaction(incomingTransaction);
 
         return new ResponseEntity<>("Transaction successful", HttpStatus.OK);
     }
