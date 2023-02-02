@@ -35,10 +35,7 @@ public class PaymentController {
 
     @Transactional
     @PostMapping("/pay")
-    public ResponseEntity<Object> payment (Authentication authentication, @RequestBody PayDTO payDTO) {
-
-
-        Client currentClient = clientService.findByEmail(authentication.getName());
+    public ResponseEntity<Object> payment (@RequestBody PayDTO payDTO) {
         Card clientCard = cardService.findById(payDTO.getCardId());
         Account originAccount = accountService.findById(clientCard.getAccount().getId());
         Account destAccount = accountService.findByNumberEquals("VIN-100");

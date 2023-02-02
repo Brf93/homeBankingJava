@@ -62,7 +62,7 @@ public class HomebankingApplication {
 				Client cocaCola = new Client("Coca","Cola","ernestoGuevara@gmail.com",GenderType.CORP,true,passwordEncoder.encode("Coca123"),"personas");
 				Client admin = new Client("admin","admin","admin@admin.com",GenderType.MALE,true, passwordEncoder.encode("admin"),"personas");
 				//Account
-				Account MASTER = new Account("VIN-" + 100, Utilities.dateFormat(LocalDateTime.now()),decimalFormat(0D), AccountType.CHECKING,true);
+				Account MASTER = new Account("VIN-100", Utilities.dateFormat(LocalDateTime.now()),decimalFormat(0D), AccountType.CHECKING,true);
 				Account VIN001 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now()),decimalFormat(5000D),AccountType.CHECKING,true);
 
 				Account VIN002 = new Account("VIN-" + Utilities.getRandomNumber(10000000,99999999),Utilities.dateFormat(LocalDateTime.now().plus(1, ChronoUnit.DAYS)),decimalFormat(7500D), AccountType.SAVINGS,true);
