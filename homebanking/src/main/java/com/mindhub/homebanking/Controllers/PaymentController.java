@@ -16,7 +16,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@CrossOrigin(origins = "https://homebankingmbb.up.railway.app")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping("/api")
 public class PaymentController {
