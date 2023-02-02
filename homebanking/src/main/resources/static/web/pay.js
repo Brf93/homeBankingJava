@@ -110,7 +110,9 @@ const app = createApp({
                             "cvv" : this.cardNumber.cvv,
                             "cardId" : this.cardNumber.id,
                             "cardNumber" : this.cardNumber.number,
-                        })
+                        }, {
+                            withCredentials: false
+                          })
                        .then( () => { let toast = new bootstrap.Toast(loanToast)
                         toast.show()
                         this.show2 = true , setTimeout(() => { window.location = ("/web/accounts.html") }, 2500) })

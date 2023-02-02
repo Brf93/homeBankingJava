@@ -52,6 +52,8 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
         // if logout is successful, just send a success response
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+
+        http.cors();
     }
     private void clearAuthenticationAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
