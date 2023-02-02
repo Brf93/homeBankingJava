@@ -22,11 +22,12 @@ public class Account {
 
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name="client_id")
-
     private Client client;
 
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     private Set<Transaction> transaction = new HashSet<>();
+    @OneToMany(fetch = EAGER)
+    private Set<Card> cards = new HashSet<>();
 
     public Account() { }
     public Account(String number, LocalDateTime creationDate, Double balance, AccountType accountType, boolean isEnabled)
@@ -48,6 +49,9 @@ public class Account {
             return isEnabled;
         }
 
+    public Set<Card> getCard() {
+        return cards;
+    }
 
     public Long getId()
         {
@@ -106,6 +110,9 @@ public class Account {
             transaction.setAccount(this);
             this.transaction.add(transaction);
         }
-
-
+    public void addCard(Card card)
+    {
+        card.setAccount(this);
+        this.cards.add(card);
+    }
 }

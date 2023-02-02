@@ -18,7 +18,10 @@ const app = createApp({
           accountDestInput : '',
           transaction : '',
           loanResult : '',
+          clientLoan : '',
           loanName : '',
+          cardNumber :'',
+          accountNumber : '',
           filteredLoan : '',
           maxAmountLoan : '',
           payments : '',
@@ -29,6 +32,11 @@ const app = createApp({
           totalPayment : '',
           formattedAmount : '',
           loanID : '',
+          clientAccountsCards : '',
+          accountsComplete : '',
+          payWithCardAccount: '',
+          selectedCardSpan : '',
+          dollarUSLocale : '',
         }
       },
       created(){
@@ -40,15 +48,22 @@ const app = createApp({
             axios.get('/api/clients/current')
             .then((result) => {
                 this.results = result.data;
-                this.accounts = this.results.account
-                this.sortedAccount = this.accounts.sort((a,b) => a.id - b.id)
-                this.clientLoans = this.results.clientLoan
-                let dollarUSLocale = Intl.NumberFormat("en-US",
+                this.dollarUSLocale = Intl.NumberFormat("en-US",
                 {
                   style: "currency",
                   currency: "USD",
                 });
-                this.sortedAccount.map( item => item.balance = dollarUSLocale.format(item.balance));
+                console.log(this.results);
+                this.clients = this.results
+                this.clientLoan = this.results.clientLoan
+                //this.accounts = this.results.account
+                //this.sortedAccount = this.accounts.sort((a,b) => a.id - b.id)
+                this.clientLoans = this.results.clientLoan
+                console.log(this.clients.account);
+                this.accountsComplete = this.clients.account
+                console.log(this.accountsComplete);
+                let allcards = (this.clients.account.map(e => e.card));
+                this.clientAccountsCards = allcards.reduce((a, b) => a.concat(b), []);
                 })
                 
             .catch(error => {console.log(error);})
@@ -85,17 +100,17 @@ const app = createApp({
                   setTimeout(()=>{this.show2 = true }, 150)
                 }
               },
-            confirmLoan(){
+            confirmPay(){
                 console.log(this.amountInput)
-                    if(this.amountInput == '' || this.chosedPayment == '' || this.destAccount == ''){
+                    if(this.amountInput == '' || this.cardNumber.number == ''){
                         alert("Some fields may be empty")
                     }else{
-
-                        axios.post('/api/loans',{
-                            "id" : this.loanID[0],
+                        axios.post('/api/pay',{
+                            "accountId" : this.accountNumber.id,
                             "amount" : this.amountInput,
-                            "payments" : this.chosedPayment,
-                            "destNumber" : this.destAccount,
+                            "cvv" : this.cardNumber.cvv,
+                            "cardId" : this.cardNumber.id,
+                            "cardNumber" : this.cardNumber.number,
                         })
                        .then( () => { let toast = new bootstrap.Toast(loanToast)
                         toast.show()
@@ -126,48 +141,26 @@ const app = createApp({
     computed : 
     {
             paymentsFilter(){
-                let dollarUSLocale = Intl.NumberFormat("en-US",
-                {
-                  style: "currency",
-                  currency: "USD",
-                });
-                this.filteredLoan = this.loanResult.filter(loan => loan.name == this.loanName).map(payment => payment.payments)
-                this.maxAmountLoan = this.loanResult.filter(loan => loan.name == this.loanName).map(payment => payment.maxAmount)
-                this.loanID = this.loanResult.filter(loan => loan.name == this.loanName).map(id => id.id)
-                console.log(this.loanID[0])
-                console.log(this.loanName)
+                console.log(this.cardNumber);
+                this.payWithCardAccount = this.accountNumber.card
+                this.selectedCardSpan = this.cardNumber.number
+                console.log(this.payWithCardAccount);
+                
+                if(this.accountNumber.number != this.cardNumber.account)
+                    {
+                        this.selectedCardSpan = ''
+                    }
+                //this.filteredLoan = this.loanResult.filter(loan => loan.name == this.loanName).map(payment => payment.payments)
+                //this.maxAmountLoan = this.loanResult.filter(loan => loan.name == this.loanName).map(payment => payment.maxAmount)
+                //this.loanID = this.loanResult.filter(loan => loan.name == this.loanName).map(id => id.id)
+               // console.log(this.loanID[0])
+                //console.log(this.loanName)
                 //console.log(this.clientLoans.map(item => item.loanName).includes(item2 => item2.loanName === this.loanName)) VERR
                 //this.maxAmountHolder = dollarUSLocale.format(this.maxAmountLoan);
-                console.log(this.filteredLoan)
-                if(!this.chosedPayment == ''){
-                    this.dividePayment = this.chosedPayment
-                }
-                if(this.chosedPayment == 6)
-                    {
-                        this.interest = 1.8;
-                    } else if (this.chosedPayment == 12)
-                        {
-                            this.interest = 1.10;
-                        } else if (this.chosedPayment == 24)
-                            {
-                                this.interest = 1.15;
-                            } else if (this.chosedPayment == 36)
-                                {
-                                    this.interest = 1.18;
-                                } else if (this.chosedPayment == 48)
-                                    {
-                                        this.interest = 1.20;
-                                    }else if(this.chosedPayment == 60)
-                                        {
-                                            this.interest = 1.25;
-                                        }else
-                                            {
-                                                this.interest = 1;
-                                            }
-                
-                this.monthlyPayment = dollarUSLocale.format((this.amountInput*this.interest) / this.dividePayment);
-                this.totalPayment = dollarUSLocale.format(this.amountInput*this.interest);
-                this.formattedAmount = dollarUSLocale.format(this.amountInput);
+                console.log(this.filteredLoan)                
+                this.monthlyPayment = this.dollarUSLocale.format((this.amountInput*this.interest) / this.dividePayment);
+                this.totalPayment = this.dollarUSLocale.format(this.amountInput);
+                this.formattedAmount = this.dollarUSLocale.format(this.amountInput);
                 //this.monthlyPayment = parseInt()
                 //this.totalPayment = parseInt(this.amountInput*this.interest)
             }

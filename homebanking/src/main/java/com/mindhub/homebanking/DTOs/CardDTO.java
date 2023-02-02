@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.DTOs;
 
+import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.models.CardColor;
 import com.mindhub.homebanking.models.CardType;
@@ -8,14 +9,13 @@ import java.time.LocalDate;
 
 public class CardDTO {
 
-    private Long id;
-    private String cardHolder,number;
+    private Long id, accountId;
+    private String cardHolder,number,account;
     private CardType cardType;
     private CardColor cardColor;
     private int cvv;
     private LocalDate thruDate,fromDate;
     private boolean isEnabled;
-
     public CardDTO (){ }
 
     public CardDTO (Card card)
@@ -29,6 +29,8 @@ public class CardDTO {
             this.thruDate = card.getThruDate();
             this.fromDate = card.getFromDate();
             this.isEnabled = card.isEnabled();
+            this.account = card.getAccount().getNumber();
+            this.accountId = card.getAccount().getId();
         }
 
     public Long getId() {
@@ -67,4 +69,6 @@ public class CardDTO {
         {
             return isEnabled;
         }
+    public String getAccount(){return account;}
+    public Long getAccountId(){return accountId;}
 }

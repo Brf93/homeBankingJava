@@ -35,7 +35,7 @@
                         output</span></button>
             </div>
         </header>
-        <main class="d-flex justify-content-around backgroundMain">
+        <main class="d-flex justify-content-around">
             <div class="d-flex flex-column justify-content-start align-items-center shadow m-3 p-3 backgroundAccounts">
                 <h4>ONE CARD, LOT OF POSSIBILITIES</h4>
                 <div class="d-flex justify-content-center align-items-center gap-3">
@@ -57,17 +57,27 @@
                 <h4 class="w-100 text-center">CREATE A NEW CARD</h4>
                 <div>
                 <section class="col-8 text-center d-flex p-3 flex-column align-items-center shadow gap-3 w-100">
+                    <div>
+                        <div>
+                            <label>Choose an account to associete the new card:</label>
+                        </div>
+                        <div class="pt-2 text-center w-100">
+                            <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model=accountId>
+                            <option v-for="account of clients.account" :value="account.id">{{account.number}}</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="spanRegistrationSize d-flex flex-column justify-content-start align-items-start">
                         <div class="input-group mb-3 form-outline">
                             <label class="form-label" for="nameExample">Choose a type of card:  </label>
                         </div>
                        
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="cardType" id="creditRadio" value = "CREDIT" v-model = "cardType" :disabled = "creditCount.length >= 3" />
+                            <input class="form-check-input" type="radio" name="cardType" id="creditRadio" value = "CREDIT" v-model = "cardType"  />
                             <label class="form-check-label disabled" for="creditRadio">Credit <i class="far fa-credit-card"></i></label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="cardType" id="debitRadio" value = "DEBIT" v-model = "cardType" :disabled = "debitCount.length >= 3"/>
+                            <input class="form-check-input" type="radio" name="cardType" id="debitRadio" value = "DEBIT" v-model = "cardType"/>
                             <label class="form-check-label" for="debitRadio">Debit <i class="fas fa-credit-card"></i></label>
                           </div> 
                     </div>

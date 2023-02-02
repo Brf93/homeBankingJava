@@ -17,6 +17,7 @@ public class AccountDTO {
     private AccountType accountType;
     private Set<TransactionDTO> transactions = new HashSet<>();
     private boolean isEnabled;
+    private Set<CardDTO> cards;
 
     public AccountDTO(){ }
 
@@ -29,6 +30,8 @@ public class AccountDTO {
         this.accountType = account.getAccountType();
         this.transactions = account.getTransaction().stream().map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toSet());
         this.isEnabled = account.isEnabled();
+        this.cards = account.getCard().stream().filter(card -> card.isEnabled()).map(card -> new CardDTO(card)).collect(Collectors.toSet());
+
     }
 
     public long getId() {
@@ -54,4 +57,8 @@ public class AccountDTO {
         }
 
     public boolean isEnabled() { return  isEnabled;}
+
+    public Set<CardDTO> getCard() {
+        return cards;
+    }
 }

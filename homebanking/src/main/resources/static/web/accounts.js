@@ -100,6 +100,7 @@ const app = createApp({
               case 'pay':
                 if(this.pay){
                   this.pay = false
+                  setTimeout(()=>{window.location = ("/web/pay.html")}, 500)
                 }else{
                   this.pay = true
                 }

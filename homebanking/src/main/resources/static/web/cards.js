@@ -5,9 +5,10 @@ const app = createApp({
     return {
       results: '',
       clients: [],
-      accounts: [],
+      clientAccounts: '',
       account: '',
       card: '',
+      cards : '',
       queryString: '',
       params: '',
       id: '',
@@ -25,7 +26,7 @@ const app = createApp({
       cardDate: '',
       expiredCards : '',
       nonExpireCards : '',
-      pruebaCuenta : ["Hola","chau","gtds"]
+      prueba : ''
     }
   },
   created() {
@@ -39,16 +40,19 @@ const app = createApp({
           this.results = result.data;
           console.log(this.results)
           this.clients = this.results
-          this.card = this.clients.card.map(client => client)
-          //typeof (this.fecha.toISOString().slice(0, 10))
-          this.cardDate = this.card.map(card => card.thruDate)
-          this.fechaFormateada = this.fecha.toISOString().slice(0, 10)
-          this.expiredCards = this.cardDate.filter( date => date < this.fechaFormateada)
-          this.nonExpireCards = this.card.length - this.expiredCards.length
-          if (this.fecha.toISOString().slice(0, 10) < this.cardDate) { console.log("Mayor") }
-          else {
-          //  console.log("menor")
-          }
+          console.log(this.clients.account);
+          let allcards = (this.clients.account.map(e => e.card));;
+          this.clientAccounts = allcards.reduce((a, b) => a.concat(b), []);
+          // this.card = this.account.map(account => account.card)
+          // //typeof (this.fecha.toISOString().slice(0, 10))
+          // this.cardDate = this.card.map(card => card.thruDate)
+          // this.fechaFormateada = this.fecha.toISOString().slice(0, 10)
+          // this.expiredCards = this.cardDate.filter( date => date < this.fechaFormateada)
+          // this.nonExpireCards = this.card.length - this.expiredCards.length
+          // if (this.fecha.toISOString().slice(0, 10) < this.cardDate) { console.log("Mayor") }
+          // else {
+          // //  console.log("menor")
+          // }
         })
         .catch(error => { console.log(error); })
     },
@@ -93,13 +97,13 @@ const app = createApp({
       setTimeout(() => { window.location = ("/web/Index.html"); }, 300);
     }
   },
-  computed:
-  {
-    filtrar() {
-      this.filterCheck = this.card.filter(card => this.checked.includes(card.cardType) || this.checked.length === 0)
-     // console.log(this.card)
-    }
-  }
+  // computed:
+  // {
+  //   filtrar() {
+  //     this.filterCheck = this.clientAccounts.filter(card => this.checked.includes(card.cardType) || this.checked.length === 0)
+  
+  //   }
+  // }
 })
 app.mount("#app");
 

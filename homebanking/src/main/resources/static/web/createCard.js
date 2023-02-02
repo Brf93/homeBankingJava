@@ -7,6 +7,7 @@ const app = createApp({
           clients : [],
           accounts : [],
           account : '',
+          accountId : '',
           card : '',
           silverClass : false,
           goldClass : false,
@@ -29,25 +30,32 @@ const app = createApp({
         getClients(){
           axios.get('/api/clients/current')
           .then((result) => {
-              this.results = result.data;
-              this.card = this.results.card
-              this.cardDate = this.card.map(card => card.thruDate)
+              this.results = result.data; 
+              console.log(this.results)
+              this.clients = this.results
+              console.log(this.clients.account[0]);
+              this.clientAccounts = (this.clients.account.map(e => e.card).filter(e => e.length >0));
+              console.log(this.clientAccounts[0]);
+              this.cardDate = this.clientAccounts[0].map(card => card.thruDate)
+              console.log(this.cardDate);
               this.fechaFormateada = this.fecha.toISOString().slice(0, 10)
               this.nonExpireCards = this.cardDate.filter( date => date > this.fechaFormateada)
-              // this.nonExpireCards = this.card.length - this.expiredCards.length
-              this.creditCount = this.card.filter(cardType => cardType.cardType == "CREDIT").filter(date => date.thruDate > this.fechaFormateada)
+              this.nonExpireCards = this.clientAccounts[0].length - this.expiredCards.length
+              this.creditCount = this.clientAccounts[0].filter(cardType => cardType.cardType == "CREDIT").filter(date => date.thruDate > this.fechaFormateada)
               console.log(this.nonExpireCards.length)
-              this.debitCount = this.card.filter(cardType => cardType.cardType == "DEBIT").filter(date => date.thruDate > this.fechaFormateada)
+              this.debitCount = this.clientAccounts[0].filter(cardType => cardType.cardType == "DEBIT").filter(date => date.thruDate > this.fechaFormateada)
               console.log(this.category)
               console.log(this.debitCount)
+              console.log(this.accountId);
               })
           .catch(error => {console.log(error);})
           },
         createCard(){
-            axios.post('/api/clients/current/cards',`cardType=${this.cardType}&cardColor=${this.category}`)
+            axios.post('/api/clients/current/cards',`cardType=${this.cardType}&cardColor=${this.category}&id=${this.accountId}`)
             .then(() => {
               let toast = new bootstrap.Toast(liveToast)
               toast.show()
+              console.log(this.accountId)
               setTimeout(()=>{ window.location = ("/web/cards.html") ;}, 2000)
             })
             .catch(function (error) {
@@ -65,16 +73,6 @@ const app = createApp({
               console.log("Hola");
             }); 
           },
-          // deleteAccount() {
-          //   axios.post(`/api/clients/current/cards/delete`, `cardId=${this.cardNumberSelect.id}`)
-          //   .then(() => {
-          //     let toast = new bootstrap.Toast(liveToast)
-          //     toast.show()
-          //     setTimeout(()=>{window.location.reload(); }, 2000)
-          //   })
-          //   .catch(error => { console.log(error); })
-          //   //location.reload()
-          // },
           logOut(){
             axios.post('/api/logout').then(response => console.log('signed out!!!'))
             setTimeout(()=>{ window.location = ("/web/Index.html");}, 300);  

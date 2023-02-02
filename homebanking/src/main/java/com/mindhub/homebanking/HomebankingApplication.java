@@ -3,6 +3,7 @@ package com.mindhub.homebanking;
 import com.mindhub.homebanking.Utils.Utilities;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
+import com.mindhub.homebanking.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -31,6 +32,8 @@ public class HomebankingApplication {
 	private ClientLoanRepository clientLoanRepository;
 	@Autowired
 	private CardRepository cardRepository;
+	@Autowired
+	private CardService cardService;
 
 	public static void main(String[] args)
 		{
@@ -75,7 +78,7 @@ public class HomebankingApplication {
 				/*ClientLoan melbamortage = new ClientLoan(400000D,60,Utilities.dateFormat(LocalDateTime.now()),melba,mortage);
 				ClientLoan melbaPersonal = new ClientLoan(50000D,12,Utilities.dateFormat(LocalDateTime.now()),melba,personal);*/
 				//cards
-				Card melbaGold = new Card((melba.getFirstName() +" "+ melba.getLastName()),CardType.CREDIT,CardColor.GOLD,"1234 5678 9101 3244",753, LocalDate.now().plus(5, ChronoUnit.YEARS),LocalDate.now(),true);
+				//Card melbaGold = new Card((melba.getFirstName() +" "+ melba.getLastName()),CardType.CREDIT,CardColor.GOLD,"1234 5678 9101 3244",753, LocalDate.now().plus(5, ChronoUnit.YEARS),LocalDate.now(),true);
 				Card melbaTitanium = new Card((melba.getFirstName() +" "+ melba.getLastName()),CardType.DEBIT,CardColor.TITANIUM,"3485 5678 9101 2234",147,LocalDate.now().minus(5,ChronoUnit.YEARS),LocalDate.now().minus(6,ChronoUnit.YEARS),true);
 				Card melbaSilver = new Card((melba.getFirstName() +" "+ melba.getLastName()),CardType.DEBIT,CardColor.SILVER,"3485 5678 9101 2111",147,LocalDate.now().minus(5,ChronoUnit.YEARS),LocalDate.now().minus(6,ChronoUnit.YEARS),true);
 				Card francoSilver = new Card((franco.getFirstName() +" "+ franco.getLastName()),CardType.DEBIT,CardColor.SILVER,"8574 5678 3587 1123",157,LocalDate.now().plus(4,ChronoUnit.YEARS),LocalDate.now(),true);
@@ -89,14 +92,13 @@ public class HomebankingApplication {
 				cocaCola.addAccount(VIN006);
 				//Melba transacciones
 				VIN001.addTransaction(TR0001);
+				//VIN001.addCard(melbaGold);
 				VIN002.addTransaction(TR0002);
 				//Franco transacciones
 				VIN003.addTransaction(TR0008);
 				//Cards a cliente
-				melba.addCard(melbaGold);
-				melba.addCard(melbaTitanium);
-				melba.addCard(melbaSilver);
-				franco.addCard(francoSilver);
+				cardService.saveCards(melbaTitanium);
+
 				//guardado
 				clientRepository.save(mindHubBrothers);
 				clientRepository.save(melba);
@@ -116,12 +118,13 @@ public class HomebankingApplication {
 				loanRepository.save(mortage);
 				loanRepository.save(personal);
 				loanRepository.save(carLoan);
+
 				//clientLoanRepository.save(melbamortage);
 				//clientLoanRepository.save(melbaPersonal);
-				cardRepository.save(melbaGold);
+				/*cardRepository.save(melbaGold);
 				cardRepository.save(melbaTitanium);
 				cardRepository.save(melbaSilver);
-				cardRepository.save(francoSilver);
+				cardRepository.save(francoSilver);*/
 			};
 		}
 	public double decimalFormat (double number)

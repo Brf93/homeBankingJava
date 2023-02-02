@@ -30,8 +30,7 @@ public class ClientDTO {
             this.avatar = client.getAvatar();
             this.account = client.getAccount().stream().filter(account -> account.isEnabled()).map(account -> new AccountDTO(account)).collect(Collectors.toSet());
             this.loan = client.getClientLoan().stream().map(clientLoan -> new ClientLoanDTO(clientLoan)).collect(Collectors.toSet());
-            this.card = client.getCard().stream().filter(card -> card.isEnabled()).map(card -> new CardDTO(card)).collect(Collectors.toSet());
-
+            /*this.card = client.getCard().stream().filter(card -> card.isEnabled()).map(card -> new CardDTO(card)).collect(Collectors.toSet());*/
         }
 
     public long getId()
@@ -72,7 +71,7 @@ public class ClientDTO {
         return loan;
     }
 
-    public Set<CardDTO> getCard() {return card;}
+   // public Set<CardDTO> getCard() {return card;}
 
     public String getPassword() {return password;}
 

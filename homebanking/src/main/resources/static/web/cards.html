@@ -62,8 +62,8 @@
             <span v-else>You don't have any cards yet</span>
           </div>
           <div>
-            {{filtrar}}
-            <div class="form-check d-flex flex-row justify-content-start align-items-center gap-2 p-0 w-100">
+            <!-- {{filtrar}} -->
+            <!-- <div class="form-check d-flex flex-row justify-content-start align-items-center gap-2 p-0 w-100">
               <input class="form-check-input" type="checkbox" value="CREDIT" id="credit" v-model="checked" />
               <label class="form-check-label" for="credit">CREDIT</label>
               <i class="far fa-credit-card"></i>
@@ -72,7 +72,7 @@
               <input class="form-check-input" type="checkbox" value="DEBIT" id="debit" v-model="checked" />
               <label class="form-check-label" for="debit">DEBIT</label>
               <i class="fas fa-credit-card"></i>
-            </div>
+            </div> -->
           </div>
           <div class="d-flex flex-row gap-2">
             <div class="d-flex justify-content-center align-items-center">
@@ -91,7 +91,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <div class="pt-2 d-flex flex-column justify-content-center align-items-evenly" v-for="cards of card">
+                    <div class="pt-2 d-flex flex-column justify-content-center align-items-evenly" v-for="cards of clientAccounts">
                       <div class="d-flex flex-row">
                         <div v-show="cards.thruDate < fechaFormateada" class="w-100 text-center">
                           <h6>Card number</h6>
@@ -131,6 +131,7 @@
                 </div>
               </div>
           </div>
+<!-- DELETE BUTTON -->
             <div class="d-flex justify-content-center align-items-center">
               <button data-bs-toggle="modal" data-bs-target="#modalDeleteCard"
                 :class=" card.length > 0 ? 'btn btn-primary btnTransactions' : 'btn btn-light btnTransactions disabled'">
@@ -152,7 +153,7 @@
                         <h6>Card number</h6>
                         <select class="form-select form-select-sm w-100" aria-label="form-select-sm example"
                           v-model=cardNumberSelect>
-                          <option v-for="cards of card" :value="cards">{{cards.number}}</option>
+                          <option v-for="cards of clientAccounts" :value="cards">{{cards.number}}</option>
                         </select>
                       </div>
                       <div class="w-100 text-center">
@@ -180,8 +181,9 @@
             </div>
           </div>
         </div>
+<!-- CARD CONTAINERS -->
         <section class="d-flex flex-row flex-wrap shadow w-100 bg-light">
-          <div v-for="cards of filterCheck" class="d-flex flex-column justify-content-between">
+          <div v-for="cards of clientAccounts" class="d-flex flex-column justify-content-between">
             <template v-if="cards.thruDate >= fechaFormateada" class="d-flex flex-column justify-content-center align-items-evenly cardsContainer">
               <div class="d-flex flex-column w-100 justify-content-center align-items-center">
                 <span class="mt-2 w-100 text-dark p-2 text-center">Valid until: {{cards.thruDate}}</span>
