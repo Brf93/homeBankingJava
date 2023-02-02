@@ -2,22 +2,17 @@ package com.mindhub.homebanking.DTOs;
 
 public class PayDTO {
 
-    private Long cardId;
     private double amount;
     private  int cvv;
-    private String cardNumber;
+    private String cardNumber,description;
 
     public PayDTO(){}
 
-    public PayDTO(CardDTO cardDTO, ClientDTO clientDTO, double amount){
+    public PayDTO(CardDTO cardDTO, ClientDTO clientDTO, double amount, String description){
         this.cvv = cardDTO.getCvv();
         this.cardNumber = cardDTO.getNumber();
-        this.cardId = cardDTO.getId();
         this.amount = amount;
-    }
-
-    public Long getCardId() {
-        return cardId;
+        this.description = description;
     }
 
     public int getCvv() {
@@ -28,4 +23,9 @@ public class PayDTO {
         return cardNumber;
     }
     public double getAmount (){ return amount;}
+
+    public String getDescription()
+        {
+            return description;
+        }
 }

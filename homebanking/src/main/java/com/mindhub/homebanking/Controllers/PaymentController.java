@@ -36,7 +36,7 @@ public class PaymentController {
     @Transactional
     @PostMapping("/pay")
     public ResponseEntity<Object> payment (@RequestBody PayDTO payDTO) {
-        Card clientCard = cardService.findById(payDTO.getCardId());
+        Card clientCard = cardService.findByNumber(payDTO.getCardNumber());
         Account originAccount = accountService.findById(clientCard.getAccount().getId());
         Account destAccount = accountService.findByNumberEquals("VIN-100");
         if(originAccount.getBalance() < 0)
@@ -56,8 +56,8 @@ public class PaymentController {
             return new ResponseEntity<>("Your card is expired",HttpStatus.FORBIDDEN);
         }
 
-        Transaction payTransaction = new Transaction(payDTO.getAmount(),"Payment made from: " + originAccount.getNumber(),Utilities.dateFormat(LocalDateTime.now()),TransactionType.DEBIT, originAccount.getBalance() - payDTO.getAmount());
-        Transaction recieveTransaction = new Transaction(payDTO.getAmount(),"Payment made to: " + destAccount.getNumber(),Utilities.dateFormat(LocalDateTime.now()),TransactionType.CREDIT, destAccount.getBalance() + payDTO.getAmount());
+        Transaction payTransaction = new Transaction(payDTO.getAmount(),payDTO.getDescription(),Utilities.dateFormat(LocalDateTime.now()),TransactionType.DEBIT, originAccount.getBalance() - payDTO.getAmount());
+        Transaction recieveTransaction = new Transaction(payDTO.getAmount(),payDTO.getDescription(),Utilities.dateFormat(LocalDateTime.now()),TransactionType.CREDIT, destAccount.getBalance() + payDTO.getAmount());
 
         originAccount.addTransaction(payTransaction);
         originAccount.setBalance(originAccount.getBalance() - payDTO.getAmount());

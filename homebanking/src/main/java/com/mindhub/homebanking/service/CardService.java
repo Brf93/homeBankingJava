@@ -9,6 +9,7 @@ public interface CardService {
     List<Card> findAllAccounts();
 
     Card findById(Long id);
+    Card findByNumber (String number);
     void saveCards(Card card);
 
 }

@@ -37,6 +37,7 @@ const app = createApp({
           payWithCardAccount: '',
           selectedCardSpan : '',
           dollarUSLocale : '',
+          descriptionInput : ''
         }
       },
       created(){
@@ -108,11 +109,9 @@ const app = createApp({
                         axios.post('/api/pay',{
                             "amount" : this.amountInput,
                             "cvv" : this.cardNumber.cvv,
-                            "cardId" : this.cardNumber.id,
                             "cardNumber" : this.cardNumber.number,
-                        }, {
-                            withCredentials: false
-                          })
+                            "description" : this.descriptionInput
+                        })
                        .then( () => { let toast = new bootstrap.Toast(loanToast)
                         toast.show()
                         this.show2 = true , setTimeout(() => { window.location = ("/web/accounts.html") }, 2500) })
