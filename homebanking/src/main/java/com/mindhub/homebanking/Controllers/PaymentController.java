@@ -56,7 +56,7 @@ public class PaymentController {
             return new ResponseEntity<>("Your card is expired",HttpStatus.FORBIDDEN);
         }
 
-        Transaction payTransaction = new Transaction(payDTO.getAmount(),payDTO.getDescription(),Utilities.dateFormat(LocalDateTime.now()),TransactionType.DEBIT, originAccount.getBalance() - payDTO.getAmount());
+        Transaction payTransaction = new Transaction(payDTO.getAmount(),"Tech Titans: \nOrder #A00" + Utilities.getRandomNumber(1000,9999)+ " - Products:" + payDTO.getDescription(),Utilities.dateFormat(LocalDateTime.now()),TransactionType.DEBIT, originAccount.getBalance() - payDTO.getAmount());
         Transaction recieveTransaction = new Transaction(payDTO.getAmount(),payDTO.getDescription(),Utilities.dateFormat(LocalDateTime.now()),TransactionType.CREDIT, destAccount.getBalance() + payDTO.getAmount());
 
         originAccount.addTransaction(payTransaction);
@@ -70,4 +70,5 @@ public class PaymentController {
 
         return new ResponseEntity<>("Payment successful", HttpStatus.OK);
     }
+
 }
