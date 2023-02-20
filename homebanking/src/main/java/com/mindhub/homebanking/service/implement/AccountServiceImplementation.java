@@ -12,6 +12,7 @@ public class AccountServiceImplementation implements AccountService {
 
     @Autowired
     AccountRepository accountRepository;
+    String cuenta;
     @Override
     public List<Account> findAllAccounts() {
         return accountRepository.findAll();
@@ -23,10 +24,7 @@ public class AccountServiceImplementation implements AccountService {
     }
 
     @Override
-    public Account findByNumberEquals(String number) {
-        return accountRepository.findByNumberEquals(number);
-    }
-
+    public Account findByNumberEquals(String number) {return accountRepository.findByNumberEquals(number); }
     @Override
     public void saveAccount(Account account) {
         accountRepository.save(account);

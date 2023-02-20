@@ -1,5 +1,10 @@
 package com.mindhub.homebanking.Utils;
 
+import com.mindhub.homebanking.models.Account;
+import com.mindhub.homebanking.service.AccountService;
+import com.mindhub.homebanking.service.ClientService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -7,8 +12,26 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class Utilities {
+    @Autowired
+    private static AccountService accountService;
+
     public static int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
+    }
+
+    public static String checkAccountNumber(String accountNumber){
+        boolean flag = true;
+        do
+        {
+            try{
+                if(accountService.findByNumberEquals(accountNumber) != null){
+                    accountNumber = "VIN-" + getRandomNumber(10000000,99999999);
+                }
+            } catch (NullPointerException e){flag = false;}
+        }
+        while(flag);
+
+        return accountNumber;
     }
     public static LocalDateTime dateFormat (LocalDateTime date)
     {
@@ -25,10 +48,10 @@ public class Utilities {
     List<Integer> personalPayment = List.of(6,12,24);
     List<Integer> carLoanPayment = List.of(6,12,24,36);
     public static float interest (int payments){
-        float interest = 0;
+        float interest;
         if(payments == 6)
             {
-                interest = 1.8f;
+                interest = 1.08f;
             } else if (payments == 12)
                 {
                     interest = 1.10f;

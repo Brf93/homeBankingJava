@@ -90,7 +90,6 @@ const app = createApp({
                     if(this.amountInput == '' || this.chosedPayment == '' || this.destAccount == ''){
                         alert("Some fields may be empty")
                     }else{
-
                         axios.post('/api/loans',{
                             "id" : this.loanID[0],
                             "amount" : this.amountInput,
@@ -144,7 +143,7 @@ const app = createApp({
                 }
                 if(this.chosedPayment == 6)
                     {
-                        this.interest = 1.8;
+                        this.interest = 1.08;
                     } else if (this.chosedPayment == 12)
                         {
                             this.interest = 1.10;

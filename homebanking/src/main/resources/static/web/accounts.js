@@ -92,6 +92,7 @@ const app = createApp({
             switch (option) {
               case 'exchange':
                 if(this.exchange){
+                  this.soonButton()
                   this.exchange = false
                 }else{
                   this.exchange = true
@@ -125,6 +126,7 @@ const app = createApp({
                 break;
               case 'address':
                 if(this.address){
+                  this.soonButton()
                   this.address = false
                 }else{
                   this.address = true
@@ -174,6 +176,10 @@ const app = createApp({
               }
               console.log("Hola");
             });
+          },
+          soonButton(){
+            let toast = new bootstrap.Toast(soonButton)
+              toast.show()
           }
     }
 })

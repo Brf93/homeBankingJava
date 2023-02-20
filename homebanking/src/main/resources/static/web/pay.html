@@ -43,7 +43,7 @@
             class="navbar navAccount rounded d-flex flex-column align-items-start justify-content-start gap-2 p-2 bg-light">
             <a class="nav-link" href="./accounts.html">Accounts</a>
             <a class="nav-link" href="./cards.html">My cards</a>
-            <a class="nav-link active" href="./pay.html">Pay</a>
+            <a class="nav-link active" href="./pay.html">Pay <i class="fas fa-xs fa-certificate"></i></a>
             <a class="nav-link" href="./loan-application.html">Loan</a>
             <a class="nav-link text-break" href="./criptocurrencies.html">Cryptocurrencies</a>
             <hr class="hr text-dark"/>
@@ -62,6 +62,12 @@
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <h5>Active loans: </h6>
                                     <div v-for = "loan of clientLoan">{{loan.loanName}}</div>
+                                </div>
+                            </template>
+                            <template v-else>
+                                <div class="d-flex flex-column justify-content-center align-items-center w-100">
+                                    <h5>Active loans: </h6>
+                                    <span class="w-100">You don't have any loan</span>
                                 </div>
                             </template>
                            <div class="d-flex flex-row justify-content-center align-items-center gap-3 w-100">
@@ -117,22 +123,22 @@
                             </div>
                             <div class="d-flex flex-row gap-2 justify-content-around w-100 divLoan">
                                 <div>
-                                    <span>Loan to be payed:</span>
+                                    <span>Loan to be payed: </span>
                                     <label>{{loanName.loanName}}</label>
                                 </div>
                                 <div>
-                                    <span>From account:</span>
+                                    <span>From account: </span>
                                     <label>{{accountNumber.number}}</label>
                                 </div>
                             </div>
                             <hr>
                             <div class="d-flex flex-row gap-2 justify-content-around w-100 divLoan">
                                 <div>
-                                    <span>Selected card:</span>
+                                    <span>Selected card: </span>
                                     <label style="font-size: 13px;">{{selectedCardSpan}}</label>
                                 </div>
                                 <div>
-                                    <span>Total to pay:</span>
+                                    <span>Total to pay: </span>
                                     <label class="text-break">{{formattedAmount}}</label>
                                 </div>
                             </div>
@@ -152,21 +158,21 @@
                     <hr class="hr text-light"/>
                     <div class="d-flex flex-row justify-content-between p-2 round">
                         <div>
-                            <span>Loan to be payed:</span>
+                            <span>Loan to be payed: </span>
                             <label>{{loanName.loanName}}</label>
                         </div>
                         <div>
-                            <span>From account:</span>
+                            <span>From account: </span>
                             <label>{{accountNumber.number}}</label>
                         </div>
                     </div>
                     <div class="d-flex flex-row justify-content-between p-2">
                         <div>
-                            <span>Selected card:</span>
+                            <span>Selected card: </span>
                             <label style="font-size: 13px;"> {{selectedCardSpan}}</label>
                         </div>
                         <div>
-                            <span>Total to pay:</span>
+                            <span>Total to pay: </span>
                             <label class="text-break"> {{formattedAmount}}</label>
                         </div>
                     </div>

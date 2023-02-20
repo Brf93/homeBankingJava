@@ -44,12 +44,11 @@ public class LoanController {
         Account destAccount = accountService.findByNumberEquals(loanAplicationDTO.getDestNumber());
         Loan loan = loanService.findById(loanAplicationDTO.getId());
 
-
-        if(destAccount.getNumber().isEmpty() )
+        if(destAccount.getNumber().isEmpty())
             {
                 return new ResponseEntity<>("There cannot be empty fields", HttpStatus.FORBIDDEN);
             }
-        if(destAccount.getNumber() == null )
+        if(destAccount.getNumber() == null)
             {
                 return new ResponseEntity<>("Account not found", HttpStatus.FORBIDDEN);
             }
@@ -101,6 +100,7 @@ public class LoanController {
         destAccount.addTransaction(loanTransaction);
         destAccount.setBalance(destAccount.getBalance() + loanAplicationDTO.getAmount());
         clientLoanService.saveClientLoan(loanDetails);
+
         return new ResponseEntity<>("Transaction successful", HttpStatus.OK);
     }
 }

@@ -12,20 +12,17 @@ public class LoanAplicationDTO {
     private double maxAmount;
 
     public LoanAplicationDTO() { }
-
-    public LoanAplicationDTO(ClientLoan clientLoan, Loan loan, Account account)
+    public LoanAplicationDTO(Long id, double amount, Integer payments, String destNumber)
         {
-            this.id = loan.getId();
-            this.amount = clientLoan.getAmount();
-            this.payments = clientLoan.getPayments();
-            this.destNumber = account.getNumber();
+            this.id = id;
+            this.amount = amount;
+            this.payments = payments;
+            this.destNumber = destNumber;
         }
-
     public Long getId()
         {
             return id;
         }
-
     public double getAmount()
         {
             return amount;

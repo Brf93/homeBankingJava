@@ -24,7 +24,7 @@ public class ClientLoan {
 
     public ClientLoan(){}
 
-    public ClientLoan (double amount, Integer payments, LocalDateTime date,Client client, Loan loan){
+    public ClientLoan (double amount, Integer payments, LocalDateTime date, Client client, Loan loan){
         this.amount = amount;
         this.payments = payments;
         this.date = date;

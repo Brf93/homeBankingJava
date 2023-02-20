@@ -46,7 +46,8 @@ public class ClientController {
                 }
         @PostMapping("/clients")
         public ResponseEntity<Object> register(@RequestParam String firstName, @RequestParam String lastName, @RequestParam GenderType genderType , @RequestParam boolean enabled,
-                @RequestParam String email, @RequestParam String password, @RequestParam String avatar, Authentication authentication) {
+                @RequestParam String email, @RequestParam String password, @RequestParam String avatar) {
+
                 if (firstName.isEmpty())
                         {
                                 return new ResponseEntity<>("The first name field is empty", HttpStatus.FORBIDDEN);
@@ -63,10 +64,14 @@ public class ClientController {
                                                 {
                                                         return new ResponseEntity<>("The password field is empty", HttpStatus.FORBIDDEN);
                                                 }
-                                               /* else if(genderType.equals(null))
-                                                {
-                                                        return new ResponseEntity<>("Gender field is empty", HttpStatus.FORBIDDEN);
-                                                }*/
+                                               else if(genderType == null)
+                                                        {
+                                                                return new ResponseEntity<>("Gender field is empty", HttpStatus.FORBIDDEN);
+                                                        }
+                                                       else if(avatar.isEmpty())
+                                                                {
+                                                                        return new ResponseEntity<>("Choose an avatar", HttpStatus.FORBIDDEN);
+                                                                }
                 if (clientService.findByEmail(email) !=  null)
                         {
                                 return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);

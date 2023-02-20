@@ -16,7 +16,8 @@ const app = createApp({
           amountInput : '',
           descriptionTextArea : '',
           accountDestInput : '',
-          transaction : ''
+          transaction : '',
+          dollarUSLocale : '',
         }
       },
       created(){
@@ -30,12 +31,12 @@ const app = createApp({
                 this.accounts = this.results.account
                 this.sortedAccount = this.accounts.sort((a,b) => a.id - b.id)
                 this.transaction = localStorage.getItem('transaction')
-                let dollarUSLocale = Intl.NumberFormat("en-US",
+                this.dollarUSLocale = Intl.NumberFormat("en-US",
                 {
                   style: "currency",
                   currency: "USD",
                 });
-                this.sortedAccount.map( item => item.balance = dollarUSLocale.format(item.balance));
+                this.sortedAccount.map( item => item.balance = this.dollarUSLocale.format(item.balance));
                 })
             .catch(error => {console.log(error);})
             },
@@ -63,12 +64,42 @@ const app = createApp({
             confirmTransaction(){
                 console.log(this.amountInput)
                 if(this.transaction == 'withdrawals'){
+                  console.log(parseFloat(this.amountInput));
+                  if(this.amountInput == ''){
+                    axios.post('/api/clients/current/transaction',`amount=${parseFloat(this.amountInput)}&originNumber=${this.originAccount}&destNumber=${this.destAccount}&descr=${this.descriptionTextArea}`)
+                    .then(() => { 
+                      let toast = new bootstrap.Toast(transactionToast)
+                      toast.show()
+                      this.show2 = true , setTimeout(()=>{ window.location = ("/web/accounts.html");}, 2500);
+                  })
+                  .catch(function (error) {
+                      if (error.response) {
+                        let errorMessage = document.getElementById("errorMsg")
+                        errorMessage.innerHTML = error.response.data;
+                        let toast = new bootstrap.Toast(wrongDataToast)
+                          toast.show()
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                      } else if (error.request) {
+                        console.log(error.request);
+                      } else {
+                        console.log('Error', error.message);
+                      }
+                    });
+                  }else{
                     axios.post('/api/clients/current/transaction',`amount=${this.amountInput}&originNumber=${this.originAccount}&destNumber=${this.destAccount}&descr=${this.descriptionTextArea}`)
-                    .then(() => { this.show2 = true , setTimeout(()=>{ window.location = ("/web/accounts.html");}, 900);
+                    .then(() => { 
+                        let toast = new bootstrap.Toast(transactionToast)
+                        toast.show()
+                        this.show2 = true , setTimeout(()=>{ window.location = ("/web/accounts.html");}, 2500);
                     })
                     .catch(function (error) {
                         if (error.response) {
-                          alert(error.response.data);
+                          let errorMessage = document.getElementById("errorMsg")
+                          errorMessage.innerHTML = error.response.data;
+                          let toast = new bootstrap.Toast(wrongDataToast)
+                            toast.show()
                           console.log(error.response.data);
                           console.log(error.response.status);
                           console.log(error.response.headers);
@@ -78,12 +109,43 @@ const app = createApp({
                           console.log('Error', error.message);
                         }
                       });
+                  }
                 }else{
-                    axios.post('/api/clients/current/transaction',`amount=${this.amountInput}&originNumber=${this.originAccount}&destNumber=${this.accountDestInput}&descr=${this.descriptionTextArea}`)
-                    .then( () => { this.show2 = true , setTimeout(() => { window.location = ("/web/accounts.html") }, 900) })
+                  if(this.amountInput == ''){
+                    axios.post('/api/clients/current/transaction',`amount=${parseFloat(this.amountInput)}&originNumber=${this.originAccount}&destNumber=${this.accountDestInput}&descr=${this.descriptionTextArea}`)
+                  .then( () => { 
+                    let toast = new bootstrap.Toast(transactionToast)
+                    toast.show()
+                    this.show2 = true , setTimeout(() => { window.location = ("/web/accounts.html") }, 2500) })
+                  .catch(function (error) {
+                      if (error.response) {
+                        let errorMessage = document.getElementById("errorMsg")
+                        errorMessage.innerHTML = error.response.data;
+                        let toast = new bootstrap.Toast(wrongDataToast)
+                          toast.show()
+                        console.log(this.errorMessage)
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                      } else if (error.request) {
+                        console.log(error.request);
+                      } else {
+                        console.log('Error', error.message);
+                      }
+                    });}
+                    else{
+                      axios.post('/api/clients/current/transaction',`amount=${this.amountInput}&originNumber=${this.originAccount}&destNumber=${this.accountDestInput}&descr=${this.descriptionTextArea}`)
+                    .then( () => { 
+                      let toast = new bootstrap.Toast(transactionToast)
+                      toast.show()
+                      this.show2 = true , setTimeout(() => { window.location = ("/web/accounts.html") }, 2500) })
                     .catch(function (error) {
                         if (error.response) {
-                          alert(error.response.data);
+                          let errorMessage = document.getElementById("errorMsg")
+                          errorMessage.innerHTML = error.response.data;
+                          let toast = new bootstrap.Toast(wrongDataToast)
+                          toast.show()
+                          console.log(this.errorMessage)
                           console.log(error.response.data);
                           console.log(error.response.status);
                           console.log(error.response.headers);
@@ -92,8 +154,8 @@ const app = createApp({
                         } else {
                           console.log('Error', error.message);
                         }
-                        console.log("Hola");
                       });
+                    }
                 }
             },
             cancelTransaction(){

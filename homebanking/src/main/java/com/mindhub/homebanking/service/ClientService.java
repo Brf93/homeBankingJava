@@ -9,5 +9,6 @@ public interface ClientService {
     Client findById(Long id);
 
     Client findByEmail(String email);
+    Client findByAccount(String account);
     void saveClient(Client client);
 }

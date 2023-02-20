@@ -14,7 +14,6 @@ public class PayDTO {
         this.amount = amount;
         this.description = description;
     }
-
     public int getCvv() {
         return cvv;
     }

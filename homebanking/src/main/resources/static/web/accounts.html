@@ -39,10 +39,10 @@
         </header>
         <main class="d-flex flex-row gap-3 justify-content-start">
 <!-- NAV BARS -->
-            <aside class="col-2 p-3 d-flex flex-column mobileXs">
+            <aside class="col-2 p-3 d-flex flex-column mobileXs gap-2">
                 <nav
                     class="navbar navAccount rounded d-flex flex-column align-items-start justify-content-start gap-2 p-2 bg-light">
-                    <a class="nav-link active" href="#">Accounts</a>
+                    <a class="nav-link active" href="#">Accounts <i class="fas fa-xs fa-certificate"></i></a>
                     <a class="nav-link" href="./cards.html">My cards</a>
                     <a class="nav-link" href="./pay.html">Pay</a>
                     <a class="nav-link" href="./loan-application.html">Loan</a>
@@ -50,6 +50,15 @@
                     <hr class="hr text-dark"/>
                     <a class="nav-link" @click="logOut()" style="cursor:pointer;">Log out <i @click="logOut()" class="bi bi-box-arrow-right p-2"></i></a>
                 </nav>
+                <!-- <div
+                    class="navbar navAccount rounded d-flex flex-column align-items-start justify-content-start gap-2 p-2 bg-light">
+                    <h5>Your currencies</h5>
+                    <div class="d-flex flex-column">
+                     <span>cuenta</span>
+                     <span>divisa1</span>
+                     <span>divisa2</span>
+                    </div>
+                </div> -->
             </aside>
 <!-- ACCOUNTS CONTAINER -->
             <div class="col shadow-lg p-3 m-3 bg-light rounded mobileAdjustment resolution4k">
@@ -173,7 +182,7 @@
                         <div
                             class="d-flex flex-column justify-content-start align-items-center col gap-2 p-2 cardsAccount">
                             <div class="d-flex flex-row w-100 justify-content-start align-items-center gap-2">
-                                <button data-bs-toggle="modal" data-bs-target="#modalNewAccount" :disabled = "account.length > 2" class="btn btn-primary bg-light w-25 text-center btnTransactions">New account</button>
+                                <button data-bs-toggle="modal" data-bs-target="#modalNewAccount" :disabled = "account.length > 2" class="btn btn-primary bg-light w-25 text-center btnTransactions"><span v-show = "account.length > 2" class="btnNewAccount">Max account rechead</span> <span v-show = "account.length < 3" >New account</span></button>
                                 <button data-bs-toggle="modal" data-bs-target="#modalDeleteAccount" class="btn btn-primary bg-light w-25 text-center btnTransactions d-flex align-items-center justify-content-center gap-1">Delete account</button>
                             </div>
 <!-- MODALS -->
@@ -287,6 +296,21 @@
                                   </div>
                                   <div class="toast-body message">
                                     Account deleted
+                                  </div>
+                                </div>
+                            </div>
+
+                                <!-- Then put toasts within -->
+                                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                                <div id="soonButton" class="toast text-black" role="alert" aria-live="assertive" aria-atomic="true">
+                                  <div class="toast-header bg-success text-light">
+                                    <img src="./img/construction-m.png" style="width: 48px;" class="rounded me-2" alt="...">
+                                    <strong class="me-auto">Hey!</strong>
+                                    <small>Now</small>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                  </div>
+                                  <div class="toast-body">
+                                    This button is under construction, it will be ready very soon!
                                   </div>
                                 </div>
                             </div>

@@ -106,7 +106,7 @@ const app = createApp({
                     if(this.amountInput == '' || this.cardNumber.number == ''){
                         alert("Some fields may be empty")
                     }else{
-                        axios.post('/api/pay',{
+                        axios.post('/api/pay/loan',{
                             "amount" : this.amountInput,
                             "cvv" : this.cardNumber.cvv,
                             "cardNumber" : this.cardNumber.number,

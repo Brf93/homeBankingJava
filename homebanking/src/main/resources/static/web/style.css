@@ -129,6 +129,17 @@ thead {
     font-size: 8px;
     color: black;
 }
+.btnAddress{
+    width: 40px!important;
+    height: 40px;
+    background-color: #f3f3f3;
+}
+.accountNumberWidth{
+    width: 250px!important;
+}
+.btnAddress :hover{
+    color: aliceblue!important;
+}
 .message{
     font-size: small;
 }
@@ -546,8 +557,11 @@ a {
     cursor: pointer!important;
 }
 .btnConfirmCancel{
-    width: 100px!important;
+    width: 110px!important;
     height: 35px!important;
+}
+.btnNewAccount{
+    color: #000000;
 }
 @media screen and (min-width : 1025px) and (max-width : 2560px) {
     .botonesDerecha2k {
@@ -688,7 +702,6 @@ a {
         font-size: 8px;
         color: black;
     }
-
     .menuReferences{
         font-size: 10px;
     }
@@ -852,7 +865,7 @@ a {
     }
 }
 
-@media screen and (min-width : 0px) and (max-width : 376px) {
+@media screen and (min-width : 200px) and (max-width : 376px) {
     .alingMobile{
         display: flex;
         flex-direction: column;

@@ -35,13 +35,13 @@
                 output</span></button>
     </div>
   </header>
-  <main class="d-flex flex-row gap-3 justify-content-start backgroundMain">
+  <main class="d-flex flex-row gap-3 justify-content-start">
     <aside class="col-2 p-3 d-flex flex-column mobileXs">
         <!-- <nav class="navbar navbar-expand-lg navbar-light navAccount rounded d-flex"> -->
         <nav
             class="navbar navAccount rounded d-flex flex-column align-items-start justify-content-start gap-2 p-2 bg-light">
             <a class="nav-link active" href="accounts.html">Accounts ></a></li>
-            <span class="active">Transactions</span>
+            <span class="active">Transactions <i class="fas fa-xs fa-certificate"></i></span>
             <a class="nav-link" href="./cards.html">My cards</a>
             <a class="nav-link" href="./pay.html">Pay</a>
             <a class="nav-link" href="./loan-application.html">Loan</a>
@@ -55,7 +55,7 @@
             <div class="d-flex align-items-center flex-column gap-2 shadow-sm bg-light w-100">
                 <h4 class="color text-black pt-2 fs-3">Let's make a transaction</h4>
             </div>
-            <div class="d-flex flex-row flex-column-sm gap-3 pt-3 spanRegistrationSize">
+            <div class="d-flex flex-row flex-column-sm gap-3 pt-3 spanRegistrationSize col-12">
                 <div class="w-100 d-flex flex-column gap-5 justify-content-center align-items-center">
                    <div v-show = "transaction == 'withdrawals'">
                        <div class="d-flex flex-row justify-content-center align-items-center gap-3">
@@ -80,9 +80,9 @@
                        </div>
                       </div>
                    </div>
-                   <div v-show = "transaction == 'transfer'">
+                   <div v-show = "transaction == 'transfer'" class="col-9">
                        <div class="d-flex flex-row justify-content-center align-items-start gap-3" v-show = "transaction == 'transfer'">
-                        <div>
+                        <div class="accountNumberWidth">
                             <h6>Select origin account:</h6> 
                            <div class="">
                                <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = originAccount>
@@ -90,16 +90,16 @@
                                </select>
                            </div>
                         </div>
-                        <div>
-                            <span><i class="fas fa-retweet fa-rotate-90" @click = "alternate"></i></span>
-                        </div>
-                        <div>
-                            <h6>Insert destination account:</h6> 
-                            <div class="input-group input-group-sm mb-3 form-outline">
-                                <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-university"></i></span>
-                                <input type="text" class="form-control" aria-label="Sizing example input" id="accountDest" aria-describedby="inputGroup-sizing-sm" v-model = "accountDestInput"/>
-                                <label class="form-label text-center labelTransaction" for="accountDest">Account number</label>
-                              </div>
+                        <div class="d-flex flex-row justify-content-center align-items-center">
+                            <div class="d-flex flex-column accountNumberWidth">
+                                <h6>Destination account:</h6> 
+                                <div class="input-group input-group-sm mb-3 form-outline">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-university"></i></span>
+                                    <input type="text" class="form-control" aria-label="Sizing example input" id="accountDest" aria-describedby="inputGroup-sizing-sm" v-model = "accountDestInput"/>
+                                    <label class="form-label text-center labelTransaction" for="accountDest">Account number</label>
+                                  </div>
+                            </div>
+                            <button class="ms-2 btn btn-primary btnAddress d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#addressModal"><i class="far fa-address-book fa-2x" style="color: #303870"></i></button>
                         </div>
                        </div>
                    </div>
@@ -111,7 +111,7 @@
                       </div>
                       <div class="input-group form-outline">
                         <span class="input-group-text textAreaTransfers"><i class="far fa-comment-alt"></i></span>
-                        <textarea  class="form-control textAreaTransfers" id = descOrig aria-label="With textarea" v-model = "descriptionTextArea"></textarea>
+                        <textarea  class="form-control textAreaTransfers" maxlength="25" id = descOrig aria-label="With textarea" v-model = "descriptionTextArea"></textarea>
                         <label class="form-label text-center labelTransaction" for="descOrig">Description</label>
                       </div>
                    </div>
@@ -121,13 +121,120 @@
                 <button type="submit" class="m-1 btnConfirmCancel btn btn-outline-primary fs-6 p-1"
                 data-mdb-color="dark" @click = "cancelTransaction()">Cancel <i class="fas fa-times-circle fs-6"
                 :class = "show? 'animate__animated animate__fast animate__flip' : ''"></i></button>
-                <button type="button" class="m-1 btnConfirmCancel btn btn-primary fs-6 p-1"
-                @click = "confirmTransaction()">Confirm <i class="far fa-check-circle fs-6"
+                <button type="button" class="m-1 btnConfirmCancel btn btn-primary fs-6 p-1" data-bs-toggle="modal" data-bs-target="#confirmModal">Confirm <i class="far fa-check-circle fs-6"
                 :class = "show2? 'animate__animated animate__fast animate__flip' : ''"></i></button>
+            </div>
+<!-- MODAL TRANSACTIONS DETAILS -->
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="false">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="confirmModalLabel">Transaction</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <h6 class="text-center">Review your operation before performing it</h6>
+                    <hr class="hr text-light"/>
+                    <div class="d-flex flex-row justify-content-center">
+                        <div class="d-flex flex-column justify-content-between p-2">
+                            <div class="d-flex justify-content-start gap-1">
+                                <span>From account: </span>
+                                <span class="fw-bold">{{originAccount}}</span>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-start gap-1">
+                                <span>To account: </span>
+                                <span v-show = "transaction == 'transfer'" class="fw-bold">{{accountDestInput}}</span>
+                                <span v-show = "transaction == 'withdrawals'" class="fw-bold">{{destAccount}}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between p-2">
+                            <div class="d-flex justify-content-start gap-1">
+                                <span>Amount:</span>
+                                <span class="fw-bold">{{dollarUSLocale.format(amountInput)}}</span>
+                            </div>
+                            <div class="d-flex justify-content-start gap-1">
+                                <span>Description:</span>
+                                <span class="fw-bold">{{descriptionTextArea.slice(0,10)}}...</span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
+                    <button type="button" class="btn btn-primary" @click = "confirmTransaction()" data-bs-dismiss="modal">Yes, i'm sure</button>
+                    </div>
+                </div>
+                </div>
             </div>
           </div>
         </div>
+<!-- MODAL ADDRES BOOK -->
 
+<div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="addressModalLabel">Accounts address book</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h6>No contacts in you address book</h6>
+            <!-- <table>
+                <caption>
+                    <span class = "subtituloUnderline">*You can edit account in address book menu</span>
+                </caption>
+                <thead>
+                    <tr>
+                        <th>Account number/ </th>
+                        <th>Account name/ </th>
+                        <th>Alias/ </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>vin-100</td>
+                        <td>banco</td>
+                        <td>casa.pinta.perro</td>   
+                    </tr>                   
+                </tbody>
+            </table> -->
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- TOAST -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="transactionToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <img src="./img/cardCreate/smilingFace.png" class="rounded me-2 pe-2" alt="blueCube" style="width: 22px;">
+                <strong class="me-auto">It's done</strong>
+                <small>Now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body message d-flex align-items-center gap-1">
+                <span>Your money is on the way!</span>
+                <img src="./img/dinero-volando.png" style="width: 32px;" alt="">
+              </div>
+            </div>
+        </div>
+        <!-- Error message -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="wrongDataToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header text-light bg-danger">
+                <i class="fas fa-info-circle pe-2"></i>
+                <strong class="me-auto">Alert</strong>
+                <small>Now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body message">
+                <span id="errorMsg"></span>
+              </div>
+            </div>
+        </div>
     </main>
     <footer class="footerSize d-flex align-items-center justify-content-around footerMobile">
         <div class="d-flex flex-column justify-content-center align-items-center p-1 needHelp">

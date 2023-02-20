@@ -73,7 +73,7 @@ public class TransactionController {
             {
                 return new ResponseEntity<>("Insufficient funds", HttpStatus.FORBIDDEN);
             }
-        if (amount <= 0 || amount.equals(null))
+        if (amount <= 0 || amount == null || amount.isNaN())
         {
             return new ResponseEntity<>("Minimum amount: $1", HttpStatus.FORBIDDEN);
         }
