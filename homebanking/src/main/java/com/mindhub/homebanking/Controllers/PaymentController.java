@@ -85,9 +85,9 @@ public class PaymentController {
         Card clientCard = cardService.findByNumber(payDTO.getCardNumber());
         Account originAccount = accountService.findById(clientCard.getAccount().getId());
         Account destAccount = accountService.findByNumberEquals("VIN-100");
-        Client client = clientService.findByAccount(originAccount.getNumber());//ver
+       // Client client = clientService.findByAccount(originAccount.getNumber());//ver
 
-        ClientLoan loanPayment = clientLoanService.findByClient(client);
+       // ClientLoan loanPayment = clientLoanService.findByClient(client);
 
         if(originAccount.getBalance() < 0)
         {
