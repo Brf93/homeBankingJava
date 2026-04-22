@@ -23,14 +23,14 @@
     <link rel="stylesheet" href="./style.css">
     <title>Mindhub B. Bank | Accounts</title>
 </head>
-<body class="bg-light">
+<body class="bg-main">
     <div id="app" class="d-flex flex-column min-vh-100">
         <!-- Responsive Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
+        <nav class="navbar navbar-expand-xl navbar-dark headerColor shadow-lg sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center gap-2" href="./accounts.html">
                     <img src="./img/logoCentro2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-                    <span class="fw-bold">Mindhub Brothers Bank</span>
+                    <span class="fw-bold neon-text">Mindhub Brothers Bank</span>
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -43,7 +43,7 @@
                         <li class="nav-item"><a class="nav-link" href="./loan-application.html">Loan</a></li>
                         <li class="nav-item"><a class="nav-link" href="./criptocurrencies.html">Crypto</a></li>
                         <li class="nav-item ms-lg-3 mt-2 mt-lg-0 w-100 w-lg-auto text-center">
-                            <button @click="logOut()" class="btn btn-outline-light btn-sm rounded-pill px-4 py-2 w-100">
+                            <button @click="logOut()" class="btn btn-outline-primary btn-sm rounded-pill px-4 py-2 w-100">
                                 <i class="fas fa-sign-out-alt me-1"></i> Log out
                             </button>
                         </li>
@@ -56,13 +56,13 @@
             <div class="row g-4">
                 <!-- Client Summary Header -->
                 <div class="col-12">
-                    <div class="card shadow-sm border-0 p-3 bg-white rounded-4">
+                    <div class="glass-card border-0 p-3 rounded-4">
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
                             <div class="d-flex align-items-center gap-3">
                                 <img class="img-fluid rounded-circle shadow-sm" :src="'./img/avatar/'+clients.avatar+ '.png'" alt="" style="width: 60px; height: 60px;">
                                 <div>
-                                    <h4 class="m-0 fw-bold">{{clients.firstName}} {{clients.lastName}}</h4>
-                                    <p class="m-0 text-muted small">Total balance: <span class="text-primary fw-bold">{{formattedBalance}}</span></p>
+                                    <h4 class="m-0 fw-bold text-white">{{clients.firstName}} {{clients.lastName}}</h4>
+                                    <p class="m-0 text-muted small">Total balance: <span class="neon-text fw-bold">{{formattedBalance}}</span></p>
                                 </div>
                             </div>
                             <!-- Action Buttons -->
@@ -77,9 +77,9 @@
                                     <button class="btn btn-primary rounded-pill px-3 shadow-sm dropdown-toggle d-flex align-items-center gap-2" type="button" data-mdb-toggle="dropdown">
                                         <i class="far fa-paper-plane"></i> <span class="d-none d-sm-inline">Transfers</span>
                                     </button>
-                                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4">
-                                        <li><a class="dropdown-item py-2" @click="btnOptions('withdrawals')">Between my accounts</a></li>
-                                        <li><a class="dropdown-item py-2" @click="btnOptions('transfers')">To third party</a></li>
+                                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 glass-card">
+                                        <li><a class="dropdown-item py-2 text-white" @click="btnOptions('withdrawals')">Between my accounts</a></li>
+                                        <li><a class="dropdown-item py-2 text-white" @click="btnOptions('transfers')">To third party</a></li>
                                     </ul>
                                 </div>
                                 <button class="btn btn-primary rounded-pill px-3 shadow-sm d-flex align-items-center gap-2" @click="btnOptions('address')">
@@ -93,7 +93,7 @@
                 <!-- Accounts Section -->
                 <div class="col-12 col-lg-8">
                     <div class="d-flex justify-content-between align-items-center mb-3 px-2">
-                        <h4 class="fw-bold m-0">My Accounts</h4>
+                        <h4 class="fw-bold m-0 text-white">My Accounts</h4>
                         <div class="d-flex gap-2">
                             <button class="btn btn-success btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#modalNewAccount" :disabled="account.length > 2">
                                 <i class="fas fa-plus me-1"></i> New
@@ -106,11 +106,11 @@
 
                     <div class="row g-3">
                         <div class="col-12 col-md-6" v-for="account of sortAccount">
-                            <div class="card h-100 shadow-sm border-0 rounded-4 p-3 animate__animated animate__fadeIn" v-if="account.enabled">
+                            <div class="glass-card h-100 border-0 rounded-4 p-3 animate__animated animate__fadeIn" v-if="account.enabled">
                                 <div class="d-flex justify-content-between align-items-start mb-3">
                                     <div>
                                         <h6 class="text-muted small m-0">Account Number</h6>
-                                        <h5 class="fw-bold text-primary">{{account.number}}</h5>
+                                        <h5 class="fw-bold neon-text">{{account.number}}</h5>
                                     </div>
                                     <div class="bg-primary bg-opacity-10 p-2 rounded-3 text-primary">
                                         <span v-show="account.accountType == 'CHECKING'" class="material-symbols-outlined fs-4">bolt</span>
@@ -119,12 +119,12 @@
                                 </div>
                                 <div class="mb-4">
                                     <h6 class="text-muted small m-0">Available Balance</h6>
-                                    <h4 class="fw-bold m-0 text-dark">{{account.balance}}</h4>
+                                    <h4 class="fw-bold m-0 text-white">${{account.balance}}</h4>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-end mt-auto">
                                     <div class="small text-muted">
-                                        <p class="m-0">Type: <span class="fw-bold text-dark">{{account.accountType}}</span></p>
-                                        <p class="m-0">Created: <span class="fw-bold text-dark">{{account.creationDate.split('T')[0]}}</span></p>
+                                        <p class="m-0">Type: <span class="fw-bold text-white">{{account.accountType}}</span></p>
+                                        <p class="m-0">Created: <span class="fw-bold text-white">{{account.creationDate.split('T')[0]}}</span></p>
                                     </div>
                                     <a :href="'./account.html?id=' + account.id" class="btn btn-primary rounded-4 px-3 btn-sm">
                                         View Transactions <i class="fas fa-arrow-right ms-1"></i>
@@ -137,11 +137,11 @@
 
                 <!-- Loans Section -->
                 <div class="col-12 col-lg-4">
-                    <h4 class="fw-bold mb-3 px-2">Active Loans</h4>
-                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                    <h4 class="fw-bold mb-3 px-2 text-white">Active Loans</h4>
+                    <div class="glass-card border-0 rounded-4 overflow-hidden">
                         <div class="table-responsive">
-                            <table class="table table-hover align-middle mb-0 text-center" v-if="loans.length != 0">
-                                <thead class="bg-primary text-white">
+                            <table class="table table-hover table-dark align-middle mb-0 text-center" v-if="loans.length != 0">
+                                <thead>
                                     <tr>
                                         <th class="small fw-bold">Amount</th>
                                         <th class="small fw-bold">Type</th>
@@ -150,7 +150,7 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="loan of loans">
-                                        <td class="small fw-bold text-dark">${{loan.amount}}</td>
+                                        <td class="small fw-bold text-white">${{loan.amount}}</td>
                                         <td class="small"><span class="badge bg-info text-dark rounded-pill">{{loan.loanName}}</span></td>
                                         <td class="small text-muted">{{loan.payments}}</td>
                                     </tr>
@@ -159,7 +159,7 @@
                             <div class="p-4 text-center" v-else>
                                 <img src="./img/dineroLoan.png" alt="" class="img-fluid mb-2 opacity-50" style="width: 40px;">
                                 <p class="text-muted m-0 small">No active loans found</p>
-                                <a href="./loan-application.html" class="btn btn-link btn-sm mt-2">Request one now</a>
+                                <a href="./loan-application.html" class="btn btn-link btn-sm mt-2 neon-text">Request one now</a>
                             </div>
                         </div>
                     </div>
@@ -239,30 +239,33 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="bg-dark text-white py-5 mt-auto">
-            <div class="container">
-                <div class="row g-4 align-items-center">
-                    <div class="col-12 col-md-4 text-center text-md-start">
-                        <h5 class="fw-bold mb-3">Mindhub Brothers Bank</h5>
-                        <p class="small text-muted mb-3">Your trusted financial partner.</p>
-                        <div class="d-flex justify-content-center justify-content-md-start gap-3">
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-linkedin fa-lg"></i></a>
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-facebook fa-lg"></i></a>
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-whatsapp fa-lg"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 text-center">
-                        <h6 class="mb-2 small">Need help?</h6>
-                        <a href="tel:08006660171" class="h5 text-primary fw-bold text-decoration-none">0-800-666-0171</a>
-                    </div>
-                    <div class="col-12 col-md-4 text-center text-md-end">
-                        <p class="m-0 small text-muted">© 2023 Mindhub Brothers Bank SA.</p>
-                        <p class="m-0 small text-muted">All rights reserved. Member FDIC.</p>
-                    </div>
+        <!-- Dark Modern Footer -->
+        <footer class="footerSize py-5 mt-auto">
+          <div class="container">
+            <div class="row g-4 justify-content-between align-items-center">
+              <div class="col-12 col-md-4 text-center text-md-start">
+                <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-3">
+                  <img src="./img/logoCentro2.png" alt="Logo" style="width: 30px; filter: grayscale(1) invert(1);">
+                  <span class="fw-bold small">MINDHUB BROTHERS BANK</span>
                 </div>
+                <p class="extra-small text-muted">Member FDIC. © 2026 Mindhub Brothers Bank SA. All rights reserved.</p>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="d-flex justify-content-center gap-4">
+                  <a href="#" class="text-muted fs-4"><i class="fab fa-linkedin"></i></a>
+                  <a href="#" class="text-muted fs-4"><i class="fab fa-instagram"></i></a>
+                  <a href="#" class="text-muted fs-4"><i class="fab fa-twitter"></i></a>
+                  <a href="#" class="text-muted fs-4"><i class="fab fa-whatsapp"></i></a>
+                </div>
+              </div>
+              <div class="col-12 col-md-4 text-center text-md-end">
+                <div class="d-flex justify-content-center justify-content-md-end gap-3 grayscale invert opacity-50">
+                  <img src="./img/1657126747-forbesbis2022rec.png" alt="" style="width: 80px;">
+                  <img src="./img/1669909590-2022logosABBBTWF.png" alt="" style="width: 80px;">
+                </div>
+              </div>
             </div>
+          </div>
         </footer>
 
         <!-- Toasts -->

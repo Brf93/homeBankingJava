@@ -19,27 +19,27 @@
     <link rel="stylesheet" href="./style.css">
     <title>Mindhub B. Bank | Transactions</title>
 </head>
-<body class="bg-light">
+<body class="bg-main">
 <div id="app" class="d-flex flex-column min-vh-100">
-    <!-- Responsive Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="./accounts.html">
-                <img src="./img/logoCentro2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-                <span class="fw-bold">Mindhub Brothers Bank</span>
-            </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="./accounts.html">Accounts</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./cards.html">My cards</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./pay.html">Pay</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./loan-application.html">Loan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./criptocurrencies.html">Crypto</a></li>
-                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0 w-100 w-lg-auto text-center">
-                        <button @click="logOut()" class="btn btn-outline-light btn-sm rounded-pill px-4 py-2 w-100">
+<!-- Responsive Navbar -->
+<nav class="navbar navbar-expand-xl navbar-dark headerColor shadow-lg sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="./accounts.html">
+            <img src="./img/logoCentro2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+            <span class="fw-bold neon-text">Mindhub Brothers Bank</span>
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link active" href="./accounts.html">Accounts</a></li>
+                <li class="nav-item"><a class="nav-link" href="./cards.html">My cards</a></li>
+                <li class="nav-item"><a class="nav-link" href="./pay.html">Pay</a></li>
+                <li class="nav-item"><a class="nav-link" href="./loan-application.html">Loan</a></li>
+                <li class="nav-item"><a class="nav-link" href="./criptocurrencies.html">Crypto</a></li>
+                <li class="nav-item ms-lg-3 mt-2 mt-lg-0 w-100 w-lg-auto text-center">
+                        <button @click="logOut()" class="btn btn-outline-primary btn-sm rounded-pill px-4 py-2 w-100">
                             <i class="fas fa-sign-out-alt me-1"></i> Log out
                         </button>
                     </li>
@@ -51,17 +51,17 @@
     <main class="container py-4 flex-grow-1">
         <div class="row justify-content-center">
             <div class="col-12">
-                <div class="card shadow-sm border-0 rounded-4 p-4 bg-white animate__animated animate__fadeIn">
+                <div class="glass-card border-0 rounded-4 p-4 animate__animated animate__fadeIn">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 class="fw-bold m-0 text-primary">Account Transactions</h4>
+                        <h4 class="fw-bold m-0 neon-text">Account Transactions</h4>
                         <a href="./accounts.html" class="btn btn-outline-primary btn-sm rounded-pill">
                             <i class="fas fa-arrow-left me-1"></i> Back to Accounts
                         </a>
                     </div>
 
                     <div class="table-responsive rounded-3 shadow-sm">
-                        <table class="table table-hover align-middle mb-0 text-center">
-                            <thead class="bg-primary text-white">
+                        <table class="table table-hover table-dark align-middle mb-0 text-center">
+                            <thead>
                                 <tr>
                                     <th class="p-3 fw-semibold">Amount</th>
                                     <th class="p-3 fw-semibold">Date</th>
@@ -78,7 +78,7 @@
                                     </td>
                                     <td class="small text-muted">{{transaction.date.replace("T", " ")}}</td>
                                     <td>
-                                        <div class="fw-bold text-dark">{{transaction.description}}</div>
+                                        <div class="fw-bold text-white">{{transaction.description}}</div>
                                         <div class="extra-small text-muted mt-1">Balance after: ${{transaction.afterBalance}}</div>
                                     </td>
                                     <td>
@@ -101,30 +101,33 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-5 mt-auto">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-12 col-md-4 text-center text-md-start">
-                    <h5 class="fw-bold mb-3">Mindhub Brothers Bank</h5>
-                    <p class="small text-muted mb-3">Your trusted financial partner.</p>
-                    <div class="d-flex justify-content-center justify-content-md-start gap-3">
-                        <a href="#" class="text-white opacity-75"><i class="fab fa-linkedin fa-lg"></i></a>
-                        <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
-                        <a href="#" class="text-white opacity-75"><i class="fab fa-facebook fa-lg"></i></a>
-                        <a href="#" class="text-white opacity-75"><i class="fab fa-whatsapp fa-lg"></i></a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 text-center">
-                    <h6 class="mb-2 small">Need help?</h6>
-                    <a href="tel:08006660171" class="h5 text-primary fw-bold text-decoration-none">0-800-666-0171</a>
-                </div>
-                <div class="col-12 col-md-4 text-center text-md-end">
-                    <p class="m-0 small text-muted">© 2023 Mindhub Brothers Bank SA.</p>
-                    <p class="m-0 small text-muted">All rights reserved. Member FDIC.</p>
-                </div>
+    <!-- Dark Modern Footer -->
+    <footer class="footerSize py-5 mt-auto">
+      <div class="container">
+        <div class="row g-4 justify-content-between align-items-center">
+          <div class="col-12 col-md-4 text-center text-md-start">
+            <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-3">
+              <img src="./img/logoCentro2.png" alt="Logo" style="width: 30px; filter: grayscale(1) invert(1);">
+              <span class="fw-bold small">MINDHUB BROTHERS BANK</span>
             </div>
+            <p class="extra-small text-muted">Member FDIC. © 2026 Mindhub Brothers Bank SA. All rights reserved.</p>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="d-flex justify-content-center gap-4">
+              <a href="#" class="text-muted fs-4"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="text-muted fs-4"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-muted fs-4"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-muted fs-4"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 text-center text-md-end">
+            <div class="d-flex justify-content-center justify-content-md-end gap-3 grayscale invert opacity-50">
+              <img src="./img/1657126747-forbesbis2022rec.png" alt="" style="width: 80px;">
+              <img src="./img/1669909590-2022logosABBBTWF.png" alt="" style="width: 80px;">
+            </div>
+          </div>
         </div>
+      </div>
     </footer>
 </div>
 

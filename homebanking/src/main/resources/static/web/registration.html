@@ -11,25 +11,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="./style.css">
 
     <title>Mindhub B. Bank | Registration</title>
 </head>
 
-<body class="bg-light">
+<body class="bg-main text-white">
     <div id="app" class="d-flex flex-column min-vh-100">
-        <header class="bg-primary p-3 shadow-sm sticky-top">
+        <header class="headerColor p-3 shadow-lg sticky-top">
             <div class="container-fluid d-flex align-items-center gap-3">
                 <img class="logoCentro" src="./img/logoCentro2.png" alt="Logo" style="width: 40px;">
-                <h3 class="m-0 text-white h4 fw-bold">Mindhub Brothers Bank</h3>
+                <h3 class="m-0 h4 fw-bold neon-text">MINDHUB BROTHERS BANK</h3>
             </div>
         </header>
 
@@ -38,48 +34,48 @@
                 <div class="col-12 col-md-8 col-lg-6">
                     <div class="card shadow-lg border-0 rounded-4 p-4 animate__animated animate__fadeIn">
                         <div class="text-center mb-4">
-                            <h2 class="fw-bold text-primary">REGISTRATION FORM</h2>
+                            <h2 class="fw-bold neon-text">REGISTRATION FORM</h2>
                             <p class="text-muted small">Join our community and start managing your finances today.</p>
                         </div>
 
                         <div class="row g-3">
                             <div class="col-12 col-sm-6">
                                 <div class="form-outline">
-                                    <input type="text" class="form-control" id="firstName" v-model="firstName" />
-                                    <label class="form-label" for="firstName"><i class="far fa-user me-2"></i>First name</label>
+                                    <input type="text" class="form-control bg-transparent text-white" id="firstName" v-model="firstName" />
+                                    <label class="form-label text-muted" for="firstName"><i class="far fa-user me-2"></i>First name</label>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
                                 <div class="form-outline">
-                                    <input type="text" class="form-control" id="lastName" v-model="lastName" />
-                                    <label class="form-label" for="lastName"><i class="fas fa-user me-2"></i>Last name</label>
+                                    <input type="text" class="form-control bg-transparent text-white" id="lastName" v-model="lastName" />
+                                    <label class="form-label text-muted" for="lastName"><i class="fas fa-user me-2"></i>Last name</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-outline">
-                                    <input type="text" class="form-control" id="ssn" />
-                                    <label class="form-label" for="ssn"><i class="fas fa-id-card me-2"></i>Social Security Number (SSN)</label>
+                                    <input type="text" class="form-control bg-transparent text-white" id="ssn" />
+                                    <label class="form-label text-muted" for="ssn"><i class="fas fa-id-card me-2"></i>SSN</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-outline">
-                                    <input type="email" class="form-control" id="email" v-model="email" autocomplete="off" />
-                                    <label class="form-label" for="email"><i class="fas fa-envelope me-2"></i>Email (example@mail.com)</label>
+                                    <input type="email" class="form-control bg-transparent text-white" id="email" v-model="email" autocomplete="off" />
+                                    <label class="form-label text-muted" for="email"><i class="fas fa-envelope me-2"></i>Email Address</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-outline input-group">
-                                    <input :type="hidePswd ? 'password' : 'text'" class="form-control" id="password" v-model="passwordRegistration" autocomplete="new-password" />
-                                    <label class="form-label" for="password"><i class="fas fa-key me-2"></i>Password</label>
-                                    <button class="btn btn-outline-primary border-start-0" type="button" @click="hidePassword()">
-                                        <i :class="hidePswd ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                                    <input :type="hidePswd ? 'password' : 'text'" class="form-control bg-transparent text-white" id="password" v-model="passwordRegistration" autocomplete="new-password" />
+                                    <label class="form-label text-muted" for="password"><i class="fas fa-key me-2"></i>Password</label>
+                                    <button class="btn btn-outline-secondary border-secondary border-opacity-25" type="button" @click="hidePassword()">
+                                        <i :class="hidePswd ? 'fas fa-eye-slash text-muted' : 'fas fa-eye text-muted'"></i>
                                     </button>
                                 </div>
                             </div>
                             
                             <div class="col-12 col-sm-6">
                                 <label class="form-label small fw-bold text-muted mb-1">Gender</label>
-                                <select class="form-select border-2 rounded-3" v-model="gender">
+                                <select class="form-select border-secondary border-opacity-25 rounded-3" v-model="gender">
                                     <option value="MALE">Male</option>
                                     <option value="FEMALE">Female</option>
                                     <option value="OTHER">Other</option>
@@ -89,47 +85,36 @@
 
                             <div class="col-12 col-sm-6" v-if="gender == 'OTHER'">
                                 <label class="form-label small fw-bold text-muted mb-1">Specify Gender</label>
-                                <input type="text" class="form-control border-2 rounded-3" v-model="genderOther" />
+                                <input type="text" class="form-control border-secondary border-opacity-25 rounded-3" v-model="genderOther" />
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label small fw-bold text-muted mb-2 d-block text-center">Choose your avatar</label>
                                 <div class="d-flex align-items-center justify-content-center gap-3">
                                     <div class="dropdown">
-                                        <button class="btn btn-outline-primary dropdown-toggle rounded-pill" type="button" data-mdb-toggle="dropdown">
+                                        <button class="btn btn-outline-secondary border-secondary border-opacity-25 dropdown-toggle rounded-pill text-white" type="button" data-mdb-toggle="dropdown">
                                             Select Avatar
                                         </button>
-                                        <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2" style="min-width: 250px;">
+                                        <ul class="dropdown-menu dropdown-menu-dark border-secondary border-opacity-25 shadow-lg rounded-4 p-2" style="min-width: 250px;">
                                             <div class="d-flex flex-wrap justify-content-center gap-2">
-                                                <img src="./img/avatar/cuentaMujer.png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('cuentaMujer')">
-                                                <img src="./img/avatar/bandera-arcoiris.png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('bandera-arcoiris')">
-                                                <img src="./img/avatar/cuentaHombre.png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('cuentaHombre')">
-                                                <img src="./img/avatar/lgbt(1).png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('lgbt(1)')">
-                                                <img src="./img/avatar/lgbt.png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('lgbt')">
-                                                <img src="./img/avatar/love.png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('love')">
-                                                <img src="./img/avatar/meeting.png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('meeting')">
-                                                <img src="./img/avatar/no-Bin.png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('no-bin')">
-                                                <img src="./img/avatar/non-binary(1).png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('non-binary(1)')">
-                                                <img src="./img/avatar/personas(1).png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('personas(1)')">
-                                                <img src="./img/avatar/non-binary.png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('non-binary')">
-                                                <img src="./img/avatar/personas.png" class="avatar-option p-1 rounded-circle border" style="width: 45px; cursor: pointer;" @click="avatar('personas')">
+                                                <img v-for="a in ['cuentaMujer', 'bandera-arcoiris', 'cuentaHombre', 'lgbt(1)', 'lgbt', 'love', 'meeting', 'no-bin', 'non-binary(1)', 'personas(1)', 'non-binary', 'personas']" :src="'./img/avatar/' + a + '.png'" class="avatar-option p-1 rounded-circle border border-secondary border-opacity-25 bg-dark" style="width: 45px; cursor: pointer;" @click="avatar(a)">
                                             </div>
                                         </ul>
                                     </div>
                                     <div class="avatar-preview">
-                                        <img :src="'./img/avatar/' + avatarName + '.png'" class="rounded-circle shadow-sm border border-primary p-1" style="width: 60px; height: 60px;">
+                                        <img :src="'./img/avatar/' + avatarName + '.png'" class="rounded-circle shadow-lg border border-primary p-1 bg-dark" style="width: 60px; height: 60px;">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mt-4 text-center">
-                            <button type="button" class="btn btn-primary w-100 rounded-pill py-3 fw-bold shadow-sm" @click="registration()">
+                            <button type="button" class="btn btn-primary w-100 rounded-pill py-3 fw-bold shadow-lg" @click="registration()">
                                 CREATE ACCOUNT <i class="fas fa-user-plus ms-1"></i>
                             </button>
                             <div class="mt-3">
                                 <span class="small text-muted">Already have an account?</span>
-                                <a href="./Index.html" class="small fw-bold text-primary text-decoration-none ms-1">Sign in here</a>
+                                <a href="./Index.html" class="small fw-bold neon-text text-decoration-none ms-1">Sign in here</a>
                             </div>
                         </div>
                     </div>
@@ -138,26 +123,23 @@
         </main>
 
         <!-- Footer -->
-        <footer class="bg-dark text-white py-5 mt-auto">
+        <footer class="footerSize py-5 mt-auto">
             <div class="container">
                 <div class="row g-4 align-items-center">
                     <div class="col-12 col-md-4 text-center text-md-start">
-                        <h5 class="fw-bold mb-3">Mindhub Brothers Bank</h5>
-                        <p class="small text-muted mb-3">Your trusted financial partner.</p>
+                        <h5 class="fw-bold mb-3 neon-text">Mindhub Brothers Bank</h5>
                         <div class="d-flex justify-content-center justify-content-md-start gap-3">
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-linkedin fa-lg"></i></a>
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-facebook fa-lg"></i></a>
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-whatsapp fa-lg"></i></a>
+                            <a href="#" class="text-muted"><i class="fab fa-linkedin fa-lg"></i></a>
+                            <a href="#" class="text-muted"><i class="fab fa-instagram fa-lg"></i></a>
+                            <a href="#" class="text-muted"><i class="fab fa-twitter fa-lg"></i></a>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 text-center">
-                        <h6 class="mb-2 small">Need help?</h6>
-                        <a href="tel:08006660171" class="h5 text-primary fw-bold text-decoration-none">0-800-666-0171</a>
+                    <div class="col-12 col-md-4 text-center border-start border-end border-secondary border-opacity-25">
+                        <h6 class="mb-2 small text-muted">Customer Support</h6>
+                        <a href="tel:08006660171" class="h5 neon-text fw-bold text-decoration-none">0-800-666-0171</a>
                     </div>
                     <div class="col-12 col-md-4 text-center text-md-end">
-                        <p class="m-0 small text-muted">© 2023 Mindhub Brothers Bank SA.</p>
-                        <p class="m-0 small text-muted">All rights reserved. Member FDIC.</p>
+                        <p class="m-0 small text-muted">© 2026 Mindhub Brothers Bank SA.</p>
                     </div>
                 </div>
             </div>
@@ -165,22 +147,22 @@
 
         <!-- Toasts -->
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="toastRegistration" class="toast border-0 shadow-lg rounded-4" role="alert" aria-live="assertive" aria-atomic="true">
+            <div id="toastRegistration" class="toast glass-card border-0 shadow-lg rounded-4" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header bg-success text-white rounded-top-4">
                     <i class="fas fa-check-circle me-2"></i>
                     <strong class="me-auto">Welcome!</strong>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
                 </div>
                 <div class="toast-body">
                     Your registration is complete, redirecting...
                 </div>
             </div>
 
-            <div id="wrongDataToast" class="toast border-0 shadow-lg rounded-4" role="alert" aria-live="assertive" aria-atomic="true">
+            <div id="wrongDataToast" class="toast glass-card border-0 shadow-lg rounded-4" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header bg-danger text-white rounded-top-4">
                     <i class="fas fa-exclamation-circle me-2"></i>
-                    <strong class="me-auto">Alert</strong>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                    <strong class="me-auto">Registration Error</strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
                 </div>
                 <div class="toast-body">
                     <span id="errorMsg"></span>
@@ -190,9 +172,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
     <script src="./registration.js"></script>

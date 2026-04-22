@@ -11,30 +11,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="./style.css">
     <title>Mindhub B. Bank | Cryptocurrencies</title>
 </head>
 
-<body class="bg-light">
+<body class="bg-main">
     <div id="app" class="d-flex flex-column min-vh-100">
         <!-- Responsive Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
+        <nav class="navbar navbar-expand-xl navbar-dark headerColor shadow-lg sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center gap-2" href="./accounts.html">
-                    <img src="./img/logoCentro2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-                    <span class="fw-bold">Mindhub Brothers Bank</span>
+                    <img src="./img/logoCentro2.png" alt="Logo" width="30" height="30" class="logoCentro">
+                    <span class="fw-bold neon-text">Mindhub Brothers Bank</span>
                 </a>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -44,8 +38,8 @@
                         <li class="nav-item"><a class="nav-link" href="./pay.html">Pay</a></li>
                         <li class="nav-item"><a class="nav-link" href="./loan-application.html">Loan</a></li>
                         <li class="nav-item"><a class="nav-link active" href="./criptocurrencies.html">Crypto</a></li>
-                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0 w-100 w-lg-auto text-center">
-                            <button @click="logOut()" class="btn btn-outline-light btn-sm rounded-pill px-4 py-2 w-100">
+                        <li class="nav-item ms-xl-3 mt-2 mt-xl-0 w-100 w-xl-auto text-center">
+                            <button @click="logOut()" class="btn btn-outline-primary btn-sm rounded-pill px-4 py-2 w-100">
                                 <i class="fas fa-sign-out-alt me-1"></i> Log out
                             </button>
                         </li>
@@ -57,21 +51,21 @@
         <main class="container py-4 flex-grow-1">
             <div class="row g-4">
                 <div class="col-12">
-                    <div class="card shadow-sm border-0 rounded-4 p-4 bg-white animate__animated animate__fadeIn">
-                        <h4 class="fw-bold text-center text-primary mb-4">Cryptocurrency Market</h4>
+                    <div class="card shadow-lg border-0 rounded-4 p-4 animate__animated animate__fadeIn">
+                        <h4 class="fw-bold text-center neon-text mb-4">Cryptocurrency Market</h4>
                         <div class="row g-4">
                             <div class="col-12 col-xl-4 text-center">
-                                <div class="card border-0 bg-light p-3 h-100 justify-content-center align-items-center">
-                                    <h5 class="h6 fw-bold mb-3">Buy Crypto</h5>
-                                    <div class="w-100" style="max-width: 360px;">
+                                <div class="card border-0 bg-dark p-3 h-100 justify-content-center align-items-center">
+                                    <h5 class="h6 fw-bold mb-3 text-muted">Buy Crypto</h5>
+                                    <div class="w-100 shadow-sm" style="max-width: 360px;">
                                         <iframe src="https://bit2me.com/widget/buy/v2?currency=BTC&amount=100&method=card" style="width:100%;height:530px;border-radius:15px;" frameborder="0"></iframe>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-xl-8">
-                                <div class="card border-0 bg-light p-3 h-100">
-                                    <h5 class="h6 fw-bold mb-3 text-center">Top Cryptocurrencies</h5>
-                                    <div class="ratio ratio-16x9" style="min-height: 530px;">
+                                <div class="card border-0 bg-dark p-3 h-100">
+                                    <h5 class="h6 fw-bold mb-3 text-center text-muted">Top Cryptocurrencies</h5>
+                                    <div class="ratio ratio-16x9 shadow-sm" style="min-height: 530px;">
                                         <iframe src="https://es.widgets.investing.com/top-cryptocurrencies?theme=darkTheme" width="100%" height="100%" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0" style="border-radius:15px;"></iframe>
                                     </div>
                                 </div>
@@ -83,26 +77,24 @@
         </main>
 
         <!-- Footer -->
-        <footer class="bg-dark text-white py-5 mt-auto">
+        <footer class="footerSize py-5 mt-auto">
             <div class="container">
                 <div class="row g-4 align-items-center">
                     <div class="col-12 col-md-4 text-center text-md-start">
-                        <h5 class="fw-bold mb-3">Mindhub Brothers Bank</h5>
-                        <p class="small text-muted mb-3">Your trusted financial partner.</p>
+                        <h5 class="fw-bold mb-3 neon-text">Mindhub Brothers Bank</h5>
                         <div class="d-flex justify-content-center justify-content-md-start gap-3">
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-linkedin fa-lg"></i></a>
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-facebook fa-lg"></i></a>
-                            <a href="#" class="text-white opacity-75"><i class="fab fa-whatsapp fa-lg"></i></a>
+                            <a href="#" class="text-muted"><i class="fab fa-linkedin fa-lg"></i></a>
+                            <a href="#" class="text-muted"><i class="fab fa-instagram fa-lg"></i></a>
+                            <a href="#" class="text-muted"><i class="fab fa-twitter fa-lg"></i></a>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 text-center">
-                        <h6 class="mb-2 small">Need help?</h6>
-                        <a href="tel:08006660171" class="h5 text-primary fw-bold text-decoration-none">0-800-666-0171</a>
+                    <div class="col-12 col-md-4 text-center border-start border-end border-secondary border-opacity-25">
+                        <h6 class="mb-2 small text-muted">Customer Support</h6>
+                        <a href="tel:08006660171" class="h5 neon-text fw-bold text-decoration-none">0-800-666-0171</a>
                     </div>
                     <div class="col-12 col-md-4 text-center text-md-end">
-                        <p class="m-0 small text-muted">© 2023 Mindhub Brothers Bank SA.</p>
-                        <p class="m-0 small text-muted">All rights reserved. Member FDIC.</p>
+                        <p class="m-0 small text-muted">© 2026 Mindhub Brothers Bank SA.</p>
+                        <p class="m-0 extra-small text-muted opacity-50">Member FDIC.</p>
                     </div>
                 </div>
             </div>
@@ -110,9 +102,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
     <script src="./accounts.js"></script>
