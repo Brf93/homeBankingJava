@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
 
 :root {
     --bg-main: #0f172a;
@@ -11,229 +11,96 @@
     --border-color: rgba(255, 255, 255, 0.1);
 }
 
-* {
-    font-family: 'Quicksand', sans-serif;
-}
+* { font-family: 'Quicksand', sans-serif; box-sizing: border-box; }
+body { background-color: var(--bg-main) !important; color: var(--text-primary) !important; margin: 0; }
 
-body {
-    background-color: var(--bg-main) !important;
-    color: var(--text-primary) !important;
-}
+/* --- NAV BAR --- */
+.navbar-nav .nav-link { white-space: nowrap !important; padding: 0.5rem 1.2rem !important; color: var(--text-muted) !important; }
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: var(--accent-primary) !important; }
+.active { border-bottom: 2px solid var(--accent-primary) !important; }
+.headerColor { background-color: var(--bg-darker) !important; border-bottom: 1px solid var(--border-color); }
 
-/* Typography Overrides */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--text-primary);
-}
+/* --- BUTTONS --- */
+.btn-primary, .btn-success { background-color: var(--accent-primary) !important; border-color: var(--accent-primary) !important; color: #020617 !important; font-weight: 700 !important; }
+.btn-primary:hover { background-color: #15d197 !important; transform: translateY(-1px); box-shadow: 0 5px 15px var(--accent-glow) !important; }
 
-.text-muted {
-    color: var(--text-muted) !important;
-}
-
-/* Backgrounds & Cards */
-.bg-primary {
-    background-color: var(--accent-primary) !important;
-}
-
-.bg-dark {
-    background-color: var(--bg-darker) !important;
-}
-
-.bg-light, .bg-white {
-    background-color: var(--bg-surface) !important;
-    color: var(--text-primary) !important;
-}
-
-.card {
-    background-color: var(--bg-surface) !important;
-    border: 1px solid var(--border-color) !important;
-    color: var(--text-primary) !important;
-}
-
-.card-dark {
-    background-color: var(--bg-darker) !important;
-}
-
-/* Navbar */
-.headerColor {
-    background-color: var(--bg-darker) !important;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.navbar-dark .navbar-nav .nav-link {
-    color: var(--text-muted) !important;
-}
-
-.navbar-dark .navbar-nav .nav-link:hover {
-    color: var(--accent-primary) !important;
-}
-
-.active {
-    color: var(--accent-primary) !important;
-    font-weight: 700 !important;
-    border-bottom: 2px solid var(--accent-primary);
-}
-
-/* Buttons */
-.btn-primary {
-    background-color: var(--accent-primary) !important;
-    border-color: var(--accent-primary) !important;
-    color: var(--bg-darker) !important;
-    font-weight: 600 !important;
-    transition: all 0.3s ease !important;
-}
-
-.btn-primary:hover {
-    box-shadow: 0 0 15px var(--accent-glow) !important;
-    transform: translateY(-1px);
-}
-
-.btn-outline-primary {
-    color: var(--accent-primary) !important;
-    border-color: var(--accent-primary) !important;
-}
-
-.btn-outline-primary:hover {
-    background-color: var(--accent-primary) !important;
-    color: var(--bg-darker) !important;
-}
-
-/* Inputs */
-.form-control, .form-select {
-    background-color: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid var(--border-color) !important;
-    color: var(--text-primary) !important;
-}
-
-.form-control:focus, .form-select:focus {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    border-color: var(--accent-primary) !important;
-    box-shadow: 0 0 0 0.25rem var(--accent-glow) !important;
-}
-
-/* Tables */
-.table {
-    color: var(--text-primary) !important;
-}
-
-.table-dark {
-    --bs-table-bg: var(--bg-surface) !important;
-}
-
-/* Glassmorphism */
-.glass-card {
-    background: rgba(30, 41, 59, 0.7) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Landing Page Specifics */
-.hero-section {
-    position: relative;
-    overflow: hidden;
-    background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent),
-                radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.1), transparent);
-}
-
-.neon-text {
-    color: var(--accent-primary);
-    text-shadow: 0 0 10px var(--accent-glow);
-}
-
-/* Existing Custom Classes Adjustments */
-.footerSize {
-    background-color: var(--bg-darker) !important;
-    border-top: 1px solid var(--border-color);
-}
-
-.logoCentro {
-    filter: brightness(0) invert(1);
-    width: 50px !important;
-}
-
-.clientIcon {
-    border: 2px solid var(--accent-primary);
-    border-radius: 50%;
-    padding: 2px;
-}
-
-/* Cards (Bank Cards) - Keeping their distinct look but refining shadows */
-.SILVER, .GOLD, .TITANIUM {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4) !important;
-}
-
-.cardContainerHeight {
+/* --- REALISTIC 3D CARD --- */
+.card-scene {
+    width: 380px; height: 230px;
     perspective: 1000px;
+    margin: 20px auto;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: var(--bg-darker);
-}
-::-webkit-scrollbar-thumb {
-    background: var(--bg-surface);
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-primary);
+.bank-card {
+    width: 100%; height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 18px;
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
-/* Custom Overrides from previous style */
-.textoSpan span {
-    font-size: 9px !important;
-}
-.textoP p{
-    font-size: 10px;
-}
-.divJson {
-    height: 300px !important;
-}
-.editButton {
-    font-size: 10px;
-    font-weight: bold !important;
-    border-style: none;
-}
-.imgBtn {
-    width: 10px;
-    height: 10px;
-}
-.sizeBtn {
-    width: 70px;
-}
-.tableWidth {
-    max-width: 100vw;
-}
-.active {
-    border-bottom: 2px solid var(--accent-primary) !important;
-}
-.btnTransactions {
-    background-color: var(--bg-surface) !important;
-    color: var(--text-primary) !important;
-    border: 1px solid var(--border-color) !important;
-}
-.btnTransactions:hover {
-    background-color: var(--accent-primary) !important;
-    color: var(--bg-darker) !important;
+.card-scene:hover .bank-card {
+    transform: rotateY(10deg) rotateX(5deg) translateY(-10px);
 }
 
-/* Login specific */
-#loginTarjeta {
-    border-radius: 20px !important;
+/* Card Layers */
+.card-face {
+    position: absolute;
+    width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(255,255,255,0.15);
+    overflow: hidden;
 }
 
-.typewriter h3 {
-    border-right: .15em solid var(--accent-primary) !important;
+.card-face::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+    pointer-events: none;
 }
 
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: var(--accent-primary); }
+/* Metal Textures */
+.SILVER { background: linear-gradient(135deg, #757f9a 0%, #d7dde8 100%) !important; color: #fff; }
+.GOLD { 
+    background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 70%, #aa771c 100%) !important; 
+    color: #1a1a1a !important; 
+}
+.TITANIUM { background: linear-gradient(135deg, #232526 0%, #414345 100%) !important; color: #fff; }
+
+/* Card Content Elements */
+.card-chip {
+    width: 50px; height: 38px;
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+    border-radius: 7px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
 }
 
-.textAlignMetals {
-    text-align: justify !important;
-    color: var(--text-muted);
+.card-number-text {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    margin: 15px 0;
+    z-index: 5;
+}
+
+.card-label { font-size: 0.6rem; text-transform: uppercase; opacity: 0.8; margin-bottom: 2px; }
+.card-value { font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; }
+
+/* Contactless Icon */
+.card-wifi { position: absolute; top: 30px; right: 30px; font-size: 1.4rem; opacity: 0.6; transform: rotate(90deg); }
+
+/* --- UTILITIES --- */
+.glass-card { background: rgba(30, 41, 59, 0.7) !important; backdrop-filter: blur(10px); border: 1px solid var(--border-color); }
+.neon-text { color: var(--accent-primary) !important; text-shadow: 0 0 10px var(--accent-glow); }
+.footerSize { background-color: var(--bg-darker); border-top: 1px solid var(--border-color); }
+
+@media (max-width: 576px) {
+    .card-scene { width: 320px; height: 194px; }
+    .card-number-text { font-size: 1.2rem; }
 }

@@ -75,8 +75,7 @@ const app = createApp({
             setTimeout(()=>{ window.location = ("/web/account.html");}, 500);
           },
           logOut(){
-            axios.post('/api/logout').then(response => console.log('signed out!!!'))
-            setTimeout(()=>{ window.location = ("/web/Index.html");}, 300);  
+            axios.post('/api/logout').then(response => setTimeout(()=>{ window.location.href = "Index.html";}, 300))
           },
           menuUp(){
           //  console.log("menu")

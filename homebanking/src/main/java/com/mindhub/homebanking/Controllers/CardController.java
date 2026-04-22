@@ -54,8 +54,8 @@ public class CardController {
                                     Card card = new Card(currentClient.getFirstName() + " " + currentClient.getLastName(),cardType,cardColor, Utilities.getRandomNumber(1000, 9999)
                                             + " " + Utilities.getRandomNumber(1000, 9999) + " " + Utilities.getRandomNumber(1000, 9999) + " " + Utilities.getRandomNumber(1000, 9999),
                                             Utilities.getRandomNumber(100, 999), LocalDate.now().plus(5, ChronoUnit.YEARS), LocalDate.now(),true);
+                                    card.setClient(currentClient);
                                     clientAccount.addCard(card);
-                                    // currentClient.addCard(card);
                                     cardService.saveCards(card);
                                 }
                     }

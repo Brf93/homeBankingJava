@@ -6,21 +6,22 @@ const app = createApp({
           results : '',
           clients : [],
           accounts : [],
+          clientAccounts: [],
           account : '',
           accountId : '',
-          card : '',
+          card : [],
           silverClass : false,
           goldClass : false,
           titaniumClass : false,
           category : '',
           cardType : '',
-          debitCount : '',
-          creditCount : '',
+          debitCount : 0,
+          creditCount : 0,
           fecha: new Date(),
           fechaFormateada: '',
           cardDate: '',
-          expiredCards : '',
-          nonExpireCards : '',
+          expiredCards : [],
+          nonExpireCards : 0,
           dollarUSLocale : ''
         }
       },
@@ -31,54 +32,54 @@ const app = createApp({
         getClients(){
           axios.get('/api/clients/current')
           .then((result) => {
-              this.results = result.data; 
-              console.log(this.results)
-              this.clients = this.results
-              console.log(this.clients.account[0]);
-              this.clientAccounts = (this.clients.account.map(e => e.card).filter(e => e.length >0));
-              console.log(this.clientAccounts[0]);
-              this.cardDate = this.clientAccounts[0].map(card => card.thruDate)
-              console.log(this.cardDate);
-              this.fechaFormateada = this.fecha.toISOString().slice(0, 10)
-              this.nonExpireCards = this.cardDate.filter( date => date > this.fechaFormateada)
-              this.nonExpireCards = this.clientAccounts[0].length - this.expiredCards.length
-              this.creditCount = this.clientAccounts[0].filter(cardType => cardType.cardType == "CREDIT").filter(date => date.thruDate > this.fechaFormateada)
-              console.log(this.nonExpireCards.length)
-              this.debitCount = this.clientAccounts[0].filter(cardType => cardType.cardType == "DEBIT").filter(date => date.thruDate > this.fechaFormateada)
-              console.log(this.category)
-              console.log(this.debitCount)
-              console.log(this.accountId);
-              })
+              this.clients = result.data;
+              this.fechaFormateada = this.fecha.toISOString().slice(0, 10);
+              
+              // Obtener tarjetas directamente del cliente
+              this.clientAccounts = this.clients.card || [];
+              this.card = this.clientAccounts;
+              
+              // Filtrar tarjetas no expiradas
+              let validCards = this.card.filter(c => c.thruDate >= this.fechaFormateada);
+              
+              this.creditCount = validCards.filter(c => c.cardType == "CREDIT").length;
+              this.debitCount = validCards.filter(c => c.cardType == "DEBIT").length;
+              this.nonExpireCards = validCards.length;
+              
+              console.log("Estado de tarjetas:", {
+                total: this.card.length,
+                validas: this.nonExpireCards,
+                credit: this.creditCount,
+                debit: this.debitCount
+              });
+          })
           .catch(error => {console.log(error);})
-          },
+        },
         createCard(){
+            if(!this.cardType || !this.category || !this.accountId) {
+              alert("Please complete all fields");
+              return;
+            }
+            
             axios.post('/api/clients/current/cards',`cardType=${this.cardType}&cardColor=${this.category}&id=${this.accountId}`)
             .then(() => {
               let toast = new bootstrap.Toast(liveToast)
               toast.show()
-              console.log(this.accountId)
               setTimeout(()=>{ window.location = ("/web/cards.html") ;}, 2000)
             })
             .catch(function (error) {
               if (error.response) {
                 alert(error.response.data);
-                location.reload()
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-              } else if (error.request) {
-                console.log(error.request);
               } else {
                 console.log('Error', error.message);
               }
-              console.log("Hola");
             }); 
-          },
-          logOut(){
-            axios.post('/api/logout').then(response => console.log('signed out!!!'))
-            setTimeout(()=>{ window.location = ("/web/Index.html");}, 300);  
-          }
         },
+        logOut(){
+            axios.post('/api/logout').then(response => {
+              window.location.href = "Index.html";
+            })
+        }
+      }
 })
 app.mount("#app");
-

@@ -19,9 +19,9 @@ public class Card {
     private int cvv;
     private LocalDate thruDate,fromDate;
     private boolean isEnabled;
-    /*@ManyToOne(fetch = EAGER)
+    @ManyToOne(fetch = EAGER)
     @JoinColumn(name="client_id")
-    private Client client;*/
+    private Client client;
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name="account_id")
     private Account account;
@@ -67,7 +67,7 @@ public class Card {
         return fromDate;
     }
     public boolean isEnabled() {return isEnabled;}
-   /* public Client getClient() {return client;}*/
+    public Client getClient() {return client;}
 
     public Account getAccount() {
         return account;
@@ -103,9 +103,9 @@ public class Card {
         this.fromDate = fromDate;
     }
 
-   /* public void setClient(Client client) {
+    public void setClient(Client client) {
         this.client = client;
-    }*/
+    }
     public void setAccount(Account account)
     {
         this.account = account;

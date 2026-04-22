@@ -36,7 +36,7 @@ const app = createApp({
                         let toast = new bootstrap.Toast(toastRegistration)
                         toast.show()
                         setTimeout(()=>{ 
-                        window.location = ("/web/Index.html");}, 2500)
+                        window.location.href = "Index.html";}, 2500)
                     })
                     .catch(function (error) {
                             if (error.response) {

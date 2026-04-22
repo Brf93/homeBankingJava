@@ -41,7 +41,7 @@ const app = createApp({
             .catch(error => {console.log(error);})
             },
             logOut(){
-              axios.post('/api/logout').then(response => setTimeout(()=>{ window.location = ("web/Index.html");}, 200))
+              axios.post('/api/logout').then(response => setTimeout(()=>{ window.location.href = "Index.html";}, 200))
                 
             },
             menuUp(){

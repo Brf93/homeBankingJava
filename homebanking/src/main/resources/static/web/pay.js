@@ -30,12 +30,9 @@ const app = createApp({
           monthlyPayment : 1,
           interest : '',
           totalPayment : '',
-          formattedAmount : '',
           loanID : '',
           clientAccountsCards : '',
           accountsComplete : '',
-          payWithCardAccount: '',
-          selectedCardSpan : '',
           dollarUSLocale : '',
           descriptionInput : ''
         }
@@ -76,19 +73,12 @@ const app = createApp({
                 console.log(this.loanResult)
                 this.payments = this.loanResult.map(item => item.payments)
                 console.log(this.payments)
-                // this.monthlyPayment = this.amountInput / this.chosedPayment
-                // let dollarUSLocale = Intl.NumberFormat("en-US",
-                // {
-                //   style: "currency",
-                //   currency: "USD",
-                // });
-                // this.loanAmount = dollarUSLocale.format());
                 })
             .catch(error => {console.log(error);})
 
             },
             logOut(){
-              axios.post('/api/logout').then(response => setTimeout(()=>{ window.location = ("/web/Index.html");}, 200))
+              axios.post('/api/logout').then(response => setTimeout(()=>{ window.location.href = "Index.html";}, 200))
                 
             },
             menuUp(){
@@ -140,30 +130,21 @@ const app = createApp({
   },
     computed : 
     {
-            paymentsFilter(){
-                console.log(this.cardNumber);
-                this.payWithCardAccount = this.accountNumber.card
-                this.selectedCardSpan = this.cardNumber.number
-                console.log(this.payWithCardAccount);
-                
-                if(this.accountNumber.number != this.cardNumber.account)
-                    {
-                        this.selectedCardSpan = ''
-                    }
-                //this.filteredLoan = this.loanResult.filter(loan => loan.name == this.loanName).map(payment => payment.payments)
-                //this.maxAmountLoan = this.loanResult.filter(loan => loan.name == this.loanName).map(payment => payment.maxAmount)
-                //this.loanID = this.loanResult.filter(loan => loan.name == this.loanName).map(id => id.id)
-               // console.log(this.loanID[0])
-                //console.log(this.loanName)
-                //console.log(this.clientLoans.map(item => item.loanName).includes(item2 => item2.loanName === this.loanName)) VERR
-                //this.maxAmountHolder = dollarUSLocale.format(this.maxAmountLoan);
-                console.log(this.filteredLoan)                
-                this.monthlyPayment = this.dollarUSLocale.format((this.amountInput*this.interest) / this.dividePayment);
-                this.totalPayment = this.dollarUSLocale.format(this.amountInput);
-                this.formattedAmount = this.dollarUSLocale.format(this.amountInput);
-                //this.monthlyPayment = parseInt()
-                //this.totalPayment = parseInt(this.amountInput*this.interest)
+            payWithCardAccount() {
+                return this.accountNumber ? this.accountNumber.card : [];
+            },
+            selectedCardSpan() {
+                return this.cardNumber ? this.cardNumber.number : '';
+            },
+            formattedAmount() {
+                if (!this.amountInput || !this.dollarUSLocale) return this.dollarUSLocale ? this.dollarUSLocale.format(0) : '$0.00';
+                return this.dollarUSLocale.format(this.amountInput);
             }
+    },
+    watch: {
+        accountNumber(newVal) {
+            this.cardNumber = '';
+        }
     }
 })
 app.mount("#app");

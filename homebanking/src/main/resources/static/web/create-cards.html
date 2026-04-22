@@ -21,7 +21,7 @@
 <body class="bg-main">
     <div id="app" class="d-flex flex-column min-vh-100">
         <!-- Responsive Navbar -->
-        <nav class="navbar navbar-expand-xl navbar-dark headerColor shadow-lg sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark headerColor shadow-lg sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center gap-2" href="./accounts.html">
                     <img src="./img/logoCentro2.png" alt="Logo" width="30" height="30" class="logoCentro">
@@ -51,7 +51,7 @@
             <div class="row g-4 justify-content-center">
                 <!-- Promo Section -->
                 <div class="col-12 col-lg-7">
-                    <div class="card shadow-lg border-0 rounded-4 p-4 h-100 animate__animated animate__fadeIn">
+                    <div class="glass-card border-0 rounded-4 p-4 h-100 animate__animated animate__fadeIn">
                         <h4 class="fw-bold text-center neon-text mb-4">ONE CARD, LOTS OF POSSIBILITIES</h4>
                         <div class="row g-3 mb-4">
                             <div class="col-6">
@@ -63,14 +63,14 @@
                         </div>
                         <div class="row g-3">
                             <div class="col-12 col-md-6 text-center">
-                                <div class="p-3 bg-dark rounded-4 h-100">
+                                <div class="p-3 bg-dark rounded-4 h-100 text-white">
                                     <i class="bi bi-percent fs-1 neon-text mb-2 d-block"></i>
                                     <h5 class="h6 fw-bold">Discounts in one payment</h5>
                                     <p class="small text-muted m-0">Exclusive benefits at your favorite stores.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 text-center">
-                                <div class="p-3 bg-dark rounded-4 h-100">
+                                <div class="p-3 bg-dark rounded-4 h-100 text-white">
                                     <i class="bi bi-cash-coin fs-1 neon-text mb-2 d-block"></i>
                                     <h5 class="h6 fw-bold">Cashback up to 8%</h5>
                                     <p class="small text-muted m-0">We return a percentage of your purchases.</p>
@@ -82,27 +82,27 @@
 
                 <!-- Create Card Form -->
                 <div class="col-12 col-lg-5">
-                    <div class="card shadow-lg border-0 rounded-4 p-4 h-100 animate__animated animate__fadeIn">
-                        <h4 class="fw-bold text-center mb-4">CREATE A NEW CARD</h4>
+                    <div class="glass-card border-0 rounded-4 p-4 h-100 animate__animated animate__fadeIn">
+                        <h4 class="fw-bold text-center mb-4 text-white">CREATE A NEW CARD</h4>
                         
                         <div class="mb-4">
                             <label class="form-label small fw-bold text-muted">Associate to Account</label>
-                            <select class="form-select border-2 rounded-3" v-model="accountId">
-                                <option value="" disabled selected>Select an account</option>
-                                <option v-for="account of clients.account" :value="account.id">{{account.number}} (Balance: {{account.balance}})</option>
+                            <select class="form-select bg-dark text-white border-secondary border-opacity-25 rounded-3" v-model="accountId">
+                                <option value="" disabled selected class="bg-dark text-white">Select an account</option>
+                                <option v-for="account of clients.account" :value="account.id" class="bg-dark text-white">{{account.number}} (Balance: {{account.balance}})</option>
                             </select>
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label small fw-bold text-muted d-block mb-2">Card Type</label>
                             <div class="d-flex gap-3">
-                                <div class="form-check border border-secondary p-2 rounded-3 flex-grow-1 px-4">
+                                <div class="form-check border border-secondary p-2 rounded-3 flex-grow-1 px-4 text-white">
                                     <input class="form-check-input" type="radio" name="cardType" id="creditRadio" value="CREDIT" v-model="cardType">
                                     <label class="form-check-label w-100" for="creditRadio">
                                         Credit <i class="far fa-credit-card ms-1"></i>
                                     </label>
                                 </div>
-                                <div class="form-check border border-secondary p-2 rounded-3 flex-grow-1 px-4">
+                                <div class="form-check border border-secondary p-2 rounded-3 flex-grow-1 px-4 text-white">
                                     <input class="form-check-input" type="radio" name="cardType" id="debitRadio" value="DEBIT" v-model="cardType">
                                     <label class="form-check-label w-100" for="debitRadio">
                                         Debit <i class="fas fa-credit-card ms-1"></i>
@@ -113,7 +113,7 @@
 
                         <div class="mb-4">
                             <label class="form-label small fw-bold text-muted d-block mb-2">Color Category</label>
-                            <div class="d-flex flex-column gap-2">
+                            <div class="d-flex flex-column gap-2 text-white">
                                 <div class="form-check border border-secondary p-2 rounded-3 px-4 d-flex align-items-center justify-content-between">
                                     <div>
                                         <input class="form-check-input" type="radio" name="category" id="titaniumRadio" value="TITANIUM" v-model="category">
