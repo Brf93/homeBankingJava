@@ -25,127 +25,95 @@
     <title>Mindhub B. Bank | Cryptocurrencies</title>
 </head>
 
-<body>
-    <div id="app" class="d-flex flex-column">
-        <header class="headerColor p-3 d-flex flex-row justify-content-end align-items-center sticky-top headerMobile">
-            <div class="col d-flex justify-content-start align-items-center gap-3">
-                <img class="logoCentro" src="./img/logoCentro2.png" alt="">
-                <h3 class="m-0"><span class="mindHubBrothers">Mindhub Brothers </span><span class="bank">bank</span>
-                </h3>
-            </div>
-            <div>
-                <button @click="logOut()" class="btn btn-outline-secondary btn-rounded"><span
-                        class="material-symbols-outlined d-flex align-items-center">
-                        output</span></button>
-            </div>
-        </header>
-        <main class="d-flex flex-row gap-3 justify-content-start backgroundMain">
-            <!-- NAV BARS -->
-            <aside class="col-2 p-3 d-flex flex-column mobileXs">
-                <!-- <nav class="navbar navbar-expand-lg navbar-light navAccount rounded d-flex"> -->
-                <nav
-                    class="navbar navAccount rounded d-flex flex-column align-items-start justify-content-start gap-2 p-2 bg-light">
-                    <a class="nav-link" href="./accounts.html">Accounts</a>
-                    <a class="nav-link" href="./cards.html">My cards</a>
-                    <a class="nav-link" href="./pay.html">Pay</a>
-                    <a class="nav-link" href="./loan-application.html">Loan</a>
-                    <a class="nav-link active" href="#">Cryptocurrencies <i class="fas fa-xs fa-certificate"></i></a>
-                    <hr class="hr text-dark"/>
-                    <a class="nav-link" @click="logOut()" style="cursor:pointer;">Log out <i @click="logOut()" class="bi bi-box-arrow-right p-2"></i></a>
-                </nav>
-            </aside>
-            <div class="col shadow-lg p-3 m-3 backgroundAccounts rounded mobileAdjustment d-flex flex-column">
-                <div class=" d-flex flex-column justify-content-between">
-                    <div class="d-flex align-items-center flex-column gap-2 shadow-sm bg-light w-100">
-                        <h4 class="color text-black pt-2 fs-3">Criptocurrencies</h4>
-                    </div>
+<body class="bg-light">
+    <div id="app" class="d-flex flex-column min-vh-100">
+        <!-- Responsive Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="./accounts.html">
+                    <img src="./img/logoCentro2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                    <span class="fw-bold">Mindhub Brothers Bank</span>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item"><a class="nav-link" href="./accounts.html">Accounts</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./cards.html">My cards</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./pay.html">Pay</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./loan-application.html">Loan</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="./criptocurrencies.html">Crypto</a></li>
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0 w-100 w-lg-auto text-center">
+                            <button @click="logOut()" class="btn btn-outline-light btn-sm rounded-pill px-4 py-2 w-100">
+                                <i class="fas fa-sign-out-alt me-1"></i> Log out
+                            </button>
+                        </li>
+                    </ul>
                 </div>
-                <div class="d-flex flex-row p-3 gap-3">
-                    <div>
-                        <iframe src="https://bit2me.com/widget/buy/v2?currency=BTC&amount=100&method=card" style="display:block;width:100%;max-width:360px;height:530px;margin:0 auto;" frameborder="0"></iframe>
-                    </div>
-                    <div class="w-75">
-                        <iframe src="https://es.widgets.investing.com/top-cryptocurrencies?theme=darkTheme" width="100%" height="100%" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0"></iframe><div class="poweredBy" style="font-family: Arial, Helvetica, sans-serif;"></div>
+            </div>
+        </nav>
+
+        <main class="container py-4 flex-grow-1">
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="card shadow-sm border-0 rounded-4 p-4 bg-white animate__animated animate__fadeIn">
+                        <h4 class="fw-bold text-center text-primary mb-4">Cryptocurrency Market</h4>
+                        <div class="row g-4">
+                            <div class="col-12 col-xl-4 text-center">
+                                <div class="card border-0 bg-light p-3 h-100 justify-content-center align-items-center">
+                                    <h5 class="h6 fw-bold mb-3">Buy Crypto</h5>
+                                    <div class="w-100" style="max-width: 360px;">
+                                        <iframe src="https://bit2me.com/widget/buy/v2?currency=BTC&amount=100&method=card" style="width:100%;height:530px;border-radius:15px;" frameborder="0"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-8">
+                                <div class="card border-0 bg-light p-3 h-100">
+                                    <h5 class="h6 fw-bold mb-3 text-center">Top Cryptocurrencies</h5>
+                                    <div class="ratio ratio-16x9" style="min-height: 530px;">
+                                        <iframe src="https://es.widgets.investing.com/top-cryptocurrencies?theme=darkTheme" width="100%" height="100%" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0" style="border-radius:15px;"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
-        <footer class="footerSize d-flex align-items-center justify-content-around footerMobile gap-2">
-            <div class="d-flex flex-column justify-content-center align-items-center p-1 needHelp">
-                <h6 class="text-center mb-3">Need help?</h6>
-                <a href="tel:0-800-666-0171" style="color: aliceblue;">0-800-666-0171</a>
-            </div>
-            <div>
-                <img src="./img/contactanos.png" alt="" style="width: 48px;">
-            </div>
-            <div class="d-flex flex-column justify-content-center align-items-center p-1">
-                <h6 class="text-center">Social media</h6>
-                <div>
-                <a class="p-2" href="https://www.linkedin.com/in/franco-brizzio" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-                <a class="p-2" href="https://instagram.com" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-                <a class="p-2" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
-                <a class="p-2" href="https://api.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp-square fa-2x"></i></a>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-white py-5 mt-auto">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-12 col-md-4 text-center text-md-start">
+                        <h5 class="fw-bold mb-3">Mindhub Brothers Bank</h5>
+                        <p class="small text-muted mb-3">Your trusted financial partner.</p>
+                        <div class="d-flex justify-content-center justify-content-md-start gap-3">
+                            <a href="#" class="text-white opacity-75"><i class="fab fa-linkedin fa-lg"></i></a>
+                            <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
+                            <a href="#" class="text-white opacity-75"><i class="fab fa-facebook fa-lg"></i></a>
+                            <a href="#" class="text-white opacity-75"><i class="fab fa-whatsapp fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 text-center">
+                        <h6 class="mb-2 small">Need help?</h6>
+                        <a href="tel:08006660171" class="h5 text-primary fw-bold text-decoration-none">0-800-666-0171</a>
+                    </div>
+                    <div class="col-12 col-md-4 text-center text-md-end">
+                        <p class="m-0 small text-muted">© 2023 Mindhub Brothers Bank SA.</p>
+                        <p class="m-0 small text-muted">All rights reserved. Member FDIC.</p>
+                    </div>
                 </div>
             </div>
-                <div class="d-flex gap-3 p-1 justify-content-center align-items-center">
-                    <p class="m-0">Cohort 37-38</p>
-                </div>
-                <div class="d-flex flex-column infoSize gap-3 justify-content-evenly align-items-center footerInfo">
-                    <p class="m-0">Mindhub Brothers Bank SA, Member FDIC.</p>
-                    <p class="m-0">© 2023 Mindhub Brothers Bank. All rights reserved.</p>
-                </div>
         </footer>
-        <!-- Menu mobile -->
-        <div class="d-flex flex-column align-items-center menuMobile">
-            <div class="text-center menuReferencesUp">
-                <a @click="menuUp()"><span><i
-                            :class=" show? 'fas fa-angle-double-up fa-1x' : 'fas fa-angle-double-down fa-1x'  "></i></span></a>
-            </div>
-            <div class="d-flex gap-1 align-items-center justify-content-center bg-primary w-100">
-                <div class="text-center d-flex flex-column text-light">
-                    <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                        :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Account</span>
-                    <a href="./accounts.html"><button class="btn btn-rounded btn-primary"><span
-                                class="material-symbols-outlined">badge</span></button></a>
-                </div>
-                <div class="text-center d-flex flex-column text-light">
-                    <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                        :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Cards</span>
-                    <a href="./cards.html"><button class="btn btn-rounded btn-primary"><span
-                                class="material-symbols-outlined">credit_card</span></button></a>
-                </div>
-                <div class="text-center d-flex flex-column text-light">
-                    <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                        :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Fixed
-                        terms</span>
-                    <a href="#"><button class="btn btn-rounded btn-primary"><span
-                                class="material-symbols-outlined">savings</span></button></a>
-                </div>
-                <div class="text-center d-flex flex-column text-light">
-                    <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                        :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Loans</span>
-                    <a href="./loan-application.html">
-                        <button class="btn btn-rounded btn-primary"><span
-                                class="material-symbols-outlined">real_estate_agent</span></button>
-                    </a>
-                </div>
-                <div class="text-center d-flex flex-column text-light">
-                    <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                        :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Crypto</span>
-                    <a href="#">
-                        <button class="btn btn-rounded btn-primary"><span
-                                class="material-symbols-outlined">currency_bitcoin</span></button>
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
     <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
     <script src="./accounts.js"></script>
 </body>

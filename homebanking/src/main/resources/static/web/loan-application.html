@@ -12,280 +12,209 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="./style.css">
-    <title>Mindhub B. Bank | Get Loan</title>
+    <title>Mindhub B. Bank | Loan Application</title>
 </head>
-<body>
-  <div id="app" class="d-flex flex-column">
-    <header class="headerColor p-3 d-flex flex-row justify-content-end align-items-center sticky-top">
-      <div class="col d-flex justify-content-start align-items-center gap-3">
-          <img class="logoCentro" src="./img/logoCentro2.png" alt="">
-          <h3 class="m-0">Mindhub Brothers bank</h3>
-      </div>
-      <div>
-        <button @click="logOut()" class="btn btn-outline-secondary btn-rounded"><span
-                class="material-symbols-outlined d-flex align-items-center">
-                output</span></button>
-    </div>
-  </header>
-  <main class="d-flex flex-row alingMobile gap-3 justify-content-start">
-    <aside class="col-2 p-3 d-flex flex-column mobileXs">
-        <!-- <nav class="navbar navbar-expand-lg navbar-light navAccount rounded d-flex"> -->
-        <nav
-            class="navbar navAccount rounded d-flex flex-column align-items-start justify-content-start gap-2 p-2 bg-light">
-            <a class="nav-link" href="./accounts.html">Accounts</a>
-            <a class="nav-link" href="./cards.html">My cards</a>
-            <a class="nav-link" href="./pay.html">Pay</a>
-            <a class="nav-link active" href="#">Loan <i class="fas fa-xs fa-certificate"></i></a>
-            <a class="nav-link text-break" href="./criptocurrencies.html">Cryptocurrencies</a>
-            <hr class="hr text-dark"/>
-            <a class="nav-link" @click="logOut()" style="cursor:pointer;">Log out <i @click="logOut()" class="bi bi-box-arrow-right p-2"></i></a>
-        </nav>
-      </aside>
-      <div class="col col-lg-9 shadow-lg p-2 m-2 backgroundAccounts rounded mobileAdjustment resolution4k">
-        <div class=" d-flex flex-column justify-content-start align-items-center gap-3 bg-light h-100">
-            <div class="d-flex align-items-center flex-column gap-2 shadow-sm bg-light w-100">
-                <h4 class="color text-black pt-2 fs-3">Get a loan</h4>
+<body class="bg-light">
+  <div id="app" class="d-flex flex-column min-vh-100">
+    <!-- Responsive Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="./accounts.html">
+                <img src="./img/logoCentro2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                <span class="fw-bold">Mindhub Brothers Bank</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="./accounts.html">Accounts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./cards.html">My cards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pay.html">Pay</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="./loan-application.html">Loan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./criptocurrencies.html">Crypto</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0 w-100 w-lg-auto text-center">
+                        <button @click="logOut()" class="btn btn-outline-light btn-sm rounded-pill px-4 py-2 w-100">
+                            <i class="fas fa-sign-out-alt me-1"></i> Log out
+                        </button>
+                    </li>
+                </ul>
             </div>
-            <div class="d-flex flex-row flex-column-sm gap-3 pt-3 spanRegistrationSize">
-                <div class="d-flex flex-column flex-row-lg w-100 align-items-lg-center align-items-center justify-content-evenly gap-3">
-                    <div class="w-100 d-flex flex-column gap-5 justify-content-center align-items-center loanOptionTitles">
-                           <div class="d-flex flex-row justify-content-center align-items-center gap-3 w-100">
-                                <div class="w-100">
-                                    <h6>Select destination account:</h6> 
-                                    <div class="pt-2">
-                                        <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = destAccount>
-                                        <option v-for = "account of sortedAccount" :value="account.number">{{account.number}}</option>
-                                        </select>
+        </div>
+    </nav>
+
+    <main class="container py-4 flex-grow-1">
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="card shadow-sm border-0 rounded-4 p-4 bg-white animate__animated animate__fadeIn">
+                    <h4 class="fw-bold text-center text-primary mb-4">REQUEST A LOAN</h4>
+                    
+                    <div class="row g-4">
+                        <!-- Form Section -->
+                        <div class="col-12 col-md-6 border-end-md">
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-muted">Destination Account</label>
+                                <select class="form-select border-2 rounded-3" v-model="destAccount">
+                                    <option value="" disabled selected>Select account</option>
+                                    <option v-for="account of sortedAccount" :value="account.number">{{account.number}} (Bal: {{account.balance}})</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-muted">Loan Type</label>
+                                <select class="form-select border-2 rounded-3" v-model="loanName">
+                                    <option value="" disabled selected>Select loan type</option>
+                                    <option v-for="loan of loanResult" :value="loan.name">{{loan.name}}</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-muted">Number of Payments</label>
+                                <select class="form-select border-2 rounded-3" v-model="chosedPayment">
+                                    <option value="" disabled selected>Select payments</option>
+                                    <option v-for="payment of filteredLoan[0]" :value="payment">{{payment}} installments</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between">
+                                    <label class="form-label small fw-bold text-muted">Amount</label>
+                                    <span class="extra-small text-primary fw-bold" style="cursor: pointer;" @click="maxAmount()">Max: ${{maxAmountLoan}}</span>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-2">$</span>
+                                    <input type="number" class="form-control border-2" v-model="amountInput" :placeholder="'Max: ' + maxAmountLoan">
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-secondary rounded-pill flex-grow-1" @click="cancelTransaction()">Cancel</button>
+                                <button class="btn btn-primary rounded-pill flex-grow-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Apply Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Preview Section -->
+                        <div class="col-12 col-md-6">
+                            <div class="card border-0 bg-light rounded-4 p-4 h-100 shadow-inner">
+                                <h5 class="fw-bold mb-4 text-center">Loan Summary Preview</h5>
+                                <div class="d-flex flex-column gap-3">
+                                    <div class="d-flex justify-content-between border-bottom pb-2">
+                                        <span class="small text-muted">Destination:</span>
+                                        <span class="fw-bold text-dark">{{destAccount || '---'}}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between border-bottom pb-2">
+                                        <span class="small text-muted">Loan Type:</span>
+                                        <span class="fw-bold text-dark">{{loanName || '---'}}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between border-bottom pb-2">
+                                        <span class="small text-muted">Installments:</span>
+                                        <span class="fw-bold text-dark">{{chosedPayment || '---'}}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between border-bottom pb-2">
+                                        <span class="small text-muted">Requested Amount:</span>
+                                        <span class="fw-bold text-dark">{{formattedAmount}}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between border-bottom pb-2">
+                                        <span class="small text-muted">Monthly Payment:</span>
+                                        <span class="fw-bold text-primary">{{monthlyPayment}}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-2 pt-2">
+                                        <span class="fw-bold">TOTAL TO REPAY:</span>
+                                        <span class="fw-bold text-danger h5 m-0">{{totalPayment}}</span>
                                     </div>
                                 </div>
-                                    <span><i class="fas fa-angle-double-right pt-3"></i></span>
-                                <div class="w-100">
-                                <h6>Select a type of loan:</h6>
-                                {{paymentsFilter}}
-                                <div class="pt-2 w-100">
-                                    <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = loanName>
-                                        <option v-for = "loan of loanResult" :value="loan.name">{{loan.name}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                          </div>
-                       <div class="d-flex flex-row gap-3 justify-content-center align-items-center w-100">
-                           <div class="w-100">
-                               <h6>Select number of payments:</h6> 
-                               <div class="pt-2">
-                                   <select class="form-select form-select-sm w-100" aria-label="form-select-sm example" v-model = "chosedPayment">
-                                       <option  v-for = "payment of filteredLoan[0]" :value="payment">{{payment}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                                <span><i class="fas fa-angle-double-right pt-3"></i></span>
-                            <div class="w-100">
-                                <div class="d-flex flex-row justify-content-between">
-                                    <h6>Amount:</h6> <span class="gap-1">Max <i @click="maxAmount()" class="far fa-caret-square-down fa-1x"></i></span>
-                                </div>
-                                <div class="input-group input-group-sm pt-2">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-dollar-sign"></i></span>
-                                    <input type="number" step="1" min = "1" :max="maxAmountLoan" :placeholder="maxAmountLoan" class="form-control rounded" aria-label="Sizing example input" id="amountOrig" aria-describedby="inputGroup-sizing-sm" v-model = "amountInput"/>
-                                    <label class="form-label text-center labelTransaction" for="amountOrig"></label>
-                                </div>
-                            </div>
-                       </div>
-<!-- PREVIEW LOAN -->
-                    </div>
-                        <div class="w-75 ms-3 d-flex flex-column justify-content-around align-items-center spanLoan shadow h-100 p-2">
-                            <div>
-                                <h5>Preview of your loan</h5>
-                            </div>
-                            <div class="d-flex flex-row gap-2 justify-content-around w-100 divLoan">
-                                <div>
-                                    <span>To account:</span>
-                                    <label>{{destAccount}}</label>
-                                </div>
-                                <div>
-                                    <span>Selected loan type:</span>
-                                    <label>{{loanName}}</label>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row gap-2 justify-content-around w-100 divLoan">
-                                <div>
-                                    <span>Selected payments:</span>
-                                    <label>{{chosedPayment}}</label>
-                                </div>
-                                <div>
-                                    <span>Amount:</span>
-                                    <label>{{formattedAmount}}</label>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row gap-2 justify-content-around w-100 divLoan">
-                                <div>
-                                    <span>Monthly to pay:</span>
-                                    <label>{{monthlyPayment}}</label>
-                                </div>
-                                <div>
-                                    <span>Total to pay:</span>
-                                    <label>{{totalPayment}}</label>
+                                <div class="mt-4 p-3 bg-white rounded-3 small text-muted border border-info">
+                                    <i class="fas fa-info-circle text-info me-2"></i>
+                                    Interest and taxes are included in the total amount.
                                 </div>
                             </div>
                         </div>
-                </div>
-            </div>            
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-                <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Loan</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    <h6 class="text-center">You are about to apply for this loan</h6>
-                    <hr class="hr text-light"/>
-                    <div class="d-flex flex-row justify-content-between p-2 round">
-                        <div class="d-flex justify-content-start align-items-start gap-1">
-                            <span>To account: </span>
-                            <span class="fw-bold">{{destAccount}}</span>
-                        </div>
-                        <div class="d-flex justify-content-start gap-1">
-                            <span>Selected loan type: </span>
-                            <span class="fw-bold">{{loanName}}</span>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-between p-2">
-                        <div class="d-flex justify-content-start gap-1">
-                            <span>Selected payments:</span>
-                            <span class="fw-bold">{{chosedPayment}}</span>
-                        </div>
-                        <div class="d-flex justify-content-start gap-1">
-                            <span>Amount:</span>
-                            <span class="fw-bold">{{formattedAmount}}</span>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-between p-2">
-                        <div class="d-flex justify-content-start gap-1">
-                            <span>Monthly to pay:</span>
-                            <span class="fw-bold">{{monthlyPayment}}</span>
-                        </div>
-                        <div class="d-flex justify-content-start gap-1">
-                            <span>Total to pay:</span>
-                            <span class="fw-bold">{{totalPayment}}</span>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
-                    <button type="button" class="btn btn-primary" @click="confirmLoan()" data-bs-dismiss="modal">Yes, i'm sure</button>
                     </div>
                 </div>
-                </div>
-            </div>
-            <div class="gap-3 m-1 p-2" role="group" aria-label="Basic example">
-                <button type="submit" class="m-1 btnConfirmCancel btn btn-outline-primary fs-6 p-1"
-                data-mdb-color="dark" @click = "cancelTransaction()">Cancel <i class="fas fa-times-circle fs-6"
-                :class = "show? 'animate__animated animate__fast animate__flip' : ''"></i></button>
-                <button type="button" class="m-1 btnConfirmCancel btn btn-primary fs-6 p-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Confirm <i class="far fa-check-circle fs-6"
-                :class = "show2? 'animate__animated animate__fast animate__flip' : ''"></i></button>
-            </div>
-          </div>
-        </div>
-        <!-- TOAST -->
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="loanToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-              <div class="toast-header">
-                <img src="./img/cardCreate/smilingFace.png" class="rounded me-2 pe-2" alt="blueCube" style="width: 22px;">
-                <strong class="me-auto">Congratulations!</strong>
-                <small>Now</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-              </div>
-              <div class="toast-body message d-flex align-items-center gap-1">
-                <span>Your money is ready to spend!</span>
-                <img src="./img/dineroLoan.png" style="width: 24px;" alt="">
-              </div>
             </div>
         </div>
     </main>
-    <footer class="footerSize d-flex align-items-center justify-content-around footerMobile gap-2">
-        <div class="d-flex flex-column justify-content-center align-items-center p-1 needHelp">
-            <h6 class="text-center mb-3">Need help?</h6>
-            <a href="tel:0-800-666-0171" style="color: aliceblue;">0-800-666-0171</a>
-        </div>
-        <div>
-            <img src="./img/contactanos.png" alt="" style="width: 48px;">
-        </div>
-        <div class="d-flex flex-column justify-content-center align-items-center p-1">
-            <h6 class="text-center">Social media</h6>
-            <div>
-            <a class="p-2" href="https://www.linkedin.com/in/franco-brizzio" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-            <a class="p-2" href="https://instagram.com" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-            <a class="p-2" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
-            <a class="p-2" href="https://api.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp-square fa-2x"></i></a>
-            </div>
-        </div>
-            <div class="d-flex gap-3 p-1 justify-content-center align-items-center">
-                <p class="m-0">Cohort 37-38</p>
-            </div>
-            <div class="d-flex flex-column infoSize gap-3 justify-content-evenly align-items-center footerInfo">
-                <p class="m-0">Mindhub Brothers Bank SA, Member FDIC.</p>
-                <p class="m-0">© 2023 Mindhub Brothers Bank. All rights reserved.</p>
-            </div>
-    </footer>
-    <!-- MENU MOBILE -->
-    <div class="d-flex flex-column align-items-center menuMobile">
-        <div class="text-center menuReferencesUp">
-            <a @click="menuUp()"><span><i
-                        :class=" show? 'fas fa-angle-double-up fa-1x' : 'fas fa-angle-double-down fa-1x'  "></i></span></a>
-        </div>
-        <div class="d-flex gap-1 align-items-center justify-content-center bg-primary w-100">
-            <div class="text-center d-flex flex-column text-light">
-                <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                    :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Account</span>
-                <a href="./accounts.html"><button class="btn btn-rounded btn-primary"><span
-                            class="material-symbols-outlined">badge</span></button></a>
-            </div>
-            <div class="text-center d-flex flex-column text-light">
-                <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                    :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Cards</span>
-                <a href="./cards.html"><button class="btn btn-rounded btn-primary"><span
-                            class="material-symbols-outlined">credit_card</span></button></a>
-            </div>
-            <div class="text-center d-flex flex-column text-light">
-                <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                    :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Fixed
-                    terms</span>
-                <a href="#"><button class="btn btn-rounded btn-primary"><span
-                            class="material-symbols-outlined">savings</span></button></a>
-            </div>
-            <div class="text-center d-flex flex-column text-light">
-                <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                    :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Loans</span>
-                <a href="#">
-                    <button class="btn btn-rounded btn-primary"><span
-                            class="material-symbols-outlined">real_estate_agent</span></button>
-                </a>
-            </div>
-            <div class="text-center d-flex flex-column text-light">
-                <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                    :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Crypto</span>
-                <a href="./criptocurrencies.html">
-                    <button class="btn btn-rounded btn-primary"><span
-                            class="material-symbols-outlined">currency_bitcoin</span></button>
-                </a>
+
+    <!-- Modal Confirmation -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Confirm Loan Request</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <div class="alert alert-warning border-0 rounded-4 mb-4">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Please review the details before confirming.
+                    </div>
+                    <div class="d-flex flex-column gap-2 small">
+                        <div class="d-flex justify-content-between"><span>Account:</span> <span class="fw-bold">{{destAccount}}</span></div>
+                        <div class="d-flex justify-content-between"><span>Type:</span> <span class="fw-bold">{{loanName}}</span></div>
+                        <div class="d-flex justify-content-between"><span>Payments:</span> <span class="fw-bold">{{chosedPayment}} installments</span></div>
+                        <hr>
+                        <div class="d-flex justify-content-between text-primary"><span>Monthly:</span> <span class="fw-bold">{{monthlyPayment}}</span></div>
+                        <div class="d-flex justify-content-between h6 mt-2"><span>Total Repayment:</span> <span class="fw-bold text-danger">{{totalPayment}}</span></div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4" @click="confirmLoan()" data-bs-dismiss="modal">Confirm Loan</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"crossorigin="anonymous"></script>
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-<script type="text/javascript "src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
-<script src="./loan-application.js"></script>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5 mt-auto">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-12 col-md-4 text-center text-md-start">
+                    <h5 class="fw-bold mb-3">Mindhub Brothers Bank</h5>
+                    <p class="small text-muted mb-3">Your trusted financial partner.</p>
+                    <div class="d-flex justify-content-center justify-content-md-start gap-3">
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <h6 class="mb-2 small">Need help?</h6>
+                    <a href="tel:08006660171" class="h5 text-primary fw-bold text-decoration-none">0-800-666-0171</a>
+                </div>
+                <div class="col-12 col-md-4 text-center text-md-end">
+                    <p class="m-0 small text-muted">© 2023 Mindhub Brothers Bank SA.</p>
+                    <p class="m-0 small text-muted">All rights reserved. Member FDIC.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="loanToast" class="toast border-0 shadow-lg rounded-4" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-success text-white rounded-top-4">
+                <img src="./img/cardCreate/smilingFace.png" class="rounded me-2" alt="" style="width: 20px;">
+                <strong class="me-auto">Congratulations!</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body d-flex align-items-center gap-2">
+                Your money is ready to spend! <img src="./img/dineroLoan.png" style="width: 20px;" alt="">
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
+  <script src="./loan-application.js"></script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +10,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" /> -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -24,291 +22,211 @@
   <link rel="stylesheet" href="./style.css">
   <title>Mindhub B. Bank | Cards</title>
 </head>
-
-<body class="bodyClass">
-  <div id="app" class="d-flex flex-column">
-    <header class="headerColor p-3 d-flex flex-row justify-content-end align-items-center sticky-top">
-      <div class="col d-flex justify-content-start align-items-center gap-3">
-        <img class="logoCentro" src="./img/logoCentro2.png" alt="">
-        <h3 class="m-0">Mindhub Brothers bank</h3>
-      </div>
-      <button @click="logOut()" class="btn btn-outline-secondary btn-rounded"><span
-          class="material-symbols-outlined">output</span></button>
-    </header>
-    <main class="d-flex flex-row gap-3 justify-content-start">
-      <aside class="col-2 p-3 d-flex flex-column mobileXs">
-        <nav
-          class="navbar navAccount rounded d-flex flex-column align-items-start justify-content-start gap-2 p-2 bg-light">
-          <a class="nav-link" href="./accounts.html">Accounts</a></li>
-          <a class="nav-link active" href="#">My cards <i class="fas fa-xs fa-certificate"></i></a>
-          <a class="nav-link" href="./pay.html">Pay</a>
-          <a class="nav-link" href="./loan-application.html">Loan</a>
-          <a class="nav-link text-break" href="./criptocurrencies.html">Cryptocurrencies</a>
-          <hr class="hr text-dark" />
-          <a class="nav-link" @click="logOut()" style="cursor:pointer;">Log out <i
-              class="bi bi-box-arrow-right p-2"></i></a>
-        </nav>
-      </aside>
-      <!-- cards -->
-      <div class="d-flex flex-column p-3 m-3 gap-2 align-items-center backgroundAccounts col-9 shadow-lg">
-        <div class="d-flex align-items-center flex-column gap-2 shadow-sm bg-light w-100">
-          <h4 class="color text-black pt-2 fs-3 bg-light">My cards</h4>
+<body class="bg-light">
+  <div id="app" class="d-flex flex-column min-vh-100">
+    <!-- Responsive Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="./accounts.html">
+                <img src="./img/logoCentro2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                <span class="fw-bold">Mindhub Brothers Bank</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="./accounts.html">Accounts</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="./cards.html">My cards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pay.html">Pay</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./loan-application.html">Loan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./criptocurrencies.html">Crypto</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0 w-100 w-lg-auto text-center">
+                        <button @click="logOut()" class="btn btn-outline-light btn-sm rounded-pill px-4 py-2 w-100">
+                            <i class="fas fa-sign-out-alt me-1"></i> Log out
+                        </button>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="d-flex flex-row justify-content-around w-100 bg-light p-2 shadow">
-          <div class="d-flex align-items-center">
-            <span v-if="card.length !=0" class="d-flex align-items-center flex-column">CVVs<i
-                @click="showCVV = !showCVV" :class="showCVV ? 'far fa-eye-slash fa-2x' : 'fas fa-eye fa-2x'"></i>
-            </span>
-            <span v-else>You don't have any cards yet</span>
-          </div>
-          <div>
-            <!-- {{filtrar}} -->
-            <!-- <div class="form-check d-flex flex-row justify-content-start align-items-center gap-2 p-0 w-100">
-              <input class="form-check-input" type="checkbox" value="CREDIT" id="credit" v-model="checked" />
-              <label class="form-check-label" for="credit">CREDIT</label>
-              <i class="far fa-credit-card"></i>
-            </div>
-            <div class="form-check d-flex flex-row justify-content-start align-items-center gap-2 p-0 w-100">
-              <input class="form-check-input" type="checkbox" value="DEBIT" id="debit" v-model="checked" />
-              <label class="form-check-label" for="debit">DEBIT</label>
-              <i class="fas fa-credit-card"></i>
-            </div> -->
-          </div>
-          <div class="d-flex flex-row gap-2">
-            <div class="d-flex justify-content-center align-items-center">
-              <button data-bs-toggle="modal" data-bs-target="#modalExpiredCard"
-                class="btn btn-primary btnTransactions position-relative d-flex gap-1 align-items-center">
-                <span
-                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{expiredCards.length}}</span>
-                <span>Expired card</span></button>
-            </div>
-            <div class="modal fade" id="modalExpiredCard" tabindex="-1" aria-labelledby="modalExpiredLabel"
-              aria-hidden="false">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modalExpiredLabel">Your expired cards:</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="pt-2 d-flex flex-column justify-content-center align-items-evenly" v-for="cards of clientAccounts">
-                      <div class="d-flex flex-row">
-                        <div v-show="cards.thruDate < fechaFormateada" class="w-100 text-center">
-                          <h6>Card number</h6>
-                          <span v-show="cards.thruDate < fechaFormateada" class="fw-bold">{{cards.number}}</span>
-                        </div>
-                        <div v-show="cards.thruDate < fechaFormateada" class="w-100 text-center">
-                          <h6>Expiration date </h6>
-                          <span class="fw-bold">{{cards.thruDate}}</span>
-                        </div>
-                        <div v-show="cards.thruDate < fechaFormateada" class="w-100 text-center">
-                          <h6>Card color </h6>
-                          <span class="fw-bold">{{cards.cardColor}}</span>
-                        </div>
-                      </div>
-                      <div v-show="cards.thruDate < fechaFormateada">
-                        <hr class="hr hr-blurry"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
-                  </div>
-                </div>
+    </nav>
+
+    <main class="container py-4 flex-grow-1">
+      <div class="row g-4 justify-content-center">
+        <!-- Cards Header Control -->
+        <div class="col-12">
+          <div class="card shadow-sm border-0 p-3 bg-white rounded-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+              <h4 class="fw-bold m-0">My Cards</h4>
+              <div class="d-flex flex-wrap justify-content-center gap-2">
+                <button class="btn btn-outline-primary rounded-pill px-3 shadow-sm d-flex align-items-center gap-2" @click="showCVV = !showCVV" v-if="card.length != 0">
+                  <i :class="showCVV ? 'far fa-eye-slash' : 'fas fa-eye'"></i>
+                  <span>{{showCVV ? 'Hide CVV' : 'Show CVV'}}</span>
+                </button>
+                <button class="btn btn-warning rounded-pill px-3 shadow-sm d-flex align-items-center gap-2 position-relative" data-bs-toggle="modal" data-bs-target="#modalExpiredCard">
+                  <i class="fas fa-exclamation-circle"></i> 
+                  <span>Expired</span>
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" v-if="expiredCards.length > 0">{{expiredCards.length}}</span>
+                </button>
+                <button class="btn btn-outline-danger rounded-pill px-3 shadow-sm d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#modalDeleteCard" :disabled="card.length == 0">
+                  <i class="fas fa-trash-alt"></i> <span>Delete</span>
+                </button>
+                <button class="btn btn-success rounded-pill px-3 shadow-sm d-flex align-items-center gap-2" @click="newCard()" :disabled="nonExpireCards >= 6">
+                  <i class="fas fa-plus"></i> <span>{{nonExpireCards < 6 ? 'New Card' : 'Max Reached'}}</span>
+                </button>
               </div>
-            </div>
-            <!-- toast -->
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-              <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                  <i class="fas fa-info-circle pe-2"></i>
-                  <strong class="me-auto">Alert</strong>
-                  <small>Now</small>
-                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body message">
-                  Card deleted successfully
-                </div>
-              </div>
-          </div>
-<!-- DELETE BUTTON -->
-            <div class="d-flex justify-content-center align-items-center">
-              <button data-bs-toggle="modal" data-bs-target="#modalDeleteCard"
-                :class=" card.length > 0 ? 'btn btn-primary btnTransactions' : 'btn btn-light btnTransactions disabled'">
-                <span>Delete a card</span></button>
-            </div>
-            <div class="modal fade" id="modalDeleteCard" tabindex="-1" aria-labelledby="modalDeleteLabel"
-              aria-hidden="false">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modalDeleteLabel">Delete</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <h6 class="text-center">Select a card to delete it:</h6>
-                    <hr class="hr text-light" />
-                    <div class="pt-2 d-flex flex-row justify-content-around">
-                      <div class="w-100 text-center">
-                        <h6>Card number</h6>
-                        <select class="form-select form-select-sm w-100" aria-label="form-select-sm example"
-                          v-model=cardNumberSelect>
-                          <option v-for="cards of clientAccounts" :value="cards">{{cards.number}}</option>
-                        </select>
-                      </div>
-                      <div class="w-100 text-center">
-                        <h6>Card type</h6>
-                        <span class="fw-bold">{{cardNumberSelect.cardType}}</span>
-                      </div>
-                      <div class="w-100 text-center">
-                        <h6>Card color</h6>
-                        <span class="fw-bold">{{cardNumberSelect.cardColor}}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, cancel</button>
-                    <button type="button" class="btn btn-primary" @click="deleteCard()" data-bs-dismiss="modal">Yes, i'm sure</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-center align-items-center">
-              <button
-                :class=" nonExpireCards < 6 ? 'btn btn-primary btnTransactions' : 'btn btn-light btnTransactions disabled'"
-                @click="newCard()"><span v-show="nonExpireCards < 6">New card</span><span v-show="nonExpireCards >= 6">Max
-                  card reached</span></button>
             </div>
           </div>
         </div>
-<!-- CARD CONTAINERS -->
-        <section class="d-flex flex-row flex-wrap shadow w-100 bg-light">
-          <div v-for="cards of clientAccounts" class="d-flex flex-column justify-content-between">
-            <template v-if="cards.thruDate >= fechaFormateada" class="d-flex flex-column justify-content-center align-items-evenly cardsContainer">
-              <div class="d-flex flex-column w-100 justify-content-center align-items-center">
-                <span class="mt-2 w-100 text-dark p-2 text-center">Valid until: {{cards.thruDate}}</span>
-                <!-- <span v-show = "cards.thruDate < fechaFormateada" class="mt-2 w-100 text-dark p-2 text-center">This card is near to expire</span> -->
-                <!-- <span v-show = "cards.thruDate < fechaFormateada" class="w-100 text-danger p-2 text-center">This card is expired!</span> -->
-              </div>
-              <div class="cardContainerHeight d-flex justify-content-center align-items-center">
-                <div class="p-3 text-light round cardWidth w-100"
-                :class="cards.cardColor">
-                  <div class="cardBackground">
-                    <div class="fontCardTitle d-flex flex-row justify-content-between pe-2 ps-2">
-                      <span>Mindhub Brothers</span>
-                      <span>{{cards.cardColor}}</span>
+
+        <!-- Cards Display Grid -->
+        <div class="col-12">
+          <div class="row g-4 justify-content-center">
+            <div class="col-12 col-md-6 col-xl-4 d-flex justify-content-center" v-for="cards of clientAccounts" v-if="cards.thruDate >= fechaFormateada">
+              <div class="d-flex flex-column align-items-center w-100 animate__animated animate__fadeIn">
+                <p class="small text-muted mb-2">Valid until: <span class="fw-bold">{{cards.thruDate}}</span></p>
+                
+                <!-- Card Component -->
+                <div class="p-3 text-light round cardWidth w-100 shadow-lg" :class="cards.cardColor" style="max-width: 400px; height: 230px; transform: scale(1)!important;">
+                  <div class="cardBackground h-100 d-flex flex-column justify-content-between p-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="small fw-bold opacity-75">Mindhub Brothers</span>
+                      <span class="small fw-bold">{{cards.cardColor}}</span>
                     </div>
-                    <div class="d-flex justify-content-end mt-3 pe-2">
-                      <div class="holo holo2"><img src="./img/hologram2).png" alt=""></div>
+                    
+                    <div class="d-flex justify-content-end my-1">
+                      <div class="holo shadow-sm"><img src="./img/hologram2).png" alt="" class="img-fluid rounded-pill opacity-75"></div>
                     </div>
-                    <div class="text-center mt-2 fontCardTitle">
-                      <span class=" fs-2" :class="cards.cardType">{{cards.number}}</span>
+                    
+                    <div class="text-center my-2">
+                      <h5 class="fw-bold letter-spacing-2 m-0 fs-4" style="letter-spacing: 2px;">{{cards.number}}</h5>
                     </div>
-                    <div>
-                      <div class="d-flex flex-row gap-2 justify-content-around">
-                        <div :class="cards.cardColor == 'GOLD' ? 'fontValidBlack' : 'fontValidTitanium'">
-                          <span>
-                            Valid from
-                          </span>
-                          <span>{{cards.fromDate.slice(-10,-3)}}</span>
-                        </div>
-                        <div :class="cards.cardColor == 'GOLD' ? 'fontValidBlack' : 'fontValidTitanium'">
-                          <span>
-                            Trhu date
-                          </span>
-                          <span>{{cards.thruDate.slice(-10,-3)}}</span>
-                        </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center px-2">
+                      <div class="small opacity-75" style="font-size: 0.7rem;">
+                        <p class="m-0">VALID FROM: {{cards.fromDate.slice(-10,-3)}}</p>
+                        <p class="m-0">THRU DATE: {{cards.thruDate.slice(-10,-3)}}</p>
                       </div>
-                      <div class="d-flex flex-column justify-content-center align-items-end pe-2 text-black">
-                        <img src="./img/Visa_Inc._logo.svg.png" alt="" style="width: 60px;">
-                        <span>{{cards.cardType}}</span>
+                      <div class="text-end">
+                        <img src="./img/Visa_Inc._logo.svg.png" alt="" style="width: 50px;" class="img-fluid d-block ms-auto">
+                        <span class="extra-small fw-bold opacity-75">{{cards.cardType}}</span>
                       </div>
                     </div>
-                    <div class="fontCardName ps-3">
-                      <span>{{cards.cardHolder.toUpperCase()}}</span>
+                    
+                    <div class="ps-2 pb-1 mt-auto">
+                      <h6 class="m-0 fw-bold small text-uppercase">{{cards.cardHolder}}</h6>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="d-flex align-items-center justify-content-center gap-1 flex-row w-100">
-                <span class="fw-semibold p-2">CVV <span v-show=showCVV class="text-center">***</span>
-                  <span v-show=!showCVV>{{cards.cvv}}</span> </span>
-              </div>
 
-            </template>
+                <div class="mt-3 bg-white px-4 py-1 rounded-pill shadow-sm small fw-bold">
+                  CVV: <span v-show="showCVV">***</span><span v-show="!showCVV">{{cards.cvv}}</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Empty state -->
+            <div class="col-12 text-center py-5" v-if="card.length == 0">
+              <i class="fas fa-credit-card fa-4x text-muted opacity-25 mb-3"></i>
+              <h5 class="text-muted">You don't have any cards yet.</h5>
+              <button class="btn btn-primary rounded-pill px-4 mt-3" @click="newCard()">Create your first card</button>
+            </div>
           </div>
-        </section>
+        </div>
       </div>
     </main>
-    <footer class="footerSize d-flex align-items-center justify-content-around footerMobile gap-2">
-      <div class="d-flex flex-column justify-content-center align-items-center p-1 needHelp">
-          <h6 class="text-center mb-3">Need help?</h6>
-          <a href="tel:0-800-666-0171" style="color: aliceblue;">0-800-666-0171</a>
-      </div>
-      <div>
-          <img src="./img/contactanos.png" alt="" style="width: 48px;">
-      </div>
-      <div class="d-flex flex-column justify-content-center align-items-center p-1">
-          <h6 class="text-center">Social media</h6>
-          <div>
-          <a class="p-2" href="https://www.linkedin.com/in/franco-brizzio" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-          <a class="p-2" href="https://instagram.com" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-          <a class="p-2" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
-          <a class="p-2" href="https://api.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp-square fa-2x"></i></a>
+
+    <!-- Modals -->
+    <div class="modal fade" id="modalExpiredCard" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4 shadow">
+          <div class="modal-header border-0 pb-0">
+            <h5 class="modal-title fw-bold text-danger">Expired Cards</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-      </div>
-          <div class="d-flex gap-3 p-1 justify-content-center align-items-center">
-              <p class="m-0">Cohort 37-38</p>
+          <div class="modal-body py-4">
+            <div v-if="expiredCards.length > 0">
+              <div v-for="cards of clientAccounts" v-if="cards.thruDate < fechaFormateada" class="mb-3 p-2 border-bottom">
+                <div class="row text-center small">
+                  <div class="col-6"><p class="m-0 text-muted">Number</p><p class="fw-bold m-0">{{cards.number}}</p></div>
+                  <div class="col-3"><p class="m-0 text-muted">Expiry</p><p class="fw-bold m-0">{{cards.thruDate}}</p></div>
+                  <div class="col-3"><p class="m-0 text-muted">Color</p><p class="fw-bold m-0">{{cards.cardColor}}</p></div>
+                </div>
+              </div>
+            </div>
+            <p v-else class="text-center text-muted m-0">No expired cards found.</p>
           </div>
-          <div class="d-flex flex-column infoSize gap-3 justify-content-evenly align-items-center footerInfo">
-              <p class="m-0">Mindhub Brothers Bank SA, Member FDIC.</p>
-              <p class="m-0">© 2023 Mindhub Brothers Bank. All rights reserved.</p>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
           </div>
-  </footer>
-    <div class="d-flex flex-column align-items-center menuMobile">
-      <div class="text-center menuReferencesUp">
-        <a @click="menuUp()"><span><i
-              :class=" show? 'fas fa-angle-double-up fa-1x' : 'fas fa-angle-double-down fa-1x'  "></i></span></a>
-      </div>
-      <div class="d-flex gap-1 align-items-center justify-content-center bg-primary w-100">
-        <div class="text-center d-flex flex-column text-light">
-          <span v-show="!show2" class="menuReferences animate__animated pt-2"
-            :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Account</span>
-          <a href="./accounts.html"><button class="btn btn-rounded btn-primary"><span
-                class="material-symbols-outlined">badge</span></button></a>
-        </div>
-        <div class="text-center d-flex flex-column text-light">
-          <span v-show="!show2" class="menuReferences animate__animated pt-2"
-            :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Cards</span>
-          <a href="#"><button class="btn btn-rounded btn-primary"><span
-                class="material-symbols-outlined">credit_card</span></button></a>
-        </div>
-        <div class="text-center d-flex flex-column text-light">
-          <span v-show="!show2" class="menuReferences animate__animated pt-2"
-            :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Fixed
-            terms</span>
-          <a href=""><button class="btn btn-rounded btn-primary"><span
-                class="material-symbols-outlined">savings</span></button></a>
-        </div>
-        <div class="text-center d-flex flex-column text-light">
-          <span v-show="!show2" class="menuReferences animate__animated pt-2"
-            :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Loans</span>
-          <a href="./loan-application.html">
-            <button class="btn btn-rounded btn-primary"><span
-                class="material-symbols-outlined">real_estate_agent</span></button>
-          </a>
-        </div>
-        <div class="text-center d-flex flex-column text-light">
-          <span v-show="!show2" class="menuReferences animate__animated pt-2"
-            :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Crypto</span>
-          <a href="./criptocurrencies.html">
-            <button class="btn btn-rounded btn-primary"><span
-                class="material-symbols-outlined">currency_bitcoin</span></button>
-          </a>
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="modalDeleteCard" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4 shadow">
+          <div class="modal-header border-0 pb-0">
+            <h5 class="modal-title fw-bold">Delete Card</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body py-4">
+            <label class="form-label text-muted small fw-bold">Select Card</label>
+            <select class="form-select border-2 rounded-3 mb-3" v-model="cardNumberSelect">
+              <option v-for="cards of clientAccounts" :value="cards">{{cards.number}} - ({{cards.cardColor}})</option>
+            </select>
+            <div class="row text-center small g-2" v-if="cardNumberSelect.number">
+                <div class="col-6"><div class="bg-light p-2 rounded">Type: <b>{{cardNumberSelect.cardType}}</b></div></div>
+                <div class="col-6"><div class="bg-light p-2 rounded">Color: <b>{{cardNumberSelect.cardColor}}</b></div></div>
+            </div>
+          </div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger rounded-pill px-4" @click="deleteCard()" data-bs-dismiss="modal">Confirm Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5 mt-auto">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-12 col-md-4 text-center text-md-start">
+                    <h5 class="fw-bold mb-3">Mindhub Brothers Bank</h5>
+                    <div class="d-flex justify-content-center justify-content-md-start gap-3">
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <h6 class="mb-2 small opacity-50">Customer Service</h6>
+                    <a href="tel:08006660171" class="h5 text-primary fw-bold text-decoration-none">0-800-666-0171</a>
+                </div>
+                <div class="col-12 col-md-4 text-center text-md-end">
+                    <p class="m-0 small opacity-50">© 2023 Mindhub Brothers Bank SA.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toasts -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast" class="toast border-0 shadow-lg rounded-4" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header bg-success text-white rounded-top-4">
+              <i class="fas fa-check-circle me-2"></i>
+              <strong class="me-auto">Success</strong>
+              <button type="button" class="btn-close btn-close-white" data-bs-toast="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+              Card operation completed successfully.
+          </div>
+      </div>
+    </div>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -317,5 +235,4 @@
   <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
   <script src="./cards.js"></script>
 </body>
-
 </html>

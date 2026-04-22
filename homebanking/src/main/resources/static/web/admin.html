@@ -2,200 +2,209 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
-  <title>Homebanking</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <title>Mindhub B. Bank | Admin</title>
 </head>
 
-<body class="p-3">
-  <div id="app" class="d-flex flex-column">
-    <header>
-      <h1>Client manager</h1>
-    </header>
-    <main class="p-3">
-      <div class=" p-3 d-flex flex-column ">
-        <div class="d-flex flex-row gap-4">
-          <div class="col-6">
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Name:</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Peter"
-                v-model="addFirstName">
+<body class="bg-light">
+    <div id="app" class="d-flex flex-column min-vh-100">
+        <!-- Responsive Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                    <img src="./img/logoCentro2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                    <span class="fw-bold">Admin Panel</span>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item"><a class="nav-link active" href="#">Client Manager</a></li>
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                            <a href="./accounts.html" class="btn btn-outline-light btn-sm rounded-pill px-4">Exit Admin</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Last name: </label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Dodge"
-                v-model="addLastName">
+        </nav>
+
+        <main class="container py-4 flex-grow-1">
+            <div class="row g-4">
+                <!-- Add Client Section -->
+                <div class="col-12 col-lg-5">
+                    <div class="card shadow-sm border-0 rounded-4 p-4 h-100">
+                        <h4 class="fw-bold mb-4 text-primary"><i class="fas fa-user-plus me-2"></i>Add New Client</h4>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted">First Name</label>
+                            <input type="text" class="form-control rounded-3" placeholder="Peter" v-model="addFirstName">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted">Last Name</label>
+                            <input type="text" class="form-control rounded-3" placeholder="Dodge" v-model="addLastName">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold text-muted">Email Address</label>
+                            <input type="email" class="form-control rounded-3" placeholder="mail@example.com" v-model="addEmail">
+                        </div>
+                        <button type="button" class="btn btn-success w-100 rounded-pill py-2 fw-bold" @click="addClient(addFirstName,addLastName,addEmail)">
+                            <i class="fas fa-plus me-2"></i>Create Client
+                        </button>
+                    </div>
+                </div>
+
+                <!-- JSON Response Section -->
+                <div class="col-12 col-lg-7">
+                    <div class="card shadow-sm border-0 rounded-4 p-4 h-100 bg-dark text-info">
+                        <h4 class="fw-bold mb-3"><i class="fas fa-code me-2"></i>REST Response</h4>
+                        <pre class="m-0 p-3 bg-black rounded-3 overflow-auto small" style="max-height: 300px;">{{json}}</pre>
+                    </div>
+                </div>
+
+                <!-- Client List Section -->
+                <div class="col-12">
+                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                        <div class="p-4 bg-white border-bottom">
+                            <h4 class="fw-bold m-0"><i class="fas fa-users me-2"></i>Client List</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="px-4">ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="client of clients" :key="client.id">
+                                        <td class="px-4"><span class="badge bg-secondary rounded-pill">#{{client.id}}</span></td>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                {{client.firstName}}
+                                                <button class="btn btn-link text-warning p-0" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="validation(client,'firstName')">
+                                                    <i class="fas fa-edit fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                {{client.lastName}}
+                                                <button class="btn btn-link text-warning p-0" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="validation(client,'lastName')">
+                                                    <i class="fas fa-edit fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                {{client.email}}
+                                                <button class="btn btn-link text-warning p-0" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="validation(client,'email')">
+                                                    <i class="fas fa-edit fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <button class="btn btn-outline-warning btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="validation(client,'edit')">
+                                                    Edit All
+                                                </button>
+                                                <button class="btn btn-outline-danger btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="validation(client,'delete')">
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="mail@example.com"
-                v-model="addEmail">
+        </main>
+
+        <!-- Modals -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 rounded-4 shadow-lg">
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fw-bold" v-if="bandera == 'edit'">Edit Client</h5>
+                        <h5 class="modal-title fw-bold text-danger" v-else-if="bandera == 'delete'">Delete Client</h5>
+                        <h5 class="modal-title fw-bold" v-else>Update Field</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    
+                    <div class="modal-body py-4">
+                        <!-- Edit All -->
+                        <div v-if="bandera == 'edit'">
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-muted">First Name</label>
+                                <input type="text" class="form-control rounded-3" v-model="editFirstName">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-muted">Last Name</label>
+                                <input type="text" class="form-control rounded-3" v-model="editLastName">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-muted">Email</label>
+                                <input type="email" class="form-control rounded-3" v-model="editEmail">
+                            </div>
+                        </div>
+
+                        <!-- Delete -->
+                        <div v-else-if="bandera == 'delete'" class="text-center">
+                            <i class="fas fa-exclamation-triangle text-danger fa-3x mb-3"></i>
+                            <p class="m-0">Are you sure you want to delete this client permanently?</p>
+                        </div>
+
+                        <!-- Single Fields -->
+                        <div v-else-if="bandera == 'firstName'">
+                            <label class="form-label small fw-bold text-muted">First Name</label>
+                            <input type="text" class="form-control rounded-3" v-model="editFirstName">
+                        </div>
+                        <div v-else-if="bandera == 'lastName'">
+                            <label class="form-label small fw-bold text-muted">Last Name</label>
+                            <input type="text" class="form-control rounded-3" v-model="editLastName">
+                        </div>
+                        <div v-else-if="bandera == 'email'">
+                            <label class="form-label small fw-bold text-muted">Email</label>
+                            <input type="email" class="form-control rounded-3" v-model="editEmail">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-0 pt-0">
+                        <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                        
+                        <button v-if="bandera == 'edit'" class="btn btn-success rounded-pill px-4" data-bs-dismiss="modal" @click="saveAllChanges(editFirstName,editLastName,editEmail)">Save All</button>
+                        <button v-else-if="bandera == 'delete'" class="btn btn-danger rounded-pill px-4" data-bs-dismiss="modal" @click="deleteClient()">Delete Permanently</button>
+                        <button v-else-if="bandera == 'firstName'" class="btn btn-success rounded-pill px-4" data-bs-dismiss="modal" @click="saveName(editFirstName)">Save Name</button>
+                        <button v-else-if="bandera == 'lastName'" class="btn btn-success rounded-pill px-4" data-bs-dismiss="modal" @click="saveLastName(editLastName)">Save Last Name</button>
+                        <button v-else-if="bandera == 'email'" class="btn btn-success rounded-pill px-4" data-bs-dismiss="modal" @click="saveEmail(editEmail)">Save Email</button>
+                    </div>
+                </div>
             </div>
-            <div class="col-auto">
-              <button type="click" class="btn btn-outline-success mb-3"
-                @click="addClient(addFirstName,addLastName,addEmail)">Add client</button>
-            </div>
-          </div>
-          <div class="col-6 p-3 d-flex flex-column ">
-              <h2>Client REST response</h2>
-              <pre class = "json divJson">
-                {{json}}
-              </pre>
-          </div>
         </div>
 
-        <h2>Client list</h2>
-        <table class="table table-responsive">
-          <thead>
-            <tr class="text-bg-success">
-              <th scope="col-auto">ID</th>
-              <th scope="col-auto">First name</th>
-              <th scope="col-auto">Last name</th>
-              <th scope="col-auto">Email</th>
-              <th scope="col-auto">Manage</th>
-            </tr>
-          </thead>
-          <tbody v-for="client of clients">
-            <tr v-if = "enabled">
-              <!-- v-if = "client.enabled" -->
-              <td class="text-center">
-                <div>{{client.id}}</div>
-              </td>
-              <td class="tdWidth">
-                <div class="col-auto">
-                  {{client.firstName}}
-                  <button type="button" class="btn btn-outline-warning editButton btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal" @click="validation(client,'firstName')">
-                    <img class="imgBtn" src="./img/edit.png" alt="">
-                  </button>
-                </div>
-              </td>
-              <td class="tdWidth">
-                <div class="col-auto">
-                  {{client.lastName}}
-                  <button type="button" class="btn btn-outline-warning editButton btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal" @click="validation(client,'lastName')">
-                    <img class="imgBtn" src="./img/edit.png" alt="">
-                  </button>
-                </div>
-              </td>
-              <td class="tdWidth">
-                <div class="col-auto">
-                  {{client.email}}
-                  <button type="button" class="btn btn-outline-warning editButton btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal" @click="validation(client,'email')">
-                    <img class="imgBtn" src="./img/edit.png" alt="">
-                  </button>
-                </div>
-              </td>
-              <td class="d-flex flex-row justify-content-between">
-                <div class="col-auto">
-                  <button type="button" class="btn btn-outline-danger editButton sizeBtn btn-sm" data-bs-toggle="modal"
-                    @click="validation(client,'delete')" data-bs-target="#exampleModal">
-                    Delete
-                  </button>
-                </div>
-                <div class="col-auto">
-                  <button type="button" class="btn btn-outline-warning editButton sizeBtn btn-sm" data-bs-toggle="modal"
-                    @click="validation(client,'edit')" data-bs-target="#exampleModal">
-                    Edit all
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header" v-if="bandera == 'edit'">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit client</h1>
-              </div>
-              <div class="modal-header" v-else-if="bandera == 'delete'">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete client</h1>
-              </div>
-              <!-- CUERPO EDITAR -->
-              <div class="modal-body" v-if="bandera == 'edit' || bandera == 'edit'"> 
-                <div class="mb-3">
-                  <label for="editFirstNameAll" class="form-label">Name:</label>
-                  <input type="email" class="form-control" id="editFirstNameAll" placeholder="Peter"
-                    v-model="editFirstName">
-                </div>
-                <div class="mb-3">
-                  <label for="editLastNameAll" class="form-label">Last name:  </label>
-                  <input type="email" class="form-control" id="editLastNameAll" :placeholder="Dodge"
-                    v-model="editLastName">
-                </div>
-                <div class="mb-3">
-                  <label for="editEmailAll" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="editEmailAll" placeholder="mail@example.com"
-                    v-model="editEmail">
-                </div>
-              </div>
-              <!-- CUERPO BORRAR CLIENTE -->
-              <div class="modal-body" v-else-if="bandera == 'delete'">
-                <label class="p-2">You will delete this client permanently</label>
-              </div>
-              <!-- CUERPO EDITAR POR SEPARADO -->
-              <div class="mb-3 modal-body" v-else-if="bandera == 'firstName'">
-                <label for="editFirstName" class="form-label">Name:</label>
-                <input type="email" class="form-control" id="editFirstName" placeholder="Peter"
-                  v-model="editFirstName">
-              </div>
-              <div class="mb-3 modal-body" v-else-if="bandera == 'lastName'">
-                <label for="editLastName" class="form-label">Last name:</label>
-                <input type="email" class="form-control" id="editLastName" placeholder="Dodge"
-                  v-model="editLastName">
-              </div>
-              <div class="mb-3 modal-body" v-else-if="bandera == 'email'">
-                <label for="editEmail" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="editEmail" placeholder="mail@example.com"
-                  v-model="editEmail">
-              </div>
-              <div>
-                <!-- BOTONES -->
-                <div class="modal-footer" v-if="bandera == 'edit'">
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal"  @click = saveAllChanges(editFirstName,editLastName,editEmail)>Save changes</button>
-                </div>
-                <div class="modal-footer" v-else-if="bandera == 'delete'">
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" @click = deleteClient()>Delete</button>
-                </div>
-                <div class="modal-footer" v-else-if="bandera == 'firstName'">
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" @click = saveName(editFirstName)>Save name</button>
-                </div>
-                <div class="modal-footer" v-else-if="bandera == 'lastName'">
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" @click = saveLastName(editLastName)>Save last name</button>
-                </div>
-                <div class="modal-footer" v-else-if="bandera == 'email'">
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" @click = saveEmail(editEmail)>Save email</button>
-                </div>
-              </div>
+        <footer class="bg-dark text-white py-4 mt-auto">
+            <div class="container text-center">
+                <p class="m-0 small text-muted">Admin Panel - Mindhub Brothers Bank © 2023</p>
             </div>
-          </div>
-        </div>
-      </div>
+        </footer>
+    </div>
 
-    </main>
-    <footer>
-
-    </footer>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="./admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./admin.js"></script>
 </body>
 
 </html>

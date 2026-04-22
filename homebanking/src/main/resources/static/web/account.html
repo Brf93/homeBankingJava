@@ -19,144 +19,122 @@
     <link rel="stylesheet" href="./style.css">
     <title>Mindhub B. Bank | Transactions</title>
 </head>
-<body>
-<div id="app" class="d-flex flex-column">
-  <header class="headerColor p-3 d-flex flex-row justify-content-end align-items-center sticky-top headerMobile">
-    <div class="col d-flex justify-content-start align-items-center gap-3">
-        <img class="logoCentro" src="./img/logoCentro2.png" alt="">
-        <h3 class="m-0"><span class="mindHubBrothers">Mindhub Brothers </span><span class="bank">bank</span>
-        </h3>
-    </div>
-    <div>
-        <button @click="logOut()" class="btn btn-outline-secondary btn-rounded"><span
-                class="material-symbols-outlined d-flex align-items-center">
-                output</span></button>
-    </div>
-</header>
-    <main class="d-flex flex-row gap-3 justify-content-start">
-      <aside class="col-2 p-3 d-flex flex-column mobileXs">
-        <nav
-            class="navbar navAccount rounded d-flex flex-column align-items-start justify-content-start gap-2 p-2 bg-light">
-            <a class="nav-link" href="./accounts.html">Accounts ></a>
-            <a class="nav-link active" href="#">Transactions <i class="fas fa-xs fa-certificate"></i></a>
-            <a class="nav-link" href="./cards.html">My cards</a>
-            <a class="nav-link" href="./pay.html">Pay</a>
-            <a class="nav-link" href="./loan-application.html">Loan</a>
-            <a class="nav-link text-break" href="./criptocurrencies.html">Cryptocurrencies</a>
-            <hr class="hr text-dark"/>
-            <a class="nav-link" @click="logOut()" style="cursor:pointer;">Log out <i @click="logOut()" class="bi bi-box-arrow-right p-2"></i></a>
-        </nav>
-    </aside>
-        <div class="col-9 shadow-lg p-2 m-2 backgroundAccounts rounded mobileAdjustment resolution4k">
-            <div class=" d-flex flex-column justify-content-start bg-light">
-                <div class="d-flex align-items-center flex-column gap-2 shadow-sm bg-light w-100">
-                    <h4 class="color text-black pt-2 fs-3">Transactions</h4>
-                </div>
-                <div class="text-center pt-2">
-                  <!-- <span class="fs-5">{{account[0].number}} - Balance: {{account[0].balance}}</span> -->
-                </div>
-                <div class="d-flex align-items-center justify-content-center gap-2 p-2">
-                  <table class="table table-light table-responsive text-center shadow mt-3 bg-body rounded">
-                      <thead>
-                        <tr>
-                          <th class="bg-primary p-2 text-light fw-semibold" scope="col">Amount</th>
-                          <th class="bg-primary p-2 text-light fw-semibold"  scope="col">Date</th>
-                          <th class="bg-primary p-2 text-light fw-semibold"  scope="col">Description</th>
-                          <th class="bg-primary p-2 text-light fw-semibold" scope="col">Operation</th>
-                        </tr>                
-                      </thead>
-                      <tbody v-for = "transaction of orderById" class ="table-group-divider">
-                        <tr>
-                          <th scope="row" class="fs-6"><span v-show = "transaction.type == 'DEBIT'">-</span>{{transaction.amount}}</th>
-                          <td>{{transaction.date.replace("T", " ")}}</td>
-                          <td>{{transaction.description}} <hr> Balance after transaction: {{transaction.afterBalance}}</td>
-                          <td :class="getType(transaction.type)">{{transaction.type}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                </div>
-            </div>
-          </div>
-      </main>
-      <footer class="footerSize d-flex align-items-center justify-content-around footerMobile">
-        <div class="d-flex flex-column justify-content-center align-items-center p-1 needHelp">
-            <h6 class="text-center mb-3">Need help?</h6>
-            <a href="tel:0-800-666-0171" style="color: aliceblue;">0-800-666-0171</a>
-        </div>
-        <div>
-            <img src="./img/contactanos.png" alt="" style="width: 48px;">
-        </div>
-        <div class="d-flex flex-column justify-content-center align-items-center p-1">
-            <hr>
-            <h6 class="text-center">Social media</h6>
-            <div>
-            <a class="p-2" href="https://www.linkedin.com/in/franco-brizzio" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-            <a class="p-2" href="https://instagram.com" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-            <a class="p-2" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
-            <a class="p-2" href="https://api.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp-square fa-2x"></i></a>
+<body class="bg-light">
+<div id="app" class="d-flex flex-column min-vh-100">
+    <!-- Responsive Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="./accounts.html">
+                <img src="./img/logoCentro2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                <span class="fw-bold">Mindhub Brothers Bank</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="./accounts.html">Accounts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./cards.html">My cards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pay.html">Pay</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./loan-application.html">Loan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./criptocurrencies.html">Crypto</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0 w-100 w-lg-auto text-center">
+                        <button @click="logOut()" class="btn btn-outline-light btn-sm rounded-pill px-4 py-2 w-100">
+                            <i class="fas fa-sign-out-alt me-1"></i> Log out
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
-            <div class="d-flex gap-3 p-1 justify-content-center align-items-center">
-                <p class="m-0">Cohort 37-38</p>
+    </nav>
+
+    <main class="container py-4 flex-grow-1">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card shadow-sm border-0 rounded-4 p-4 bg-white animate__animated animate__fadeIn">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="fw-bold m-0 text-primary">Account Transactions</h4>
+                        <a href="./accounts.html" class="btn btn-outline-primary btn-sm rounded-pill">
+                            <i class="fas fa-arrow-left me-1"></i> Back to Accounts
+                        </a>
+                    </div>
+
+                    <div class="table-responsive rounded-3 shadow-sm">
+                        <table class="table table-hover align-middle mb-0 text-center">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th class="p-3 fw-semibold">Amount</th>
+                                    <th class="p-3 fw-semibold">Date</th>
+                                    <th class="p-3 fw-semibold">Description</th>
+                                    <th class="p-3 fw-semibold">Operation</th>
+                                </tr>                
+                            </thead>
+                            <tbody>
+                                <tr v-for="transaction of orderById" :key="transaction.id">
+                                    <td class="fw-bold">
+                                        <span :class="transaction.type == 'DEBIT' ? 'text-danger' : 'text-success'">
+                                            <span v-show="transaction.type == 'DEBIT'">-</span>${{transaction.amount}}
+                                        </span>
+                                    </td>
+                                    <td class="small text-muted">{{transaction.date.replace("T", " ")}}</td>
+                                    <td>
+                                        <div class="fw-bold text-dark">{{transaction.description}}</div>
+                                        <div class="extra-small text-muted mt-1">Balance after: ${{transaction.afterBalance}}</div>
+                                    </td>
+                                    <td>
+                                        <span :class="getType(transaction.type) + ' badge rounded-pill px-3 py-2'">
+                                            {{transaction.type}}
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr v-if="orderById.length === 0">
+                                    <td colspan="4" class="py-5 text-muted">
+                                        <i class="fas fa-info-circle mb-2 fa-2x d-block"></i>
+                                        No transactions found for this account.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex flex-column infoSize gap-3 justify-content-evenly align-items-center footerInfo">
-                <p class="m-0">Mindhub Brothers Bank SA, Member FDIC.</p>
-                <p class="m-0">© 2023 Mindhub Brothers Bank. All rights reserved.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5 mt-auto">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-12 col-md-4 text-center text-md-start">
+                    <h5 class="fw-bold mb-3">Mindhub Brothers Bank</h5>
+                    <p class="small text-muted mb-3">Your trusted financial partner.</p>
+                    <div class="d-flex justify-content-center justify-content-md-start gap-3">
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <h6 class="mb-2 small">Need help?</h6>
+                    <a href="tel:08006660171" class="h5 text-primary fw-bold text-decoration-none">0-800-666-0171</a>
+                </div>
+                <div class="col-12 col-md-4 text-center text-md-end">
+                    <p class="m-0 small text-muted">© 2023 Mindhub Brothers Bank SA.</p>
+                    <p class="m-0 small text-muted">All rights reserved. Member FDIC.</p>
+                </div>
             </div>
-      </footer>
-  <!-- MENU MOBILE -->
-    <div class="d-flex flex-column align-items-center menuMobile">
-      <div class="text-center menuReferencesUp">
-          <a @click="menuUp()"><span><i
-                      :class=" show? 'fas fa-angle-double-up fa-1x' : 'fas fa-angle-double-down fa-1x'  "></i></span></a>
-      </div>
-      <div class="d-flex gap-1 align-items-center justify-content-center bg-primary w-100">
-          <div class="text-center d-flex flex-column text-light">
-              <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                  :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Account</span>
-              <a href="./accounts.html"><button class="btn btn-rounded btn-primary"><span
-                          class="material-symbols-outlined">badge</span></button></a>
-          </div>
-          <div class="text-center d-flex flex-column text-light">
-              <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                  :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Cards</span>
-              <a href="./cards.html"><button class="btn btn-rounded btn-primary"><span
-                          class="material-symbols-outlined">credit_card</span></button></a>
-          </div>
-          <div class="text-center d-flex flex-column text-light">
-              <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                  :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Fixed
-                  terms</span>
-              <a href=""><button class="btn btn-rounded btn-primary"><span
-                          class="material-symbols-outlined">savings</span></button></a>
-          </div>
-          <div class="text-center d-flex flex-column text-light">
-              <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                  :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Loans</span>
-              <a href="./loan-application.html">
-                  <button class="btn btn-rounded btn-primary"><span
-                          class="material-symbols-outlined">real_estate_agent</span></button>
-              </a>
-          </div>
-          <div class="text-center d-flex flex-column text-light">
-              <span v-show="!show2" class="menuReferences animate__animated pt-2"
-                  :class="show? 'animate__fadeOutDown animate__faster' : 'animate__fadeInUp animate__faster'">Crypto</span>
-              <a href="./criptocurrencies.html">
-                  <button class="btn btn-rounded btn-primary"><span
-                          class="material-symbols-outlined">currency_bitcoin</span></button>
-              </a>
-          </div>
-      </div>
-  </div>
+        </div>
+    </footer>
 </div>
+
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
-    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
 <script src="./account.js"></script>
 </body>
 </html>
