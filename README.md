@@ -415,7 +415,4 @@ Distribuido bajo la licencia MIT. Ver `LICENSE` para mas informacion.
 
 ## Autor
 
-Desarrollado por **[Tu nombre]**
-
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- Email: tu@email.com
+Desarrollado por **Franco Brizzio**
