@@ -41,7 +41,7 @@ public class HomebankingApplication {
 	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository)
 		{
 			return (args)->{
-				// La lgica de inicializacin se deja aqu por si se desea usar, 
+				// La lgica de inicializacion se deja aqui por si se desea usar,
 				// pero se recomienda manejar los datos directamente en PostgreSQL.
 			};
 		}
